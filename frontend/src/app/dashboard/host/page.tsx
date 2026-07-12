@@ -221,22 +221,22 @@ export default function HostDashboard() {
       {/* Top Header */}
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
         <div>
-          <h1 className="text-3xl font-extrabold tracking-tight text-slate-900 dark:text-white flex items-center gap-2">
+          <h1 className="text-3xl font-extrabold tracking-tight text-slate-900 flex items-center gap-2">
             Host Management Center
           </h1>
-          <p className="text-sm text-slate-500 mt-1 dark:text-slate-400">
+          <p className="text-sm text-slate-500 mt-1">
             Publish homestays, manage pricing structures, and accept tourist reservations.
           </p>
         </div>
 
         {/* Verification Alert Badge */}
         {user?.isVerified ? (
-          <div className="flex items-center gap-1.5 rounded-xl bg-emerald-50 px-4 py-2 text-xs font-semibold text-emerald-800 border border-emerald-200/50 dark:bg-emerald-950/20 dark:text-emerald-450 dark:border-emerald-900/50 self-start md:self-auto">
+          <div className="flex items-center gap-1.5 rounded-xl bg-emerald-50 px-4 py-2 text-xs font-semibold text-emerald-800 border border-emerald-200/50 self-start md:self-auto">
             <ShieldCheck className="h-4 w-4" />
             <span>Verified Registry Profile</span>
           </div>
         ) : (
-          <div className="flex items-center gap-1.5 rounded-xl bg-amber-50 px-4 py-2.5 text-xs font-semibold text-amber-800 border border-amber-200/50 dark:bg-amber-950/20 dark:text-amber-450 dark:border-amber-900/50 self-start md:self-auto">
+          <div className="flex items-center gap-1.5 rounded-xl bg-amber-50 px-4 py-2.5 text-xs font-semibold text-amber-800 border border-amber-200/50 self-start md:self-auto">
             <ShieldAlert className="h-4 w-4" />
             <span>Verification Review Pending</span>
           </div>
@@ -245,12 +245,12 @@ export default function HostDashboard() {
 
       {/* Strict Host Verification block */}
       {!user?.isVerified && (
-        <div className="rounded-2xl border border-dashed border-amber-300 bg-amber-50/30 p-6 mb-8 dark:border-amber-900/50 dark:bg-amber-950/10">
-          <div className="flex gap-3 text-amber-800 dark:text-amber-450">
+        <div className="rounded-2xl border border-dashed border-amber-300 bg-amber-50/30 p-6 mb-8">
+          <div className="flex gap-3 text-amber-800">
             <ShieldAlert className="h-6 w-6 shrink-0 mt-0.5" />
             <div>
               <h3 className="text-sm font-bold">Listing Restriction Active</h3>
-              <p className="text-xs mt-1 leading-relaxed text-slate-600 dark:text-slate-400">
+              <p className="text-xs mt-1 leading-relaxed text-slate-600">
                 Your account is currently in pending state. Admin is reviewing your Grama Niladhari and Police Clearance documents. You cannot publish homestays or host guests until your account has been verified.
               </p>
             </div>
@@ -261,38 +261,38 @@ export default function HostDashboard() {
       {/* Financial Overview Grid */}
       {user?.isVerified && (
         <div className="grid grid-cols-1 gap-5 sm:grid-cols-3 mb-10">
-          <div className="rounded-2xl border border-slate-100 bg-white p-6 shadow-sm dark:border-slate-800 dark:bg-slate-950">
+          <div className="rounded-2xl border border-slate-100 bg-white p-6 shadow-sm">
             <div className="flex items-center gap-3">
-              <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-emerald-50 text-emerald-700 dark:bg-emerald-950/30 dark:text-emerald-400">
+              <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-emerald-50 text-emerald-700">
                 <DollarSign className="h-5 w-5" />
               </span>
               <div>
-                <span className="text-xs text-slate-400 dark:text-slate-500 font-semibold">TOTAL EARNINGS (90%)</span>
-                <p className="text-2xl font-black text-slate-900 dark:text-white">${totalEarnings.toFixed(2)}</p>
+                <span className="text-xs text-slate-400 font-semibold">TOTAL EARNINGS (90%)</span>
+                <p className="text-2xl font-black text-slate-900">${totalEarnings.toFixed(2)}</p>
               </div>
             </div>
           </div>
 
-          <div className="rounded-2xl border border-slate-100 bg-white p-6 shadow-sm dark:border-slate-800 dark:bg-slate-950">
+          <div className="rounded-2xl border border-slate-100 bg-white p-6 shadow-sm">
             <div className="flex items-center gap-3">
-              <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-indigo-50 text-indigo-700 dark:bg-indigo-950/30 dark:text-indigo-400">
+              <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-indigo-50 text-indigo-700">
                 <Home className="h-5 w-5" />
               </span>
               <div>
-                <span className="text-xs text-slate-400 dark:text-slate-500 font-semibold">MY HOMESTAYS</span>
-                <p className="text-2xl font-black text-slate-900 dark:text-white">{experiences.length} stays</p>
+                <span className="text-xs text-slate-400 font-semibold">MY HOMESTAYS</span>
+                <p className="text-2xl font-black text-slate-900">{experiences.length} stays</p>
               </div>
             </div>
           </div>
 
-          <div className="rounded-2xl border border-slate-100 bg-white p-6 shadow-sm dark:border-slate-800 dark:bg-slate-950">
+          <div className="rounded-2xl border border-slate-100 bg-white p-6 shadow-sm">
             <div className="flex items-center gap-3">
-              <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-sky-50 text-sky-700 dark:bg-sky-950/30 dark:text-sky-400">
+              <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-sky-50 text-sky-700">
                 <Users className="h-5 w-5" />
               </span>
               <div>
-                <span className="text-xs text-slate-400 dark:text-slate-500 font-semibold">TOTAL RESERVATIONS</span>
-                <p className="text-2xl font-black text-slate-900 dark:text-white">{bookings.length} reservations</p>
+                <span className="text-xs text-slate-400 font-semibold">TOTAL RESERVATIONS</span>
+                <p className="text-2xl font-black text-slate-900">{bookings.length} reservations</p>
               </div>
             </div>
           </div>
@@ -303,8 +303,8 @@ export default function HostDashboard() {
       {user?.isVerified && (
         <div className="space-y-12">
           {/* Incoming Bookings Section */}
-          <div className="bg-white rounded-2xl border border-slate-100 p-6 dark:bg-slate-950 dark:border-slate-800/50">
-            <h2 className="text-lg font-bold text-slate-900 dark:text-white mb-6">Guest Reservations</h2>
+          <div className="bg-white rounded-2xl border border-slate-100 p-6">
+            <h2 className="text-lg font-bold text-slate-900 mb-6">Guest Reservations</h2>
 
             {bookings.length === 0 ? (
               <p className="text-xs text-slate-500 italic text-center py-4">No reservations received yet.</p>
@@ -312,7 +312,7 @@ export default function HostDashboard() {
               <div className="overflow-x-auto">
                 <table className="w-full text-sm text-left border-collapse">
                   <thead>
-                    <tr className="border-b border-slate-100 text-xs text-slate-400 uppercase font-semibold dark:border-slate-800">
+                    <tr className="border-b border-slate-100 text-xs text-slate-400 uppercase font-semibold">
                       <th className="py-3 px-2">Homestay</th>
                       <th className="py-3 px-2">Guest Detail</th>
                       <th className="py-3 px-2">Dates</th>
@@ -323,11 +323,11 @@ export default function HostDashboard() {
                   </thead>
                   <tbody>
                     {bookings.map((booking) => (
-                      <tr key={booking.id} className="border-b border-slate-50 hover:bg-slate-50/50 dark:border-slate-800 dark:hover:bg-slate-900/30 transition-colors">
-                        <td className="py-4 px-2 font-bold text-slate-900 dark:text-white">{booking.experienceTitle}</td>
+                      <tr key={booking.id} className="border-b border-slate-50 hover:bg-slate-50/50 transition-colors">
+                        <td className="py-4 px-2 font-bold text-slate-900">{booking.experienceTitle}</td>
                         <td className="py-4 px-2">
                           <div className="flex flex-col">
-                            <span className="font-semibold text-slate-700 dark:text-slate-300">{booking.touristName}</span>
+                            <span className="font-semibold text-slate-700">{booking.touristName}</span>
                             <span className="text-[10px] text-slate-400">{booking.touristEmail}</span>
                           </div>
                         </td>
@@ -337,7 +337,7 @@ export default function HostDashboard() {
                             <span className="text-slate-400 mt-0.5">👥 {booking.guestCount} guests</span>
                           </div>
                         </td>
-                        <td className="py-4 px-2 font-semibold text-emerald-600 dark:text-emerald-400">
+                        <td className="py-4 px-2 font-semibold text-emerald-600">
                           ${(booking.totalPrice * 0.90).toFixed(2)}
                         </td>
                         <td className="py-4 px-2">
@@ -402,7 +402,7 @@ export default function HostDashboard() {
           {/* Manage Stays and Peak season config */}
           <div className="space-y-6">
             <div className="flex justify-between items-center">
-              <h2 className="text-lg font-bold text-slate-900 dark:text-white">My Listing Registries</h2>
+              <h2 className="text-lg font-bold text-slate-900">My Listing Registries</h2>
               <button
                 onClick={() => setShowAddForm(!showAddForm)}
                 className="flex items-center gap-1 rounded-xl bg-teal-600 px-4 py-2.5 text-xs font-semibold text-white shadow-md hover:bg-teal-500 transition-all"
@@ -414,8 +414,8 @@ export default function HostDashboard() {
 
             {/* Create Homestay Form Panel */}
             {showAddForm && (
-              <div className="rounded-2xl border border-slate-100 bg-white p-6 shadow-xl dark:border-slate-800/80 dark:bg-slate-950 animate-scale-up">
-                <h3 className="text-base font-bold text-slate-900 dark:text-white mb-4">New Homestay</h3>
+              <div className="rounded-2xl border border-slate-100 bg-white p-6 shadow-xl animate-scale-up">
+                <h3 className="text-base font-bold text-slate-900 mb-4">New Homestay</h3>
                 <form onSubmit={handleCreateExperience} className="space-y-4">
                   {createError && (
                     <div className="flex items-center gap-2 rounded-lg bg-rose-50 p-3 text-xs text-rose-700">
@@ -426,18 +426,18 @@ export default function HostDashboard() {
 
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
-                      <label className="block text-xs font-semibold text-slate-650 dark:text-slate-400">Homestay Title</label>
+                      <label className="block text-xs font-semibold text-slate-650">Homestay Title</label>
                       <input
                         type="text"
                         required
                         value={title}
                         onChange={(e) => setTitle(e.target.value)}
                         placeholder="Traditional Ella Mountain Retreat"
-                        className="block w-full rounded-lg border border-slate-200 bg-white p-2.5 text-sm text-slate-900 focus:border-teal-500 focus:outline-none dark:border-slate-800 dark:bg-slate-900 dark:text-white"
+                        className="block w-full rounded-lg border border-slate-200 bg-white p-2.5 text-sm text-slate-900 focus:border-teal-500 focus:outline-none"
                       />
                     </div>
                     <div>
-                      <label className="block text-xs font-semibold text-slate-650 dark:text-slate-400">Base Price (USD / night)</label>
+                      <label className="block text-xs font-semibold text-slate-650">Base Price (USD / night)</label>
                       <input
                         type="number"
                         required
@@ -445,49 +445,49 @@ export default function HostDashboard() {
                         value={basePrice}
                         onChange={(e) => setBasePrice(e.target.value)}
                         placeholder="50"
-                        className="block w-full rounded-lg border border-slate-200 bg-white p-2.5 text-sm text-slate-900 focus:border-teal-500 focus:outline-none dark:border-slate-800 dark:bg-slate-900 dark:text-white"
+                        className="block w-full rounded-lg border border-slate-200 bg-white p-2.5 text-sm text-slate-900 focus:border-teal-500 focus:outline-none"
                       />
                     </div>
                   </div>
 
                   <div>
-                    <label className="block text-xs font-semibold text-slate-650 dark:text-slate-400">Location (City/District)</label>
+                    <label className="block text-xs font-semibold text-slate-650">Location (City/District)</label>
                     <input
                       type="text"
                       required
                       value={location}
                       onChange={(e) => setLocation(e.target.value)}
                       placeholder="Ella, Badulla District"
-                      className="block w-full rounded-lg border border-slate-200 bg-white p-2.5 text-sm text-slate-900 focus:border-teal-500 focus:outline-none dark:border-slate-800 dark:bg-slate-900 dark:text-white"
+                      className="block w-full rounded-lg border border-slate-200 bg-white p-2.5 text-sm text-slate-900 focus:border-teal-500 focus:outline-none"
                     />
                   </div>
 
                   <div>
-                    <label className="block text-xs font-semibold text-slate-650 dark:text-slate-400">Homestay Image URL</label>
+                    <label className="block text-xs font-semibold text-slate-650">Homestay Image URL</label>
                     <input
                       type="url"
                       value={imageUrl}
                       onChange={(e) => setImageUrl(e.target.value)}
                       placeholder="https://images.unsplash.com/... (Leave blank for a beautiful fallback)"
-                      className="block w-full rounded-lg border border-slate-200 bg-white p-2.5 text-sm text-slate-900 focus:border-teal-500 focus:outline-none dark:border-slate-800 dark:bg-slate-900 dark:text-white"
+                      className="block w-full rounded-lg border border-slate-200 bg-white p-2.5 text-sm text-slate-900 focus:border-teal-500 focus:outline-none"
                     />
                   </div>
 
                   <div>
-                    <label className="block text-xs font-semibold text-slate-650 dark:text-slate-400">Description</label>
+                    <label className="block text-xs font-semibold text-slate-650">Description</label>
                     <textarea
                       required
                       rows={4}
                       value={description}
                       onChange={(e) => setDescription(e.target.value)}
                       placeholder="Describe the homestay, proximity to sights, cultural food experiences, and cultural environment..."
-                      className="block w-full rounded-lg border border-slate-200 bg-white p-2.5 text-sm text-slate-900 focus:border-teal-500 focus:outline-none dark:border-slate-800 dark:bg-slate-900 dark:text-white"
+                      className="block w-full rounded-lg border border-slate-200 bg-white p-2.5 text-sm text-slate-900 focus:border-teal-500 focus:outline-none"
                     />
                   </div>
 
                   {/* Checkbox tags */}
                   <div>
-                    <span className="block text-xs font-semibold text-slate-650 dark:text-slate-400 mb-2">Cultural &amp; Dietary Tags Match</span>
+                    <span className="block text-xs font-semibold text-slate-650 mb-2">Cultural &amp; Dietary Tags Match</span>
                     <div className="flex flex-wrap gap-2">
                       {tags.map((t) => {
                         const isSelected = selectedTagIds.includes(t.id);
@@ -498,8 +498,8 @@ export default function HostDashboard() {
                             onClick={() => handleTagToggle(t.id)}
                             className={`rounded-full px-3 py-1 text-xs font-semibold border transition-all ${
                               isSelected
-                                ? 'border-teal-600 bg-teal-550/20 text-teal-700 dark:border-teal-500 dark:text-teal-400'
-                                : 'border-slate-200 bg-slate-50 text-slate-500 dark:border-slate-800 dark:bg-slate-900'
+                                ? 'border-teal-600 bg-teal-550/20 text-teal-700'
+                                : 'border-slate-200 bg-slate-50 text-slate-500'
                             }`}
                           >
                             {t.name}
@@ -593,8 +593,8 @@ export default function HostDashboard() {
       {/* Set Peak Season Dialog Modal */}
       {selectedExpIdForSeason && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/40 backdrop-blur-sm">
-          <div className="w-full max-w-md rounded-2xl bg-white p-6 shadow-2xl border border-slate-100 dark:bg-slate-950 dark:border-slate-800 animate-scale-up text-left">
-            <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-2">Configure Peak Pricing</h3>
+          <div className="w-full max-w-md rounded-2xl bg-white p-6 shadow-2xl border border-slate-100 animate-scale-up text-left">
+            <h3 className="text-lg font-bold text-slate-900 mb-2">Configure Peak Pricing</h3>
             <p className="text-xs text-slate-500 mb-4">Set date intervals when the baseline rates undergo seasonal multipliers adjustments.</p>
 
             <form onSubmit={handleAddPeakSeason} className="space-y-4">
@@ -606,42 +606,42 @@ export default function HostDashboard() {
               )}
 
               <div>
-                <label className="block text-xs font-semibold text-slate-600 dark:text-slate-400 mb-1.5">Season Name (e.g. Kandy Perahera)</label>
+                <label className="block text-xs font-semibold text-slate-600 mb-1.5">Season Name (e.g. Kandy Perahera)</label>
                 <input
                   type="text"
                   required
                   value={seasonName}
                   onChange={(e) => setSeasonName(e.target.value)}
                   placeholder="Kandy Esala Perahera"
-                  className="block w-full rounded-lg border border-slate-200 bg-white p-2.5 text-sm text-slate-900 focus:border-teal-500 focus:outline-none dark:border-slate-800 dark:bg-slate-900 dark:text-white"
+                  className="block w-full rounded-lg border border-slate-200 bg-white p-2.5 text-sm text-slate-900 focus:border-teal-500 focus:outline-none"
                 />
               </div>
 
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-xs font-semibold text-slate-600 dark:text-slate-400 mb-1.5">Start Date</label>
+                  <label className="block text-xs font-semibold text-slate-600 mb-1.5">Start Date</label>
                   <input
                     type="date"
                     required
                     value={seasonStart}
                     onChange={(e) => setSeasonStart(e.target.value)}
-                    className="block w-full rounded-lg border border-slate-200 bg-white p-2.5 text-sm text-slate-900 focus:border-teal-500 focus:outline-none dark:border-slate-800 dark:bg-slate-900 dark:text-white"
+                    className="block w-full rounded-lg border border-slate-200 bg-white p-2.5 text-sm text-slate-900 focus:border-teal-500 focus:outline-none"
                   />
                 </div>
                 <div>
-                  <label className="block text-xs font-semibold text-slate-600 dark:text-slate-400 mb-1.5">End Date</label>
+                  <label className="block text-xs font-semibold text-slate-600 mb-1.5">End Date</label>
                   <input
                     type="date"
                     required
                     value={seasonEnd}
                     onChange={(e) => setSeasonEnd(e.target.value)}
-                    className="block w-full rounded-lg border border-slate-200 bg-white p-2.5 text-sm text-slate-900 focus:border-teal-500 focus:outline-none dark:border-slate-800 dark:bg-slate-900 dark:text-white"
+                    className="block w-full rounded-lg border border-slate-200 bg-white p-2.5 text-sm text-slate-900 focus:border-teal-500 focus:outline-none"
                   />
                 </div>
               </div>
 
               <div>
-                <label className="block text-xs font-semibold text-slate-600 dark:text-slate-400 mb-1.5">Seasonal Multiplier (e.g. 1.5 = 1.5x price)</label>
+                <label className="block text-xs font-semibold text-slate-600 mb-1.5">Seasonal Multiplier (e.g. 1.5 = 1.5x price)</label>
                 <input
                   type="number"
                   step="0.1"
@@ -650,7 +650,7 @@ export default function HostDashboard() {
                   required
                   value={seasonMultiplier}
                   onChange={(e) => setSeasonMultiplier(e.target.value)}
-                  className="block w-full rounded-lg border border-slate-200 bg-white p-2.5 text-sm text-slate-900 focus:border-teal-500 focus:outline-none dark:border-slate-800 dark:bg-slate-900 dark:text-white"
+                  className="block w-full rounded-lg border border-slate-200 bg-white p-2.5 text-sm text-slate-900 focus:border-teal-500 focus:outline-none"
                 />
               </div>
 
@@ -658,7 +658,7 @@ export default function HostDashboard() {
                 <button
                   type="button"
                   onClick={() => setSelectedExpIdForSeason(null)}
-                  className="rounded-lg border border-slate-200 bg-white px-4 py-2 text-xs font-semibold text-slate-700 hover:bg-slate-50 dark:border-slate-800 dark:bg-slate-900 dark:text-slate-450"
+                  className="rounded-lg border border-slate-200 bg-white px-4 py-2 text-xs font-semibold text-slate-700 hover:bg-slate-50"
                 >
                   Cancel
                 </button>

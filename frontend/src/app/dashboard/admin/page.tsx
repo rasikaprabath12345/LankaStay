@@ -133,62 +133,62 @@ export default function AdminDashboard() {
   return (
     <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-10 w-full flex-grow text-left">
       <div className="mb-8">
-        <h1 className="text-3xl font-extrabold tracking-tight text-slate-900 dark:text-white">
+        <h1 className="text-3xl font-extrabold tracking-tight text-slate-900">
           System Administration
         </h1>
-        <p className="text-sm text-slate-500 mt-1 dark:text-slate-400">
+        <p className="text-sm text-slate-500 mt-1">
           Verify local hosts clearances and audit platform escrow transactions.
         </p>
       </div>
 
       {error ? (
-        <div className="rounded-xl bg-rose-50 p-4 text-sm text-rose-700 dark:bg-rose-950/20 dark:text-rose-400">
+        <div className="rounded-xl bg-rose-50 p-4 text-sm text-rose-700">
           {error}
         </div>
       ) : (
         <div className="space-y-10">
           {/* Revenue Analytics Cards */}
           <div className="grid grid-cols-1 gap-5 sm:grid-cols-3">
-            <div className="rounded-2xl border border-slate-100 bg-white p-6 shadow-sm dark:border-slate-800 dark:bg-slate-950">
+            <div className="rounded-2xl border border-slate-100 bg-white p-6 shadow-sm">
               <div className="flex items-center gap-3">
-                <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-teal-50 text-teal-700 dark:bg-teal-950/30 dark:text-teal-400">
+                <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-teal-50 text-teal-700">
                   <Percent className="h-5 w-5" />
                 </span>
                 <div>
-                  <span className="text-xs text-slate-400 dark:text-slate-500 font-semibold">PLATFORM COMMISSION (10%)</span>
-                  <p className="text-2xl font-black text-slate-900 dark:text-white">${totalCommissionRevenue.toFixed(2)}</p>
+                  <span className="text-xs text-slate-400 font-semibold">PLATFORM COMMISSION (10%)</span>
+                  <p className="text-2xl font-black text-slate-900">${totalCommissionRevenue.toFixed(2)}</p>
                 </div>
               </div>
             </div>
 
-            <div className="rounded-2xl border border-slate-100 bg-white p-6 shadow-sm dark:border-slate-800 dark:bg-slate-950">
+            <div className="rounded-2xl border border-slate-100 bg-white p-6 shadow-sm">
               <div className="flex items-center gap-3">
-                <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-indigo-50 text-indigo-700 dark:bg-indigo-950/30 dark:text-indigo-400">
+                <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-indigo-50 text-indigo-700">
                   <Award className="h-5 w-5" />
                 </span>
                 <div>
-                  <span className="text-xs text-slate-400 dark:text-slate-500 font-semibold">TOTAL TRANSACTION VOLUME</span>
-                  <p className="text-2xl font-black text-slate-900 dark:text-white">${totalVolume.toFixed(2)}</p>
+                  <span className="text-xs text-slate-400 font-semibold">TOTAL TRANSACTION VOLUME</span>
+                  <p className="text-2xl font-black text-slate-900">${totalVolume.toFixed(2)}</p>
                 </div>
               </div>
             </div>
 
-            <div className="rounded-2xl border border-slate-100 bg-white p-6 shadow-sm dark:border-slate-800 dark:bg-slate-950">
+            <div className="rounded-2xl border border-slate-100 bg-white p-6 shadow-sm">
               <div className="flex items-center gap-3">
-                <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-amber-50 text-amber-700 dark:bg-amber-950/30 dark:text-amber-400">
+                <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-amber-50 text-amber-700">
                   <ShieldAlert className="h-5 w-5" />
                 </span>
                 <div>
-                  <span className="text-xs text-slate-400 dark:text-slate-500 font-semibold">PENDING HOST REQUESTS</span>
-                  <p className="text-2xl font-black text-slate-900 dark:text-white">{unverifiedHosts.length} hosts</p>
+                  <span className="text-xs text-slate-400 font-semibold">PENDING HOST REQUESTS</span>
+                  <p className="text-2xl font-black text-slate-900">{unverifiedHosts.length} hosts</p>
                 </div>
               </div>
             </div>
           </div>
 
           {/* Pending Verifications Table */}
-          <div className="bg-white rounded-2xl border border-slate-100 p-6 dark:bg-slate-950 dark:border-slate-800/50">
-            <h2 className="text-lg font-bold text-slate-900 dark:text-white mb-6">Host Verification Requests</h2>
+          <div className="bg-white rounded-2xl border border-slate-100 p-6">
+            <h2 className="text-lg font-bold text-slate-900 mb-6">Host Verification Requests</h2>
 
             {unverifiedHosts.length === 0 ? (
               <p className="text-xs text-slate-500 italic text-center py-6">All hosts are verified. No pending requests.</p>
@@ -196,7 +196,7 @@ export default function AdminDashboard() {
               <div className="overflow-x-auto">
                 <table className="w-full text-sm text-left border-collapse">
                   <thead>
-                    <tr className="border-b border-slate-100 text-xs text-slate-400 uppercase font-semibold dark:border-slate-800">
+                    <tr className="border-b border-slate-100 text-xs text-slate-400 uppercase font-semibold">
                       <th className="py-3 px-2">Host Details</th>
                       <th className="py-3 px-2">Clearance Certificates (Simulated)</th>
                       <th className="py-3 px-2 text-right">Action</th>
@@ -204,10 +204,10 @@ export default function AdminDashboard() {
                   </thead>
                   <tbody>
                     {unverifiedHosts.map((host) => (
-                      <tr key={host.id} className="border-b border-slate-50 hover:bg-slate-50/50 dark:border-slate-800 dark:hover:bg-slate-900/30 transition-colors">
+                      <tr key={host.id} className="border-b border-slate-50 hover:bg-slate-50/50 transition-colors">
                         <td className="py-4 px-2">
                           <div className="flex flex-col">
-                            <span className="font-bold text-slate-900 dark:text-white">{host.fullName}</span>
+                            <span className="font-bold text-slate-900">{host.fullName}</span>
                             <span className="text-xs text-slate-500">{host.email}</span>
                           </div>
                         </td>
@@ -217,7 +217,7 @@ export default function AdminDashboard() {
                               href={host.gramaNiladhariClearanceUrl || '#'}
                               target="_blank"
                               rel="noopener noreferrer"
-                              className="inline-flex items-center gap-1 text-xs text-teal-600 hover:text-teal-500 hover:underline dark:text-teal-400"
+                              className="inline-flex items-center gap-1 text-xs text-teal-600 hover:text-teal-500 hover:underline"
                               onClick={(e) => {
                                 if (!host.gramaNiladhariClearanceUrl) {
                                   e.preventDefault();
@@ -232,7 +232,7 @@ export default function AdminDashboard() {
                               href={host.policeClearanceUrl || '#'}
                               target="_blank"
                               rel="noopener noreferrer"
-                              className="inline-flex items-center gap-1 text-xs text-teal-600 hover:text-teal-500 hover:underline dark:text-teal-400"
+                              className="inline-flex items-center gap-1 text-xs text-teal-600 hover:text-teal-500 hover:underline"
                               onClick={(e) => {
                                 if (!host.policeClearanceUrl) {
                                   e.preventDefault();

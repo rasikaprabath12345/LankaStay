@@ -162,8 +162,8 @@ export default function ExperienceDetailsPage() {
   if (error || !experience) {
     return (
       <div className="mx-auto max-w-xl text-center py-20 px-4">
-        <h2 className="text-xl font-bold text-slate-900 dark:text-white">Experience Details</h2>
-        <div className="mt-4 rounded-xl bg-rose-50 p-4 text-sm text-rose-700 dark:bg-rose-950/20 dark:text-rose-400">
+        <h2 className="text-xl font-bold text-slate-900">Experience Details</h2>
+        <div className="mt-4 rounded-xl bg-rose-50 p-4 text-sm text-rose-700">
           {error || 'The requested experience could not be loaded.'}
         </div>
       </div>
@@ -177,13 +177,13 @@ export default function ExperienceDetailsPage() {
         {/* Left Column: Details */}
         <div className="lg:col-span-2 space-y-8">
           <div>
-            <div className="flex flex-wrap items-center gap-2 text-xs font-semibold text-slate-500 dark:text-slate-400">
+            <div className="flex flex-wrap items-center gap-2 text-xs font-semibold text-slate-500">
               <span className="flex items-center gap-1"><MapPin className="h-3.5 w-3.5 text-teal-600" /> {experience.location}</span>
               <span>•</span>
               <span className="flex items-center gap-1"><Star className="h-3 w-3 fill-amber-400 text-amber-400" /> {experience.averageRating > 0 ? `${experience.averageRating.toFixed(1)} rating` : 'New Listing'}</span>
             </div>
             
-            <h1 className="text-3xl font-extrabold tracking-tight text-slate-900 dark:text-white mt-3">
+            <h1 className="text-3xl font-extrabold tracking-tight text-slate-900 mt-3">
               {experience.title}
             </h1>
 
@@ -193,7 +193,7 @@ export default function ExperienceDetailsPage() {
                 {experience.tags.map((t) => (
                   <span
                     key={t.id}
-                    className="rounded-full bg-teal-50 px-3 py-1 text-xs font-semibold text-teal-700 dark:bg-teal-950/20 dark:text-teal-400"
+                    className="rounded-full bg-teal-50 px-3 py-1 text-xs font-semibold text-teal-700"
                     title={t.description}
                   >
                     {t.name}
@@ -223,32 +223,32 @@ export default function ExperienceDetailsPage() {
           </div>
 
           {/* Description */}
-          <div className="bg-white rounded-2xl border border-slate-100 p-6 dark:bg-slate-950 dark:border-slate-800/50">
-            <h2 className="text-lg font-bold text-slate-900 dark:text-white mb-4">About this experience</h2>
-            <p className="text-slate-600 dark:text-slate-400 text-sm leading-relaxed whitespace-pre-line">
+          <div className="bg-white rounded-2xl border border-slate-100 p-6">
+            <h2 className="text-lg font-bold text-slate-900 mb-4">About this experience</h2>
+            <p className="text-slate-600 text-sm leading-relaxed whitespace-pre-line">
               {experience.description}
             </p>
           </div>
 
           {/* Host Bio details */}
-          <div className="flex items-center justify-between rounded-2xl bg-slate-50 border border-slate-200/60 p-6 dark:bg-slate-900 dark:border-slate-800/80">
+          <div className="flex items-center justify-between rounded-2xl bg-slate-50 border border-slate-200/60 p-6">
             <div className="flex items-center gap-4">
-              <div className="flex h-12 w-12 items-center justify-center rounded-full bg-teal-100 text-teal-800 dark:bg-teal-950/30 dark:text-teal-400">
+              <div className="flex h-12 w-12 items-center justify-center rounded-full bg-teal-100 text-teal-800">
                 <User className="h-6 w-6" />
               </div>
               <div className="text-left">
-                <p className="text-xs text-slate-400 dark:text-slate-500 font-semibold">YOUR LOCAL HOST</p>
-                <p className="text-base font-bold text-slate-900 dark:text-white">{experience.hostName}</p>
+                <p className="text-xs text-slate-400 font-semibold">YOUR LOCAL HOST</p>
+                <p className="text-base font-bold text-slate-900">{experience.hostName}</p>
               </div>
             </div>
 
             {experience.hostIsVerified ? (
-              <div className="flex items-center gap-1.5 rounded-full bg-emerald-50 px-3 py-1 text-xs font-semibold text-emerald-800 dark:bg-emerald-950/20 dark:text-emerald-400">
+              <div className="flex items-center gap-1.5 rounded-full bg-emerald-50 px-3 py-1 text-xs font-semibold text-emerald-800">
                 <ShieldCheck className="h-4 w-4" />
                 <span>Verified Local Host</span>
               </div>
             ) : (
-              <div className="flex items-center gap-1.5 rounded-full bg-amber-50 px-3 py-1 text-xs font-semibold text-amber-800 dark:bg-amber-950/20 dark:text-amber-400">
+              <div className="flex items-center gap-1.5 rounded-full bg-amber-50 px-3 py-1 text-xs font-semibold text-amber-800">
                 <AlertTriangle className="h-4 w-4" />
                 <span>Verification Pending</span>
               </div>
@@ -257,16 +257,16 @@ export default function ExperienceDetailsPage() {
 
           {/* Peak Seasons calendar reference */}
           {experience.peakSeasons.length > 0 && (
-            <div className="bg-amber-50/20 rounded-2xl border border-amber-200/30 p-5 dark:bg-amber-950/10 dark:border-amber-950/20">
-              <h3 className="text-sm font-bold text-amber-900 dark:text-amber-400 mb-2">Host Seasonal Pricing Alert</h3>
-              <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed mb-3">
+            <div className="bg-amber-50/20 rounded-2xl border border-amber-200/30 p-5">
+              <h3 className="text-sm font-bold text-amber-900 mb-2">Host Seasonal Pricing Alert</h3>
+              <p className="text-xs text-slate-600 leading-relaxed mb-3">
                 This experience is located in an area with peak seasons. Booking dates overlapping with the periods below will have multipliers applied:
               </p>
-              <ul className="space-y-1.5 text-xs text-slate-700 dark:text-slate-300">
+              <ul className="space-y-1.5 text-xs text-slate-700">
                 {experience.peakSeasons.map((ps) => (
                   <li key={ps.id} className="flex justify-between font-medium">
                     <span>📅 {ps.name} ({new Date(ps.startDate).toLocaleDateString()} - {new Date(ps.endDate).toLocaleDateString()})</span>
-                    <span className="text-teal-600 dark:text-teal-400">{ps.seasonalMultiplier}x rate</span>
+                    <span className="text-teal-600">{ps.seasonalMultiplier}x rate</span>
                   </li>
                 ))}
               </ul>
@@ -276,36 +276,36 @@ export default function ExperienceDetailsPage() {
 
         {/* Right Column: Checkout Widget Card */}
         <div className="lg:col-span-1">
-          <div className="sticky top-24 rounded-2xl border border-slate-100 bg-white p-6 shadow-xl dark:border-slate-800/80 dark:bg-slate-950">
+          <div className="sticky top-24 rounded-2xl border border-slate-100 bg-white p-6 shadow-xl">
             <div className="flex items-end justify-between mb-6">
               <div>
-                <span className="text-2xl font-black text-slate-900 dark:text-white">${experience.basePrice}</span>
+                <span className="text-2xl font-black text-slate-900">${experience.basePrice}</span>
                 <span className="text-xs text-slate-500"> / guest / night</span>
               </div>
             </div>
 
             <form onSubmit={handleBookExperience} className="space-y-4">
               {bookingSuccess ? (
-                <div className="rounded-xl bg-emerald-50 p-4 text-center dark:bg-emerald-950/20">
+                <div className="rounded-xl bg-emerald-50 p-4 text-center">
                   <div className="flex justify-center mb-2">
                     <span className="flex h-8 w-8 items-center justify-center rounded-full bg-emerald-500 text-white animate-scale-up">
                       <Check className="h-4 w-4" />
                     </span>
                   </div>
-                  <p className="text-sm font-bold text-emerald-800 dark:text-emerald-400">Reservation Successful!</p>
-                  <p className="text-xs text-emerald-600 dark:text-emerald-500 mt-1">Redirecting to your dashboard...</p>
+                  <p className="text-sm font-bold text-emerald-800">Reservation Successful!</p>
+                  <p className="text-xs text-emerald-600 mt-1">Redirecting to your dashboard...</p>
                 </div>
               ) : (
                 <>
                   {bookingError && (
-                    <div className="flex items-center gap-2 rounded-lg bg-rose-50 border border-rose-200 p-3 text-xs text-rose-700 dark:bg-rose-950/20 dark:border-rose-900 dark:text-rose-400">
+                    <div className="flex items-center gap-2 rounded-lg bg-rose-50 border border-rose-200 p-3 text-xs text-rose-700">
                       <AlertTriangle className="h-4 w-4 shrink-0" />
                       <span>{bookingError}</span>
                     </div>
                   )}
 
                   <div>
-                    <label className="block text-xs font-semibold text-slate-600 dark:text-slate-400 uppercase tracking-wider mb-1.5">
+                    <label className="block text-xs font-semibold text-slate-600 uppercase tracking-wider mb-1.5">
                       Check-In Date
                     </label>
                     <div className="relative rounded-md shadow-sm">
@@ -317,13 +317,13 @@ export default function ExperienceDetailsPage() {
                         required
                         value={startDate}
                         onChange={(e) => setStartDate(e.target.value)}
-                        className="block w-full rounded-lg border border-slate-200 bg-white py-2.5 pl-10 pr-3 text-sm text-slate-900 focus:border-teal-500 focus:outline-none focus:ring-1 focus:ring-teal-500 dark:border-slate-800 dark:bg-slate-900 dark:text-white"
+                        className="block w-full rounded-lg border border-slate-200 bg-white py-2.5 pl-10 pr-3 text-sm text-slate-900 focus:border-teal-500 focus:outline-none focus:ring-1 focus:ring-teal-500"
                       />
                     </div>
                   </div>
 
                   <div>
-                    <label className="block text-xs font-semibold text-slate-600 dark:text-slate-400 uppercase tracking-wider mb-1.5">
+                    <label className="block text-xs font-semibold text-slate-600 uppercase tracking-wider mb-1.5">
                       Check-Out Date
                     </label>
                     <div className="relative rounded-md shadow-sm">
@@ -335,13 +335,13 @@ export default function ExperienceDetailsPage() {
                         required
                         value={endDate}
                         onChange={(e) => setEndDate(e.target.value)}
-                        className="block w-full rounded-lg border border-slate-200 bg-white py-2.5 pl-10 pr-3 text-sm text-slate-900 focus:border-teal-500 focus:outline-none focus:ring-1 focus:ring-teal-500 dark:border-slate-800 dark:bg-slate-900 dark:text-white"
+                        className="block w-full rounded-lg border border-slate-200 bg-white py-2.5 pl-10 pr-3 text-sm text-slate-900 focus:border-teal-500 focus:outline-none focus:ring-1 focus:ring-teal-500"
                       />
                     </div>
                   </div>
 
                   <div>
-                    <label className="block text-xs font-semibold text-slate-600 dark:text-slate-400 uppercase tracking-wider mb-1.5">
+                    <label className="block text-xs font-semibold text-slate-600 uppercase tracking-wider mb-1.5">
                       Guests count
                     </label>
                     <div className="relative rounded-md shadow-sm">
@@ -355,21 +355,21 @@ export default function ExperienceDetailsPage() {
                         required
                         value={guestCount}
                         onChange={(e) => setGuestCount(Number(e.target.value))}
-                        className="block w-full rounded-lg border border-slate-200 bg-white py-2.5 pl-10 pr-3 text-sm text-slate-900 focus:border-teal-500 focus:outline-none focus:ring-1 focus:ring-teal-500 dark:border-slate-800 dark:bg-slate-900 dark:text-white"
+                        className="block w-full rounded-lg border border-slate-200 bg-white py-2.5 pl-10 pr-3 text-sm text-slate-900 focus:border-teal-500 focus:outline-none focus:ring-1 focus:ring-teal-500"
                       />
                     </div>
                   </div>
 
                   {/* Calculated Price Display */}
                   {calculatedPrice !== null && (
-                    <div className="rounded-xl bg-slate-50 border border-slate-200/50 p-4 dark:bg-slate-900 dark:border-slate-850">
+                    <div className="rounded-xl bg-slate-50 border border-slate-200/50 p-4">
                       <div className="flex justify-between items-center text-xs text-slate-500 mb-1.5">
                         <span>Dynamic calculation:</span>
                         {calculating && <Loader2 className="h-3 w-3 animate-spin text-teal-600" />}
                       </div>
                       <div className="flex justify-between items-baseline font-bold">
-                        <span className="text-sm text-slate-700 dark:text-slate-300">Total Price</span>
-                        <span className="text-xl text-teal-600 dark:text-teal-400">${calculatedPrice}</span>
+                        <span className="text-sm text-slate-700">Total Price</span>
+                        <span className="text-xl text-teal-600">${calculatedPrice}</span>
                       </div>
                     </div>
                   )}

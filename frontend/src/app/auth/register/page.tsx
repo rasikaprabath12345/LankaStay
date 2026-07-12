@@ -69,10 +69,10 @@ export default function RegisterPage() {
             <Compass className="h-6 w-6" />
           </span>
         </div>
-        <h2 className="mt-6 text-center text-3xl font-extrabold tracking-tight text-slate-900 dark:text-white">
+        <h2 className="mt-6 text-center text-3xl font-extrabold tracking-tight text-slate-900">
           Create your account
         </h2>
-        <p className="mt-2 text-center text-sm text-slate-600 dark:text-slate-400">
+        <p className="mt-2 text-center text-sm text-slate-600">
           Already have an account?{' '}
           <Link href="/auth/login" className="font-semibold text-teal-600 hover:text-teal-500 transition-colors">
             Sign in
@@ -81,17 +81,17 @@ export default function RegisterPage() {
       </div>
 
       <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
-        <div className="bg-white dark:bg-slate-950 px-4 py-8 shadow-xl border border-slate-100 dark:border-slate-800/50 sm:rounded-2xl sm:px-10">
+        <div className="bg-white px-4 py-8 shadow-xl border border-slate-100 sm:rounded-2xl sm:px-10">
           <form className="space-y-5" onSubmit={handleSubmit}>
             {error && (
-              <div className="flex items-center gap-2 rounded-lg bg-rose-50 border border-rose-200 p-3 text-sm text-rose-700 dark:bg-rose-950/20 dark:border-rose-900 dark:text-rose-400">
+              <div className="flex items-center gap-2 rounded-lg bg-rose-50 border border-rose-200 p-3 text-sm text-rose-700">
                 <AlertCircle className="h-4 w-4 shrink-0" />
                 <span>{error}</span>
               </div>
             )}
 
             <div>
-              <label htmlFor="fullName" className="block text-sm font-medium text-slate-700 dark:text-slate-300">
+              <label htmlFor="fullName" className="block text-sm font-medium text-slate-700">
                 Full Name
               </label>
               <div className="relative mt-1.5 rounded-lg shadow-sm">
@@ -104,14 +104,14 @@ export default function RegisterPage() {
                   required
                   value={fullName}
                   onChange={(e) => setFullName(e.target.value)}
-                  className="block w-full rounded-lg border border-slate-200 bg-white py-2.5 pl-10 pr-3 text-sm text-slate-900 placeholder:text-slate-400 focus:border-teal-500 focus:outline-none focus:ring-1 focus:ring-teal-500 dark:border-slate-800 dark:bg-slate-900 dark:text-white dark:placeholder:text-slate-500"
+                  className="block w-full rounded-lg border border-slate-200 bg-white py-2.5 pl-10 pr-3 text-sm text-slate-900 placeholder:text-slate-400 focus:border-teal-500 focus:outline-none focus:ring-1 focus:ring-teal-500"
                   placeholder="Sunil Perera"
                 />
               </div>
             </div>
 
             <div>
-              <label htmlFor="email" className="block text-sm font-medium text-slate-700 dark:text-slate-300">
+              <label htmlFor="email" className="block text-sm font-medium text-slate-700">
                 Email address
               </label>
               <div className="relative mt-1.5 rounded-lg shadow-sm">
@@ -124,14 +124,14 @@ export default function RegisterPage() {
                   required
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="block w-full rounded-lg border border-slate-200 bg-white py-2.5 pl-10 pr-3 text-sm text-slate-900 placeholder:text-slate-400 focus:border-teal-500 focus:outline-none focus:ring-1 focus:ring-teal-500 dark:border-slate-800 dark:bg-slate-900 dark:text-white dark:placeholder:text-slate-500"
+                  className="block w-full rounded-lg border border-slate-200 bg-white py-2.5 pl-10 pr-3 text-sm text-slate-900 placeholder:text-slate-400 focus:border-teal-500 focus:outline-none focus:ring-1 focus:ring-teal-500"
                   placeholder="name@example.com"
                 />
               </div>
             </div>
 
             <div>
-              <label htmlFor="password" className="block text-sm font-medium text-slate-700 dark:text-slate-300">
+              <label htmlFor="password" className="block text-sm font-medium text-slate-700">
                 Password
               </label>
               <div className="relative mt-1.5 rounded-lg shadow-sm">
@@ -144,22 +144,22 @@ export default function RegisterPage() {
                   required
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  className="block w-full rounded-lg border border-slate-200 bg-white py-2.5 pl-10 pr-3 text-sm text-slate-900 placeholder:text-slate-400 focus:border-teal-500 focus:outline-none focus:ring-1 focus:ring-teal-500 dark:border-slate-800 dark:bg-slate-900 dark:text-white dark:placeholder:text-slate-500"
+                  className="block w-full rounded-lg border border-slate-200 bg-white py-2.5 pl-10 pr-3 text-sm text-slate-900 placeholder:text-slate-400 focus:border-teal-500 focus:outline-none focus:ring-1 focus:ring-teal-500"
                   placeholder="••••••••"
                 />
               </div>
             </div>
 
             <div>
-              <span className="block text-sm font-medium text-slate-700 dark:text-slate-300">I want to register as a:</span>
+              <span className="block text-sm font-medium text-slate-700">I want to register as a:</span>
               <div className="mt-2 grid grid-cols-2 gap-3">
                 <button
                   type="button"
                   onClick={() => setRole('Tourist')}
                   className={`flex items-center justify-center rounded-lg border p-3 text-sm font-medium transition-all ${
                     role === 'Tourist'
-                      ? 'border-teal-600 bg-teal-50/50 text-teal-700 dark:border-teal-500 dark:bg-teal-950/20 dark:text-teal-400'
-                      : 'border-slate-200 hover:bg-slate-50 dark:border-slate-800 dark:hover:bg-slate-900'
+                      ? 'border-teal-600 bg-teal-50/50 text-teal-700'
+                      : 'border-slate-200 hover:bg-slate-50'
                   }`}
                 >
                   Tourist / Guest
@@ -169,8 +169,8 @@ export default function RegisterPage() {
                   onClick={() => setRole('Host')}
                   className={`flex items-center justify-center rounded-lg border p-3 text-sm font-medium transition-all ${
                     role === 'Host'
-                      ? 'border-teal-600 bg-teal-50/50 text-teal-700 dark:border-teal-500 dark:bg-teal-950/20 dark:text-teal-400'
-                      : 'border-slate-200 hover:bg-slate-50 dark:border-slate-800 dark:hover:bg-slate-900'
+                      ? 'border-teal-600 bg-teal-50/50 text-teal-700'
+                      : 'border-slate-200 hover:bg-slate-50'
                   }`}
                 >
                   Local Host
@@ -179,8 +179,8 @@ export default function RegisterPage() {
             </div>
 
             {role === 'Host' && (
-              <div className="space-y-4 rounded-xl bg-slate-50 border border-slate-200/60 p-4 dark:bg-slate-900 dark:border-slate-800/80 animate-fade-in">
-                <div className="flex gap-2 text-xs text-amber-700 dark:text-amber-400">
+              <div className="space-y-4 rounded-xl bg-slate-50 border border-slate-200/60 p-4 animate-fade-in">
+                <div className="flex gap-2 text-xs text-amber-700">
                   <ShieldAlert className="h-4 w-4 shrink-0 mt-0.5" />
                   <span>
                     Strict Verification: Hosts are verified by admins based on local certifications before listings are published.
@@ -188,7 +188,7 @@ export default function RegisterPage() {
                 </div>
 
                 <div>
-                  <label htmlFor="gnClearance" className="block text-xs font-semibold text-slate-600 dark:text-slate-400">
+                  <label htmlFor="gnClearance" className="block text-xs font-semibold text-slate-600">
                     Grama Niladhari Certificate Link (mock URL)
                   </label>
                   <div className="relative mt-1 rounded-md shadow-sm">
@@ -202,13 +202,13 @@ export default function RegisterPage() {
                       value={gnClearanceUrl}
                       onChange={(e) => setGnClearanceUrl(e.target.value)}
                       placeholder="https://example.com/clearance-gn.pdf"
-                      className="block w-full rounded-md border border-slate-200 bg-white py-2 pl-8 pr-2.5 text-xs text-slate-900 placeholder:text-slate-400 focus:border-teal-500 focus:outline-none focus:ring-1 focus:ring-teal-500 dark:border-slate-800 dark:bg-slate-950 dark:text-white"
+                      className="block w-full rounded-md border border-slate-200 bg-white py-2 pl-8 pr-2.5 text-xs text-slate-900 placeholder:text-slate-400 focus:border-teal-500 focus:outline-none focus:ring-1 focus:ring-teal-500"
                     />
                   </div>
                 </div>
 
                 <div>
-                  <label htmlFor="policeClearance" className="block text-xs font-semibold text-slate-600 dark:text-slate-400">
+                  <label htmlFor="policeClearance" className="block text-xs font-semibold text-slate-600">
                     Police Clearance Certificate Link (mock URL)
                   </label>
                   <div className="relative mt-1 rounded-md shadow-sm">
@@ -222,7 +222,7 @@ export default function RegisterPage() {
                       value={policeClearanceUrl}
                       onChange={(e) => setPoliceClearanceUrl(e.target.value)}
                       placeholder="https://example.com/clearance-police.pdf"
-                      className="block w-full rounded-md border border-slate-200 bg-white py-2 pl-8 pr-2.5 text-xs text-slate-900 placeholder:text-slate-400 focus:border-teal-500 focus:outline-none focus:ring-1 focus:ring-teal-500 dark:border-slate-800 dark:bg-slate-950 dark:text-white"
+                      className="block w-full rounded-md border border-slate-200 bg-white py-2 pl-8 pr-2.5 text-xs text-slate-900 placeholder:text-slate-400 focus:border-teal-500 focus:outline-none focus:ring-1 focus:ring-teal-500"
                     />
                   </div>
                 </div>
