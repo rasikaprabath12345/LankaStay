@@ -1,0 +1,34 @@
+# Visual Studio & VS Code
+.vs/
+.vscode/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Build Directories
+bin/
+obj/
+[Bb]in/
+[Oo]bj/
+out/
+build/
+dist/
+
+# Node & Next.js
+node_modules/
+.next/
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# Database & OS
+*.db
+*.sqlite
+.DS_Store
+Thumbs.db
