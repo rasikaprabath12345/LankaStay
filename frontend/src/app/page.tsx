@@ -218,10 +218,10 @@ export default function HomePage() {
       
       {/* 1. Centered Editorial Hero Section with Integrated Search Bar (No bottom overlaps) */}
       <section className="relative w-full min-h-[600px] sm:min-h-[700px] flex flex-col items-center justify-center text-center px-4 py-20 z-20">
-        {/* Full-width Background Image (Authentic Sri Lankan landscape: Ella Bridge) */}
+        {/* Full-width Background Image (Authentic Sri Lankan landscape: Sigiriya Rock Fortress) */}
         <div 
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-          style={{ backgroundImage: `url('https://images.unsplash.com/photo-1546708973-b339540b5162?auto=format&fit=crop&w=2200&q=90')` }}
+          style={{ backgroundImage: `url('https://images.unsplash.com/photo-1586861635167-e5223aadc9fe?auto=format&fit=crop&w=2200&q=90')` }}
         />
         {/* Semi-transparent dark overlay to match "Visit SL Travels" moody green/dark tone */}
         <div className="absolute inset-0 bg-slate-950/45" />
