@@ -44,15 +44,26 @@ export const Navbar: React.FC = () => {
               </span>
             </Link>
 
-            <div className="hidden md:flex items-center gap-6">
-              <Link 
-                href="/" 
-                className={`text-xs font-bold uppercase tracking-wider transition-colors ${
-                  isHome ? 'text-white/80 hover:text-white' : 'text-slate-500 hover:text-teal-700'
-                }`}
-              >
-                Explore Stays
-              </Link>
+            <div className="hidden lg:flex items-center gap-6">
+              {[
+                { name: 'Home', href: '/' },
+                { name: 'About Us', href: '/#about' },
+                { name: 'Tours', href: '/#tours' },
+                { name: 'Tailor-Made Stays', href: '/#tailor-made' },
+                { name: 'Blog', href: '/#blog' },
+                { name: 'FAQ', href: '/#faq' },
+                { name: 'Contact Us', href: '/#contact' }
+              ].map((tab) => (
+                <Link 
+                  key={tab.name}
+                  href={tab.href}
+                  className={`text-xs font-bold uppercase tracking-wider transition-colors ${
+                    isHome ? 'text-white/80 hover:text-white' : 'text-slate-500 hover:text-teal-700'
+                  }`}
+                >
+                  {tab.name}
+                </Link>
+              ))}
             </div>
           </div>
 

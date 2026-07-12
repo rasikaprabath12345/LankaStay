@@ -201,90 +201,84 @@ export default function HomePage() {
   return (
     <div className="flex flex-col min-h-screen bg-[#FCFBF9] text-slate-900 font-sans antialiased overflow-x-hidden selection:bg-teal-100 selection:text-teal-900">
       
-      {/* 1. Full-Width Bleed Hero Section with Centered Grid Content & Solid Overlay Card (Editorial style, zero glassmorphism) */}
-      <section className="relative w-full min-h-[600px] sm:min-h-[680px] flex items-center justify-start border-b border-slate-200 z-20">
+      {/* 1. Centered Editorial Hero Section with Integrated Search Bar (No bottom overlaps) */}
+      <section className="relative w-full min-h-[600px] sm:min-h-[700px] flex flex-col items-center justify-center text-center px-4 py-20 z-20">
         {/* Full-width Background Image (Authentic Sri Lankan landscape: Ella Bridge) */}
         <div 
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
           style={{ backgroundImage: `url('https://images.unsplash.com/photo-1546708973-b339540b5162?auto=format&fit=crop&w=2200&q=90')` }}
         />
-        <div className="absolute inset-0 bg-slate-900/10" />
+        {/* Semi-transparent dark overlay to match "Visit SL Travels" moody green/dark tone */}
+        <div className="absolute inset-0 bg-slate-950/45" />
 
-        {/* Content Wrapper to align card with standard site grid margins */}
-        <div className="relative w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 flex items-center justify-start">
+        {/* Content Centered on top of background */}
+        <div className="relative z-10 w-full max-w-4xl mx-auto flex flex-col items-center space-y-6 sm:space-y-8">
           
-          {/* Solid White Content Card Overlaid (Opaque, clean borders, standard curves, zero glassmorphism) */}
-          <div className="bg-white rounded-2xl p-8 sm:p-12 shadow-2xl border border-slate-200/80 w-full max-w-xl text-left space-y-6 sm:space-y-7 relative z-10">
-            <div className="inline-flex items-center gap-1.5 bg-teal-50 px-3.5 py-1.5 text-[11px] font-bold text-teal-800 border border-teal-100/50 uppercase tracking-wider rounded-full">
-              <Sparkles className="h-3.5 w-3.5 text-teal-700 animate-pulse" />
-              <span>Verified Local Homestay Registry</span>
-            </div>
+          <div className="space-y-4 flex flex-col items-center">
+            <span className="text-[10px] sm:text-xs font-black tracking-[0.25em] text-teal-350 uppercase animate-pulse">
+              From Misty Mountains to Golden Beaches
+            </span>
 
-            <div className="space-y-3">
-              <h1 className="text-balance text-4xl sm:text-5xl font-extrabold tracking-tight font-serif text-slate-900 leading-[1.12]">
-                Live Like a Local in <br />
-                <span className="text-teal-700 font-serif italic">Beautiful Sri Lanka</span>
-              </h1>
-              <div className="h-1 w-12 bg-teal-600 rounded-full" />
-            </div>
+            <h1 className="text-white font-serif text-5xl sm:text-7xl font-extrabold tracking-tight leading-[1.1] max-w-3xl">
+              Start Your Journey Today
+            </h1>
 
-            <p className="text-sm sm:text-base text-slate-500 leading-relaxed font-medium">
-              Skip standard hotels. Connect directly with certified Sri Lankan families. Rent cozy homestays, enjoy home-cooked culinary heritage, and explore Ceylon with absolute peace of mind.
+            <p className="text-white/80 text-sm sm:text-base md:text-lg max-w-2xl font-medium leading-relaxed">
+              Tailor-made homestays, private cooking guides, and authentic local experiences across Sri Lanka.
             </p>
+          </div>
 
-            {/* Solid Search Console inside the card */}
-            <div className="space-y-4 pt-2">
-              <form onSubmit={handleSearchSubmit} className="space-y-4">
-                <div className="bg-slate-50 px-5 py-4 border border-slate-200 focus-within:border-teal-700 focus-within:ring-4 focus-within:ring-teal-500/10 transition-all duration-300 group flex items-center gap-3 rounded-xl">
-                  <MapPin className="h-5 w-5 text-slate-400 group-focus-within:text-teal-650 shrink-0" />
-                  <div className="flex-grow">
-                    <label htmlFor="search-input" className="block text-[9px] font-black text-slate-400 uppercase tracking-widest mb-0.5">Where to?</label>
-                    <input
-                      id="search-input"
-                      type="text"
-                      value={locationQuery}
-                      onChange={(e) => setLocationQuery(e.target.value)}
-                      placeholder="e.g. Ella, Galle, Kandy..."
-                      className="w-full bg-transparent text-sm font-bold text-slate-800 focus:outline-none placeholder:text-slate-350"
-                    />
-                  </div>
-                  {locationQuery && (
-                    <button type="button" onClick={() => setLocationQuery('')} className="text-slate-450 hover:text-slate-600">
-                      <X className="h-4 w-4" />
-                    </button>
-                  )}
+          {/* Centered Pill Search Bar inside the hero text area */}
+          <div className="w-full max-w-3xl pt-2">
+            <form onSubmit={handleSearchSubmit} className="bg-white rounded-full p-2.5 sm:p-3 shadow-2xl border border-slate-200/80 flex flex-col md:flex-row items-center gap-3">
+              <div className="flex items-center gap-3 px-5 py-3 w-full md:w-auto md:flex-grow">
+                <MapPin className="h-5 w-5 text-teal-600 shrink-0" />
+                <div className="flex-grow text-left">
+                  <span className="block text-[8px] font-black text-slate-400 uppercase tracking-widest mb-0.5">Where to?</span>
+                  <input
+                    type="text"
+                    value={locationQuery}
+                    onChange={(e) => setLocationQuery(e.target.value)}
+                    placeholder="Ella, Galle, Kandy..."
+                    className="w-full bg-transparent text-sm font-bold text-slate-800 focus:outline-none placeholder:text-slate-350"
+                  />
                 </div>
+                {locationQuery && (
+                  <button type="button" onClick={() => setLocationQuery('')} className="text-slate-450 hover:text-slate-650">
+                    <X className="h-4 w-4" />
+                  </button>
+                )}
+              </div>
 
-                <div className="flex flex-wrap gap-2 items-center text-xs">
-                  <span className="text-slate-400 font-bold uppercase tracking-wider text-[10px]">Popular:</span>
-                  {['Ella', 'Galle', 'Kandy', 'Sigiriya'].map((loc) => (
-                    <button
-                      key={loc}
-                      type="button"
-                      onClick={() => handleQuickLocation(loc)}
-                      className="font-bold text-slate-700 bg-slate-100 hover:bg-slate-200/80 px-3.5 py-1.5 transition-colors border border-slate-200/30 rounded-lg text-xs"
-                    >
-                      {loc}
-                    </button>
-                  ))}
-                </div>
+              <div className="hidden sm:flex items-center gap-2 px-6 border-l border-slate-200 shrink-0">
+                <span className="text-[9px] font-bold text-slate-400 uppercase tracking-wider">Quick:</span>
+                {['Ella', 'Galle', 'Kandy'].map((loc) => (
+                  <button
+                    key={loc}
+                    type="button"
+                    onClick={() => handleQuickLocation(loc)}
+                    className="font-bold text-[11px] text-slate-600 bg-slate-50 hover:bg-slate-100 px-3.5 py-1.5 rounded-full border border-slate-200/40 transition-colors"
+                  >
+                    {loc}
+                  </button>
+                ))}
+              </div>
 
-                <button
-                  type="submit"
-                  className="w-full flex items-center justify-center gap-2 bg-teal-750 hover:bg-teal-800 py-4 sm:py-4.5 text-sm font-bold text-white shadow-lg shadow-teal-750/20 active:scale-[0.98] transition-all duration-300 rounded-xl"
-                >
-                  <Search className="h-4.5 w-4.5" />
-                  <span className="tracking-wide">Explore Stays</span>
-                </button>
-              </form>
-            </div>
+              <button
+                type="submit"
+                className="w-full md:w-auto bg-yellow-450 hover:bg-yellow-500 text-slate-950 font-black text-xs uppercase tracking-wider rounded-full px-10 py-4 flex items-center justify-center gap-2 transition-all shadow-md active:scale-95 shrink-0"
+              >
+                <Search className="h-4 w-4" />
+                <span>Search Stays</span>
+              </button>
+            </form>
           </div>
 
         </div>
       </section>
 
       {/* 2. Category Filter Bar (Solid cards, clean borders) */}
-      <section className="mx-auto max-w-7xl w-full px-4 sm:px-6 lg:px-8 py-10 select-none">
+      <section className="mx-auto max-w-7xl w-full px-4 sm:px-6 lg:px-8 py-24 select-none">
         <div className="bg-white shadow-[0_4px_25px_rgba(0,0,0,0.01)] border border-slate-200 p-6 rounded-2xl">
           <div className="flex items-center justify-between border-b border-slate-200 pb-4 mb-4">
             <span className="text-xs font-black tracking-widest text-slate-400 uppercase">
