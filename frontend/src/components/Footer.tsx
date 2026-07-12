@@ -6,7 +6,7 @@ import { Compass, Mail, Phone, MapPin, Heart } from 'lucide-react';
 
 export const Footer: React.FC = () => {
   return (
-    <footer className="bg-white border-t border-slate-200/80 text-slate-650">
+    <footer className="bg-white border-t border-slate-200/80 text-slate-600">
       <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8 text-left">
           {/* Brand section */}
@@ -63,17 +63,17 @@ export const Footer: React.FC = () => {
           {/* Contact Info */}
           <div>
             <h4 className="text-xs font-bold uppercase tracking-wider text-slate-900 mb-4">Get in Touch</h4>
-            <ul className="space-y-2.5 text-xs text-slate-650">
+            <ul className="space-y-2.5 text-xs text-slate-600">
               <li className="flex items-center gap-2">
-                <Mail className="h-3.5 w-3.5 text-teal-650 shrink-0" />
+                <Mail className="h-3.5 w-3.5 text-teal-600 shrink-0" />
                 <span>support@lankastay.lk</span>
               </li>
               <li className="flex items-center gap-2">
-                <Phone className="h-3.5 w-3.5 text-teal-650 shrink-0" />
+                <Phone className="h-3.5 w-3.5 text-teal-600 shrink-0" />
                 <span>+94 (11) 234-5678</span>
               </li>
               <li className="flex items-center gap-2">
-                <MapPin className="h-3.5 w-3.5 text-teal-650 shrink-0" />
+                <MapPin className="h-3.5 w-3.5 text-teal-600 shrink-0" />
                 <span>Colombo, Sri Lanka</span>
               </li>
             </ul>

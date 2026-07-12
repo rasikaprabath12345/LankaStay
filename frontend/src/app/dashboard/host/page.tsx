@@ -357,14 +357,14 @@ export default function HostDashboard() {
                               <>
                                 <button
                                   onClick={() => handleUpdateStatus(booking.id, 2)} // Approve -> Confirmed
-                                  className="rounded-lg bg-emerald-650 hover:bg-emerald-600 p-1.5 text-white flex items-center justify-center"
+                                  className="rounded-lg bg-emerald-600 hover:bg-emerald-600 p-1.5 text-white flex items-center justify-center"
                                   title="Approve Booking"
                                 >
                                   <Check className="h-3.5 w-3.5" />
                                 </button>
                                 <button
                                   onClick={() => handleUpdateStatus(booking.id, 5)} // Reject -> Cancelled
-                                  className="rounded-lg bg-rose-650 hover:bg-rose-600 p-1.5 text-white flex items-center justify-center"
+                                  className="rounded-lg bg-rose-600 hover:bg-rose-600 p-1.5 text-white flex items-center justify-center"
                                   title="Reject Booking"
                                 >
                                   <X className="h-3.5 w-3.5" />
@@ -426,7 +426,7 @@ export default function HostDashboard() {
 
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
-                      <label className="block text-xs font-semibold text-slate-650">Homestay Title</label>
+                      <label className="block text-xs font-semibold text-slate-600">Homestay Title</label>
                       <input
                         type="text"
                         required
@@ -437,7 +437,7 @@ export default function HostDashboard() {
                       />
                     </div>
                     <div>
-                      <label className="block text-xs font-semibold text-slate-650">Base Price (USD / night)</label>
+                      <label className="block text-xs font-semibold text-slate-600">Base Price (USD / night)</label>
                       <input
                         type="number"
                         required
@@ -451,7 +451,7 @@ export default function HostDashboard() {
                   </div>
 
                   <div>
-                    <label className="block text-xs font-semibold text-slate-650">Location (City/District)</label>
+                    <label className="block text-xs font-semibold text-slate-600">Location (City/District)</label>
                     <input
                       type="text"
                       required
@@ -463,7 +463,7 @@ export default function HostDashboard() {
                   </div>
 
                   <div>
-                    <label className="block text-xs font-semibold text-slate-650">Homestay Image URL</label>
+                    <label className="block text-xs font-semibold text-slate-600">Homestay Image URL</label>
                     <input
                       type="url"
                       value={imageUrl}
@@ -474,7 +474,7 @@ export default function HostDashboard() {
                   </div>
 
                   <div>
-                    <label className="block text-xs font-semibold text-slate-650">Description</label>
+                    <label className="block text-xs font-semibold text-slate-600">Description</label>
                     <textarea
                       required
                       rows={4}
@@ -487,7 +487,7 @@ export default function HostDashboard() {
 
                   {/* Checkbox tags */}
                   <div>
-                    <span className="block text-xs font-semibold text-slate-650 mb-2">Cultural &amp; Dietary Tags Match</span>
+                    <span className="block text-xs font-semibold text-slate-600 mb-2">Cultural &amp; Dietary Tags Match</span>
                     <div className="flex flex-wrap gap-2">
                       {tags.map((t) => {
                         const isSelected = selectedTagIds.includes(t.id);
@@ -571,7 +571,7 @@ export default function HostDashboard() {
                     </div>
 
                     <div className="p-5 pt-0 flex items-center justify-between border-t border-slate-50 mt-2">
-                      <span className="text-xs font-semibold text-slate-650">
+                      <span className="text-xs font-semibold text-slate-600">
                         Base Price: <strong className="text-teal-600">${exp.basePrice}</strong>
                       </span>
 
