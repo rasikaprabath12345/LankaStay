@@ -1,15 +1,16 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useAuth } from '../context/AuthContext';
-import { Compass, LogOut, User, LayoutDashboard } from 'lucide-react';
+import { Compass, LogOut, User, LayoutDashboard, Menu, X } from 'lucide-react';
 
 export const Navbar: React.FC = () => {
   const { user, logout } = useAuth();
   const pathname = usePathname();
   const isHome = pathname === '/';
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const getDashboardLink = () => {
     if (!user) return '/';
@@ -24,10 +25,20 @@ export const Navbar: React.FC = () => {
     }
   };
 
+  const navTabs = [
+    { name: 'Home', href: '/' },
+    { name: 'About Us', href: '/#about' },
+    { name: 'Tours', href: '/#tours' },
+    { name: 'Tailor-Made Stays', href: '/#tailor-made' },
+    { name: 'Blog', href: '/#blog' },
+    { name: 'FAQ', href: '/#faq' },
+    { name: 'Contact Us', href: '/#contact' }
+  ];
+
   return (
     <nav className={`z-50 w-full transition-all duration-300 ${
       isHome 
-        ? 'absolute top-0 left-0 right-0 bg-gradient-to-b from-black/50 via-black/20 to-transparent border-b border-white/10 text-white' 
+        ? 'absolute top-0 left-0 right-0 bg-gradient-to-b from-black/60 via-black/20 to-transparent border-b border-white/10 text-white' 
         : 'sticky top-0 border-b border-slate-200 bg-white shadow-sm text-slate-900'
     }`}>
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -44,16 +55,9 @@ export const Navbar: React.FC = () => {
               </span>
             </Link>
 
+            {/* Desktop Tabs */}
             <div className="hidden lg:flex items-center gap-6">
-              {[
-                { name: 'Home', href: '/' },
-                { name: 'About Us', href: '/#about' },
-                { name: 'Tours', href: '/#tours' },
-                { name: 'Tailor-Made Stays', href: '/#tailor-made' },
-                { name: 'Blog', href: '/#blog' },
-                { name: 'FAQ', href: '/#faq' },
-                { name: 'Contact Us', href: '/#contact' }
-              ].map((tab) => (
+              {navTabs.map((tab) => (
                 <Link 
                   key={tab.name}
                   href={tab.href}
@@ -67,15 +71,15 @@ export const Navbar: React.FC = () => {
             </div>
           </div>
 
-          <div className="flex items-center gap-4">
+          {/* Desktop Right Side Auth Buttons */}
+          <div className="hidden md:flex items-center gap-4">
             {user ? (
               <div className="flex items-center gap-4">
-                {/* Host Verification status indicator with pulse animation */}
                 {user.role === 'Host' && (
-                  <span className={`hidden sm:inline-flex items-center gap-2 rounded-full px-3 py-1 text-xs font-bold ${
+                  <span className={`hidden lg:inline-flex items-center gap-2 rounded-full px-3 py-1 text-xs font-bold ${
                     isHome 
                       ? 'bg-white/10 text-white border border-white/20' 
-                      : 'bg-emerald-55 text-emerald-700 border border-emerald-200/40'
+                      : 'bg-emerald-50 text-emerald-700 border border-emerald-205/30'
                   }`}>
                     <span className="relative flex h-2 w-2">
                       <span className={`animate-ping absolute inline-flex h-full w-full rounded-full opacity-75 ${user.isVerified ? 'bg-emerald-400' : 'bg-amber-500'}`}></span>
@@ -90,7 +94,7 @@ export const Navbar: React.FC = () => {
                   className={`flex items-center gap-1.5 rounded-full px-4 py-2 text-xs font-bold transition-all shadow-sm ${
                     isHome 
                       ? 'border border-white/20 bg-white/10 text-white hover:bg-white/20' 
-                      : 'border border-slate-200 bg-white text-slate-700 hover:bg-slate-55 hover:text-teal-700'
+                      : 'border border-slate-200 bg-white text-slate-700 hover:bg-slate-50 hover:text-teal-700'
                   }`}
                 >
                   <LayoutDashboard className={`h-4 w-4 ${isHome ? 'text-white/60' : 'text-slate-400'}`} />
@@ -150,8 +154,94 @@ export const Navbar: React.FC = () => {
               </div>
             )}
           </div>
+
+          {/* Hamburger Mobile Menu Toggle Button */}
+          <div className="flex lg:hidden items-center">
+            <button
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              className={`p-2 rounded-xl border transition-colors ${
+                isHome 
+                  ? 'border-white/15 text-white/80 hover:bg-white/10 hover:text-white' 
+                  : 'border-slate-200 text-slate-600 hover:bg-slate-50 hover:text-teal-700'
+              }`}
+              aria-label="Toggle menu"
+            >
+              {mobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+            </button>
+          </div>
+
         </div>
       </div>
+
+      {/* Mobile Drawer Links Dropdown */}
+      {mobileMenuOpen && (
+        <div className={`lg:hidden border-t px-6 py-5 space-y-4 animate-fadeIn shadow-2xl relative z-50 ${
+          isHome 
+            ? 'bg-slate-900 border-white/10 text-white' 
+            : 'bg-white border-slate-100 text-slate-900'
+        }`}>
+          <div className="flex flex-col space-y-2">
+            {navTabs.map((tab) => (
+              <Link 
+                key={tab.name}
+                href={tab.href}
+                onClick={() => setMobileMenuOpen(false)}
+                className={`text-sm font-bold uppercase tracking-wider py-2 transition-colors border-b ${
+                  isHome ? 'border-white/5 text-white/80 hover:text-white' : 'border-slate-50 text-slate-600 hover:text-teal-700'
+                }`}
+              >
+                {tab.name}
+              </Link>
+            ))}
+          </div>
+
+          {/* User Auth actions in Mobile Drawer */}
+          <div className="pt-2">
+            {user ? (
+              <div className="flex flex-col space-y-3">
+                <Link
+                  href={getDashboardLink()}
+                  onClick={() => setMobileMenuOpen(false)}
+                  className={`flex items-center justify-center gap-2 rounded-full py-3 text-xs font-bold transition-all shadow-sm ${
+                    isHome 
+                      ? 'border border-white/20 bg-white/10 text-white hover:bg-white/20' 
+                      : 'border border-slate-200 bg-white text-slate-700 hover:bg-slate-50'
+                  }`}
+                >
+                  <LayoutDashboard className="h-4 w-4" />
+                  <span>Go to Dashboard ({user.role})</span>
+                </Link>
+                <button
+                  onClick={() => { logout(); setMobileMenuOpen(false); }}
+                  className={`w-full flex items-center justify-center gap-2 rounded-full py-3 text-xs font-bold text-white bg-rose-600 hover:bg-rose-700 transition-colors shadow-md`}
+                >
+                  <LogOut className="h-4 w-4" />
+                  <span>Sign Out</span>
+                </button>
+              </div>
+            ) : (
+              <div className="flex flex-col space-y-3">
+                <Link
+                  href="/auth/login"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className={`w-full text-center py-3 text-xs font-bold uppercase tracking-wider transition-colors border rounded-full ${
+                    isHome ? 'border-white/20 text-white hover:bg-white/10' : 'border-slate-200 text-slate-600 hover:bg-slate-50'
+                  }`}
+                >
+                  Sign In
+                </Link>
+                <Link
+                  href="/auth/register"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className={`w-full text-center py-3 text-xs font-bold shadow-md rounded-full bg-teal-700 text-white hover:bg-teal-800`}
+                >
+                  Get Started
+                </Link>
+              </div>
+            )}
+          </div>
+        </div>
+      )}
     </nav>
   );
 };

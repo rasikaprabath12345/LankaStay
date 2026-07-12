@@ -344,7 +344,7 @@ export default function HomePage() {
       </section>
 
       {/* 3. Core Values Grid (Solid, premium border designs with clean borders) */}
-      <section className="mx-auto max-w-7xl w-full px-4 sm:px-6 lg:px-8 py-16 select-none">
+      <section id="about" className="mx-auto max-w-7xl w-full px-4 sm:px-6 lg:px-8 py-16 select-none scroll-mt-20">
         <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
           <h2 className="text-3xl sm:text-4xl font-bold tracking-tight font-serif text-slate-900">Credibility &amp; Trust First</h2>
           <p className="text-base text-slate-500 font-medium">LankaStay connects global visitors to authentic Sri Lankan stays with security and fairness.</p>
@@ -423,7 +423,7 @@ export default function HomePage() {
       </section>
 
       {/* 5. Destination Quick Filters */}
-      <section className="mx-auto max-w-7xl w-full px-4 sm:px-6 lg:px-8 py-20 text-left select-none">
+      <section id="tailor-made" className="mx-auto max-w-7xl w-full px-4 sm:px-6 lg:px-8 py-20 text-left select-none scroll-mt-20">
         <div className="flex flex-col sm:flex-row justify-between items-end mb-10 gap-4">
           <div>
             <h2 className="text-3xl font-bold tracking-tight text-slate-900 font-serif">Curated Regional Filters</h2>
@@ -455,7 +455,7 @@ export default function HomePage() {
       </section>
 
       {/* 6. Main Experiences Grid */}
-      <section ref={resultsRef} className="scroll-mt-20 pb-28">
+      <section id="tours" ref={resultsRef} className="scroll-mt-20 pb-28">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-10 w-full text-left">
           
           <div className="flex flex-col sm:flex-row justify-between items-end mb-12 gap-6 border-b border-slate-200 pb-6">
@@ -613,7 +613,7 @@ export default function HomePage() {
       </section>
 
       {/* 7. Premium Testimonials Block */}
-      <section className="bg-slate-900 text-white py-24 select-none relative overflow-hidden">
+      <section id="blog" className="bg-slate-900 text-white py-24 select-none relative overflow-hidden scroll-mt-20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-left relative z-10">
           
           <div className="text-center max-w-2xl mx-auto mb-16 space-y-4">
@@ -670,8 +670,49 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* FAQ Section */}
+      <section id="faq" className="bg-[#FCFBF9] border-t border-slate-200 py-24 text-left select-none scroll-mt-20">
+        <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16 space-y-4">
+            <span className="text-xs font-bold text-teal-700 uppercase tracking-widest">Frequently Asked Questions</span>
+            <h2 className="text-3xl sm:text-4xl font-bold font-serif text-slate-900 tracking-tight">Got Questions? We Have Answers.</h2>
+            <p className="text-sm text-slate-500 font-medium">Learn more about the trust standards and operation of LankaStay.</p>
+          </div>
+
+          <div className="space-y-6">
+            {[
+              {
+                q: "What is LankaStay and how is it different?",
+                a: "LankaStay is a verified heritage homestay registry that connects global travelers directly with certified local Sri Lankan families. Unlike standard hotels, we focus on cultural immersion, home-cooked culinary matchmaking, and protecting local economies."
+              },
+              {
+                q: "How are hosts verified and cleared?",
+                a: "Every host on LankaStay undergoes official checks. This includes SLTDA standard clearance, local Grama Niladhari residency confirmation, and a verify check of official police records to ensure guest safety and local credibility."
+              },
+              {
+                q: "How does the escrow payment system protect me?",
+                a: "When you book a homestay, your money is securely locked in our escrow protection vault. The booking fee is only released directly to the local host's account after check-out, ensuring peace of mind for travelers."
+              },
+              {
+                q: "Are home-cooked meals included in my booking?",
+                a: "Many of our verified hosts offer breakfast or traditional culinary experiences. You can search and filter listings by specific culinary tags like 'Traditional Kitchen', 'Tea Estate Brews', or 'Local Curries'."
+              }
+            ].map((faq, index) => (
+              <div key={index} className="bg-white p-6 sm:p-8 border border-slate-200 rounded-2xl shadow-sm space-y-3">
+                <h4 className="text-base sm:text-lg font-bold text-slate-900 flex items-center gap-2">
+                  <span className="text-teal-600 font-serif">Q.</span> {faq.q}
+                </h4>
+                <p className="text-sm text-slate-505 leading-relaxed font-medium pl-6">
+                  {faq.a}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* 8. Gorgeous CTA Host invite section (Solid, clean edge) */}
-      <section className="w-full bg-slate-950 text-white py-24 px-6 sm:px-16 md:px-24 border-t border-slate-900 text-left relative z-10">
+      <section id="contact" className="w-full bg-slate-950 text-white py-24 px-6 sm:px-16 md:px-24 border-t border-slate-900 text-left relative z-10 scroll-mt-20">
         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <div className="space-y-8">
             <div className="inline-flex items-center gap-2 bg-slate-900 px-4 py-2 text-xs font-bold text-teal-300 border border-slate-800 uppercase tracking-widest rounded-lg">
