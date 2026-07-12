@@ -34,7 +34,7 @@
   /* Firefox */
 }
 
-/* Tags වල දකුණු පැත්තෙන් ලස්සනට fade වෙන effect එක */
+
 @utility mask-linear-fade {
   mask-image: linear-gradient(to right, black 80%, transparent 100%);
   -webkit-mask-image: linear-gradient(to right, black 80%, transparent 100%);
