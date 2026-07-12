@@ -65,6 +65,9 @@ export default function HostDashboard() {
   const [location, setLocation] = useState('');
   const [selectedTagIds, setSelectedTagIds] = useState<string[]>([]);
   const [imageUrl, setImageUrl] = useState('');
+  const [imageUrl2, setImageUrl2] = useState('');
+  const [imageUrl3, setImageUrl3] = useState('');
+  const [imageUrl4, setImageUrl4] = useState('');
   const [createLoading, setCreateLoading] = useState(false);
   const [createError, setCreateError] = useState<string | null>(null);
   const [showAddForm, setShowAddForm] = useState(false);
@@ -128,13 +131,18 @@ export default function HostDashboard() {
     setCreateLoading(true);
 
     try {
+      const combinedImages = [imageUrl, imageUrl2, imageUrl3, imageUrl4]
+        .map(url => url.trim())
+        .filter(url => url !== '')
+        .join('|');
+
       await apiClient.post('/experiences', {
         title,
         description,
         basePrice: Number(basePrice),
         location,
         tagIds: selectedTagIds,
-        imageUrl,
+        imageUrl: combinedImages,
       });
 
       // Reset
@@ -143,6 +151,9 @@ export default function HostDashboard() {
       setBasePrice('');
       setLocation('');
       setImageUrl('');
+      setImageUrl2('');
+      setImageUrl3('');
+      setImageUrl4('');
       setSelectedTagIds([]);
       setShowAddForm(false);
       
