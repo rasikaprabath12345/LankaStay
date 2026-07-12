@@ -82,7 +82,6 @@ export default function HomePage() {
   const resultsRef = useRef<HTMLDivElement>(null);
 
   const heroImages = [
-    '/images/hero.jpg',          // Sandy landscape path
     '/images/destination1.jpg',  // Kandy Stupa
     '/images/destination2.jpg',  // Buddha between rocks
     '/images/destination3.jpg',  // Galle Fort Clock Tower
@@ -240,7 +239,7 @@ export default function HomePage() {
         {heroImages.map((imgUrl, idx) => (
           <div
             key={imgUrl}
-            className={`absolute inset-0 bg-cover bg-center bg-no-repeat transition-opacity duration-1000 ease-in-out ${
+            className={`absolute inset-0 bg-cover bg-center bg-no-repeat transition-opacity duration-1000 ease-in-out brightness-[0.90] contrast-[1.05] saturate-[1.10] ${
               idx === heroIndex ? 'opacity-100' : 'opacity-0'
             }`}
             style={{ backgroundImage: `url('${imgUrl}')` }}
