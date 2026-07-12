@@ -39,6 +39,7 @@ interface Booking {
 interface Experience {
   id: string;
   title: string;
+  description?: string;
   basePrice: number;
   location: string;
   isActive: boolean;
@@ -189,6 +190,30 @@ export default function HostDashboard() {
       setCreateError(err.message || 'Failed to create experience.');
     } finally {
       setCreateLoading(false);
+    }
+  };
+
+  const handleStartEdit = (exp: any) => {
+    setTitle(exp.title);
+    setDescription(exp.description || '');
+    setBasePrice(exp.basePrice.toString());
+    setLocation(exp.location);
+    setSelectedTagIds(exp.tags.map((t: any) => t.id));
+    
+    // Parse images
+    const images = exp.imageUrl ? exp.imageUrl.split('|') : [];
+    setImageUrl(images[0] || '');
+    setImageUrl2(images[1] || '');
+    setImageUrl3(images[2] || '');
+    setImageUrl4(images[3] || '');
+    
+    setEditingExpId(exp.id);
+    setShowAddForm(true);
+    
+    // Scroll to form
+    const formElement = document.getElementById('new-homestay-form');
+    if (formElement) {
+      formElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
   };
 
