@@ -23,7 +23,9 @@ import {
   Coffee,
   Users,
   Bed,
-  Home
+  Home,
+  Lock,
+  CloudSun
 } from 'lucide-react';
 
 interface Tag {
@@ -77,6 +79,7 @@ export default function HomePage() {
   const [favorites, setFavorites] = useState<string[]>([]);
   const [activeCategory, setActiveCategory] = useState<string>('all');
   const [searchCategory, setSearchCategory] = useState<string>('all');
+  const [tipsRegion, setTipsRegion] = useState<string>('ella');
   const resultsRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -604,6 +607,335 @@ export default function HomePage() {
               })}
             </div>
           )}
+        </div>
+      </section>
+
+      {/* 6.1. Escrow Guarantee & Trust Vault Section */}
+      <section className="bg-white border-t border-slate-200 py-16 text-left">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="bg-gradient-to-r from-slate-900 to-slate-950 rounded-3xl p-8 sm:p-12 shadow-xl border border-slate-800 text-white relative overflow-hidden flex flex-col md:flex-row items-center gap-8 justify-between">
+            <div className="absolute top-0 right-0 -translate-y-12 translate-x-12 h-64 w-64 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none" />
+            
+            <div className="space-y-4 max-w-xl relative z-10">
+              <div className="inline-flex items-center gap-1.5 bg-emerald-500/15 border border-emerald-500/30 text-emerald-400 px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider">
+                <Lock className="h-3 w-3" />
+                LankaStay Escrow Vault Protected
+              </div>
+              <h2 className="text-2xl sm:text-3.5xl font-bold font-serif tracking-tight leading-tight">
+                Our 100% Escrow Guarantee Protecting Your Journey
+              </h2>
+              <p className="text-xs sm:text-sm text-slate-400 leading-relaxed font-medium">
+                To keep both hosts and travelers safe, we hold your booking fee in our secure escrow vault. The funds are only released to the local Sri Lankan family's account 24 hours after you successfully check out.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 w-full md:max-w-2xl relative z-10">
+              {[
+                {
+                  step: "01",
+                  title: "Book Securely",
+                  desc: "Reserve your homestay. Payment is securely locked in our trust vault."
+                },
+                {
+                  step: "02",
+                  title: "Check In & Live",
+                  desc: "Verify identity credentials, experience local hospitality."
+                },
+                {
+                  step: "03",
+                  title: "Safe Release",
+                  desc: "Funds are released directly to the local host's account."
+                }
+              ].map((item, idx) => (
+                <div key={idx} className="bg-white/5 border border-white/10 p-5 rounded-2xl space-y-2 text-left hover:bg-white/10 transition-colors">
+                  <span className="text-xl font-serif font-black text-[#00aa6c]">{item.step}</span>
+                  <h4 className="text-xs font-bold text-slate-100">{item.title}</h4>
+                  <p className="text-[10px] text-slate-400 leading-relaxed font-medium">{item.desc}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 6.2. Traditional Culinary Matchmaker Section */}
+      <section className="bg-[#FCFBF9] border-t border-slate-200 py-16 text-left">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="text-center max-w-3xl mx-auto mb-10 space-y-2">
+            <span className="text-xs font-bold text-[#00aa6c] uppercase tracking-widest">Culinary Experiences</span>
+            <h2 className="text-2xl sm:text-3xl font-bold font-serif text-slate-900 tracking-tight">Sri Lankan Culinary Matchmaker</h2>
+            <p className="text-xs text-slate-500 font-medium">Choose a traditional specialty to filter homestays that host authentic food workshops.</p>
+          </div>
+
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-5">
+            {[
+              {
+                name: "Egg Hoppers",
+                tag: "traditional food",
+                desc: "Crispy-edged pancakes made with fermented rice flour & coconut milk.",
+                img: "https://images.unsplash.com/photo-1546708973-b339540b5162?auto=format&fit=crop&w=300&q=80"
+              },
+              {
+                name: "Pol Roti & Sambol",
+                tag: "traditional food",
+                desc: "Grated coconut flatbread served with spicy ground lunu miris.",
+                img: "https://images.unsplash.com/photo-1542856391-010fb87dcfed?auto=format&fit=crop&w=300&q=80"
+              },
+              {
+                name: "Sri Lankan Crab Curry",
+                tag: "traditional food",
+                desc: "Lagoon crab prepared inside mud-pots with fresh drumstick leaves.",
+                img: "https://images.unsplash.com/photo-1586861635167-e5223aadc9fe?auto=format&fit=crop&w=300&q=80"
+              },
+              {
+                name: "Ceylon Tea & Brews",
+                tag: "traditional food",
+                desc: "Tea estate heritage brewing and local tea plucking tours.",
+                img: "https://images.unsplash.com/photo-1578301978018-3005759f48f7?auto=format&fit=crop&w=300&q=80"
+              }
+            ].map((dish, i) => (
+              <button
+                key={i}
+                onClick={() => {
+                  setLocationQuery('');
+                  // Find tag by name or set search criteria
+                  const matchedTag = tags.find(t => t.name.toLowerCase() === dish.tag.toLowerCase());
+                  if (matchedTag) {
+                    setSelectedTagIds([matchedTag.id]);
+                  }
+                  resultsRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }}
+                className="group flex flex-col bg-white border border-slate-200 rounded-2xl overflow-hidden shadow-sm hover:border-[#00aa6c] hover:shadow-md transition-all text-left"
+              >
+                <div className="aspect-[4/3] w-full bg-slate-100 overflow-hidden relative">
+                  <img src={dish.img} alt={dish.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
+                  <span className="absolute bottom-3 left-3 text-[10px] bg-[#00aa6c] text-white px-2 py-0.5 rounded font-extrabold uppercase tracking-wide">
+                    {dish.name}
+                  </span>
+                </div>
+                <div className="p-4 flex-1 flex flex-col justify-between">
+                  <p className="text-[10px] text-slate-500 font-medium leading-relaxed">{dish.desc}</p>
+                  <span className="text-[9px] font-bold text-[#00aa6c] mt-2 flex items-center gap-1 group-hover:translate-x-1 transition-transform">
+                    Find homestays <ArrowRight className="h-3 w-3" />
+                  </span>
+                </div>
+              </button>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 6.3. Interactive Travel Planner & Weather Widget */}
+      <section className="bg-white border-t border-slate-200 py-16 text-left">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-center">
+            
+            <div className="space-y-4">
+              <span className="text-xs font-bold text-[#00aa6c] uppercase tracking-widest">Travel Smart</span>
+              <h2 className="text-2xl sm:text-3xl font-bold font-serif text-slate-900 tracking-tight leading-tight">
+                Sri Lanka Travel Planner & Regional Guides
+              </h2>
+              <p className="text-xs text-slate-500 leading-relaxed font-medium">
+                Switch between regions to get local travel tips, peak season advice, and weather snapshots to design your perfect getaway.
+              </p>
+
+              <div className="flex flex-col gap-2 pt-2">
+                {[
+                  { id: 'ella', name: 'Ella Highlands' },
+                  { id: 'galle', name: 'Galle Coastal Fort' },
+                  { id: 'kandy', name: 'Kandy Sacred Hills' },
+                  { id: 'sigiriya', name: 'Sigiriya Rock Fortress' }
+                ].map((region) => (
+                  <button
+                    key={region.id}
+                    onClick={() => setTipsRegion(region.id)}
+                    className={`px-4 py-2.5 text-xs font-bold text-left rounded-xl border transition-all ${
+                      tipsRegion === region.id
+                        ? 'bg-slate-900 text-white border-slate-900'
+                        : 'bg-slate-50 text-slate-700 border-slate-200 hover:bg-slate-100'
+                    }`}
+                  >
+                    {region.name}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            <div className="lg:col-span-2">
+              {tipsRegion === 'ella' && (
+                <div className="bg-slate-50 border border-slate-200 rounded-3xl p-6 sm:p-8 space-y-6 animate-[fadeIn_0.3s_ease-out]">
+                  <div className="flex justify-between items-center gap-4 border-b border-slate-200 pb-4">
+                    <div>
+                      <h3 className="text-lg font-bold font-serif">Ella Highlands</h3>
+                      <p className="text-[10px] text-slate-400 font-bold uppercase tracking-wider">High Mountain Region</p>
+                    </div>
+                    <div className="flex items-center gap-2 bg-sky-50 border border-sky-100 text-sky-700 px-3 py-1.5 rounded-2xl">
+                      <CloudSun className="h-5 w-5 text-sky-500" />
+                      <div className="text-right">
+                        <span className="text-xs font-extrabold block">24°C</span>
+                        <span className="text-[8px] font-bold block uppercase tracking-wide">Misty & Fresh</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 text-xs text-slate-650">
+                    <div className="space-y-2">
+                      <h4 className="font-extrabold text-slate-900">Local Safety Tip</h4>
+                      <p className="leading-relaxed font-medium">When hiking Ella Rock or Little Adam's Peak, start at 6:30 AM to beat the mid-day heat and dense mist. Keep dynamic hydration filters handy.</p>
+                    </div>
+                    <div className="space-y-2">
+                      <h4 className="font-extrabold text-slate-900">Best Season to Visit</h4>
+                      <p className="leading-relaxed font-medium">January to April. Avoid heavy monsoon periods in November/December as trails can become slippery and foggy.</p>
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              {tipsRegion === 'galle' && (
+                <div className="bg-slate-50 border border-slate-200 rounded-3xl p-6 sm:p-8 space-y-6 animate-[fadeIn_0.3s_ease-out]">
+                  <div className="flex justify-between items-center gap-4 border-b border-slate-200 pb-4">
+                    <div>
+                      <h3 className="text-lg font-bold font-serif">Galle Coastal Fort</h3>
+                      <p className="text-[10px] text-slate-400 font-bold uppercase tracking-wider">Southern Beach Coast</p>
+                    </div>
+                    <div className="flex items-center gap-2 bg-amber-50 border border-amber-100 text-amber-700 px-3 py-1.5 rounded-2xl">
+                      <CloudSun className="h-5 w-5 text-amber-500" />
+                      <div className="text-right">
+                        <span className="text-xs font-extrabold block">30°C</span>
+                        <span className="text-[8px] font-bold block uppercase tracking-wide">Sunny Coastal Breeze</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 text-xs text-slate-650">
+                    <div className="space-y-2">
+                      <h4 className="font-extrabold text-slate-900">Local Safety Tip</h4>
+                      <p className="leading-relaxed font-medium">Avoid swimming outside flagged safe zones on southern beaches due to strong seasonal undercurrents. Follow advice from certified SLTDA beach lifeguards.</p>
+                    </div>
+                    <div className="space-y-2">
+                      <h4 className="font-extrabold text-slate-900">Best Season to Visit</h4>
+                      <p className="leading-relaxed font-medium">November to April. Perfect for coastal surfing, whale watching, and exploring the colonial Galle Fort.</p>
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              {tipsRegion === 'kandy' && (
+                <div className="bg-slate-50 border border-slate-200 rounded-3xl p-6 sm:p-8 space-y-6 animate-[fadeIn_0.3s_ease-out]">
+                  <div className="flex justify-between items-center gap-4 border-b border-slate-200 pb-4">
+                    <div>
+                      <h3 className="text-lg font-bold font-serif">Kandy Sacred Hills</h3>
+                      <p className="text-[10px] text-slate-400 font-bold uppercase tracking-wider">Central Cultural Capital</p>
+                    </div>
+                    <div className="flex items-center gap-2 bg-emerald-50 border border-emerald-100 text-emerald-700 px-3 py-1.5 rounded-2xl">
+                      <CloudSun className="h-5 w-5 text-emerald-500" />
+                      <div className="text-right">
+                        <span className="text-xs font-extrabold block">26°C</span>
+                        <span className="text-[8px] font-bold block uppercase tracking-wide">Mild & Tropical</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 text-xs text-slate-650">
+                    <div className="space-y-2">
+                      <h4 className="font-extrabold text-slate-900">Local Safety Tip</h4>
+                      <p className="leading-relaxed font-medium">When visiting the Sacred Temple of the Tooth Relic, dress conservatively (shoulders and knees covered). Remove hats and footwear before entry.</p>
+                    </div>
+                    <div className="space-y-2">
+                      <h4 className="font-extrabold text-slate-900">Best Season to Visit</h4>
+                      <p className="leading-relaxed font-medium">July to August. Ideal for witnessing the famous Kandy Esala Perahera festival, one of Asia's most spectacular cultural parades.</p>
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              {tipsRegion === 'sigiriya' && (
+                <div className="bg-slate-50 border border-slate-200 rounded-3xl p-6 sm:p-8 space-y-6 animate-[fadeIn_0.3s_ease-out]">
+                  <div className="flex justify-between items-center gap-4 border-b border-slate-200 pb-4">
+                    <div>
+                      <h3 className="text-lg font-bold font-serif">Sigiriya Rock Fortress</h3>
+                      <p className="text-[10px] text-slate-400 font-bold uppercase tracking-wider">Cultural Triangle Plain</p>
+                    </div>
+                    <div className="flex items-center gap-2 bg-amber-55 border border-amber-100 text-amber-800 px-3 py-1.5 rounded-2xl">
+                      <CloudSun className="h-5 w-5 text-amber-500" />
+                      <div className="text-right">
+                        <span className="text-xs font-extrabold block">32°C</span>
+                        <span className="text-[8px] font-bold block uppercase tracking-wide">Dry & Warm</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 text-xs text-slate-650">
+                    <div className="space-y-2">
+                      <h4 className="font-extrabold text-slate-900">Local Safety Tip</h4>
+                      <p className="leading-relaxed font-medium">Start climbing the Sigiriya fortress by 7:00 AM to avoid extreme heat and tourist crowds. Watch out for wild monkeys; do not feed or provoke them.</p>
+                    </div>
+                    <div className="space-y-2">
+                      <h4 className="font-extrabold text-slate-900">Best Season to Visit</h4>
+                      <p className="leading-relaxed font-medium">May to September. Dry and clear skies, perfect for exploring the ancient ruins and taking bicycle rides through local eco-villages.</p>
+                    </div>
+                  </div>
+                </div>
+              )}
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      {/* 6.4. Meet Our Certified Families Spotlight */}
+      <section className="bg-[#FCFBF9] border-t border-slate-200 py-16 text-left select-none">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="text-center max-w-3xl mx-auto mb-10 space-y-2">
+            <span className="text-xs font-bold text-[#00aa6c] uppercase tracking-widest">Our Community</span>
+            <h2 className="text-2xl sm:text-3xl font-bold font-serif text-slate-900 tracking-tight">Meet Our Certified Families</h2>
+            <p className="text-xs text-slate-500 font-medium">Hosts on LankaStay are verified through Grama Niladhari clearance and SLTDA hospitality standards.</p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {[
+              {
+                name: "Anura Senanayake",
+                location: "Ella Hills",
+                verify: "SLTDA & GN Clear",
+                quote: "We welcome guests with organic tea from our gardens. Showing the beauty of the Ella gap and sharing local hospitality is our passion.",
+                avatar: "A"
+              },
+              {
+                name: "Mrs. Jayasinghe",
+                location: "Galle Fort",
+                verify: "Police & GN Clear",
+                quote: "My Dutch-colonial home has been in our family for generations. I love teaching guests the art of roasting traditional Sri Lankan spices.",
+                avatar: "J"
+              },
+              {
+                name: "Saman Bandara",
+                location: "Kandy Sacred Hills",
+                verify: "SLTDA & GN Clear",
+                quote: "We love sharing the peace of our meditation gardens. Guests feel safe because of LankaStay's verification and secure booking rules.",
+                avatar: "S"
+              }
+            ].map((host, i) => (
+              <div key={i} className="bg-white border border-slate-200 p-6 rounded-2xl flex flex-col justify-between hover:shadow-sm transition-all duration-300">
+                <div className="space-y-4">
+                  <div className="flex items-center gap-3">
+                    <div className="h-10 w-10 rounded-full bg-teal-50 text-teal-700 font-extrabold text-sm flex items-center justify-center border border-teal-200">
+                      {host.avatar}
+                    </div>
+                    <div>
+                      <h4 className="text-xs font-bold text-slate-950">{host.name}</h4>
+                      <p className="text-[9px] text-slate-450 font-bold uppercase tracking-wider">{host.location}</p>
+                    </div>
+                  </div>
+                  <p className="text-xs italic text-slate-550 leading-relaxed font-medium">"{host.quote}"</p>
+                </div>
+                <div className="mt-4 pt-3 border-t border-slate-100 flex justify-between items-center text-[9px]">
+                  <span className="flex items-center gap-0.5 text-emerald-600 font-black uppercase tracking-wider">
+                    <ShieldCheck className="h-3.5 w-3.5" />
+                    {host.verify}
+                  </span>
+                  <span className="font-bold text-slate-400">Verified Host</span>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
