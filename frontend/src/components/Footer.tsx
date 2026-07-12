@@ -17,7 +17,7 @@ export const Footer: React.FC = () => {
                 <Compass className="h-4.5 w-4.5" />
               </span>
               <span className="text-xl font-bold tracking-tight text-white font-serif">
-                Lanka<span className="text-teal-450 font-sans font-extrabold">Stay</span>
+                Lanka<span className="text-teal-400 font-sans font-extrabold">Stay</span>
               </span>
             </Link>
             <p className="text-xs leading-relaxed text-slate-400 max-w-xs">

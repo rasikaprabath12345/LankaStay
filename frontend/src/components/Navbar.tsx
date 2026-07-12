@@ -51,10 +51,9 @@ export const Navbar: React.FC = () => {
                 <Compass className="h-4.5 w-4.5" />
               </span>
               <span className={`text-xl font-bold tracking-tight font-serif ${isHome ? 'text-white' : 'text-slate-900'}`}>
-                Lanka<span className={`font-sans font-extrabold ${isHome ? 'text-teal-350' : 'text-teal-700'}`}>Stay</span>
+                Lanka<span className={`font-sans font-extrabold ${isHome ? 'text-teal-400' : 'text-teal-700'}`}>Stay</span>
               </span>
             </Link>
-
             {/* Desktop Tabs */}
             <div className="hidden lg:flex items-center gap-6">
               {navTabs.map((tab) => (
@@ -79,7 +78,7 @@ export const Navbar: React.FC = () => {
                   <span className={`hidden lg:inline-flex items-center gap-2 rounded-full px-3 py-1 text-xs font-bold ${
                     isHome 
                       ? 'bg-white/10 text-white border border-white/20' 
-                      : 'bg-emerald-50 text-emerald-700 border border-emerald-205/30'
+                      : 'bg-emerald-50 text-emerald-700 border border-emerald-200/30'
                   }`}>
                     <span className="relative flex h-2 w-2">
                       <span className={`animate-ping absolute inline-flex h-full w-full rounded-full opacity-75 ${user.isVerified ? 'bg-emerald-400' : 'bg-amber-500'}`}></span>

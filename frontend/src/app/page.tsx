@@ -65,7 +65,7 @@ const SkeletonCard = () => (
       <div className="flex items-center gap-4">
         <div className="h-10 w-10 rounded-full bg-slate-200 animate-pulse" />
         <div className="flex flex-col gap-2">
-          <div className="h-2.5 w-12 rounded-none bg-slate-150 animate-pulse" />
+          <div className="h-2.5 w-12 rounded-none bg-slate-200 animate-pulse" />
           <div className="h-3 w-24 rounded-none bg-slate-200/60 animate-pulse" />
         </div>
       </div>
@@ -205,7 +205,7 @@ export default function HomePage() {
       return 'https://images.unsplash.com/photo-1565008447742-97f6f38c985c?auto=format&fit=crop&w=800&q=80';
     }
     if (loc.includes('sigiriya') || t.includes('rock') || loc.includes('dambulla')) {
-      return 'https://images.unsplash.com/photo-1586861635167-e5223aadc9fe?auto=format&fit=crop&w=800&q=80';
+      return 'https://images.unsplash.com/photo-1578301978018-3005759f48f7?auto=format&fit=crop&w=800&q=80';
     }
     if (loc.includes('mirissa') || loc.includes('weligama') || t.includes('surf')) {
       return 'https://images.unsplash.com/photo-1544735716-392fe2489ffa?auto=format&fit=crop&w=800&q=80';
@@ -221,24 +221,24 @@ export default function HomePage() {
         {/* Full-width Background Image (Authentic Sri Lankan landscape: Sigiriya Rock Fortress) */}
         <div 
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-          style={{ backgroundImage: `url('https://images.unsplash.com/photo-1586861635167-e5223aadc9fe?auto=format&fit=crop&w=2200&q=90')` }}
+          style={{ backgroundImage: `url('https://images.unsplash.com/photo-1608958416710-1845a707fc9c?auto=format&fit=crop&w=2200&q=90')` }}
         />
         {/* Semi-transparent dark overlay to match "Visit SL Travels" moody green/dark tone */}
-        <div className="absolute inset-0 bg-slate-950/45" />
+        <div className="absolute inset-0 bg-slate-950/50" />
 
         {/* Content Centered on top of background */}
         <div className="relative z-10 w-full max-w-4xl mx-auto flex flex-col items-center space-y-6 sm:space-y-8">
           
           <div className="space-y-4 flex flex-col items-center">
-            <span className="text-[10px] sm:text-xs font-black tracking-[0.25em] text-teal-350 uppercase animate-pulse">
+            <span className="text-[10px] sm:text-xs font-black tracking-[0.25em] text-teal-400 uppercase animate-pulse">
               From Misty Mountains to Golden Beaches
             </span>
 
-            <h1 className="text-white font-serif text-5xl sm:text-7xl font-extrabold tracking-tight leading-[1.1] max-w-3xl">
+            <h1 className="text-white font-serif text-5xl sm:text-7xl font-extrabold tracking-tight leading-[1.1] max-w-3xl drop-shadow-sm">
               Start Your Journey Today
             </h1>
 
-            <p className="text-white/80 text-sm sm:text-base md:text-lg max-w-2xl font-medium leading-relaxed">
+            <p className="text-white/90 text-sm sm:text-base md:text-lg max-w-2xl font-medium leading-relaxed drop-shadow-sm">
               Tailor-made homestays, private cooking guides, and authentic local experiences across Sri Lanka.
             </p>
           </div>
@@ -255,11 +255,11 @@ export default function HomePage() {
                     value={locationQuery}
                     onChange={(e) => setLocationQuery(e.target.value)}
                     placeholder="Ella, Galle, Kandy..."
-                    className="w-full bg-transparent text-sm font-bold text-slate-800 focus:outline-none placeholder:text-slate-350"
+                    className="w-full bg-transparent text-sm font-bold text-slate-800 focus:outline-none placeholder:text-slate-400"
                   />
                 </div>
                 {locationQuery && (
-                  <button type="button" onClick={() => setLocationQuery('')} className="text-slate-450 hover:text-slate-650">
+                  <button type="button" onClick={() => setLocationQuery('')} className="text-slate-400 hover:text-slate-600">
                     <X className="h-4 w-4" />
                   </button>
                 )}
@@ -281,7 +281,7 @@ export default function HomePage() {
 
               <button
                 type="submit"
-                className="w-full md:w-auto bg-yellow-450 hover:bg-yellow-500 text-slate-950 font-black text-xs uppercase tracking-wider rounded-full px-10 py-4 flex items-center justify-center gap-2 transition-all shadow-md active:scale-95 shrink-0"
+                className="w-full md:w-auto bg-amber-500 hover:bg-amber-600 text-slate-950 font-black text-xs uppercase tracking-wider rounded-full px-10 py-4 flex items-center justify-center gap-2 transition-all shadow-md active:scale-95 shrink-0"
               >
                 <Search className="h-4 w-4" />
                 <span>Search Stays</span>
@@ -315,7 +315,7 @@ export default function HomePage() {
               className={`flex items-center gap-2 px-5 py-3 text-xs font-bold transition-all duration-300 shrink-0 border rounded-full ${
                 selectedTagIds.length === 0 && activeCategory === 'all'
                   ? 'bg-slate-900 text-white border-slate-950 shadow-md'
-                  : 'bg-white text-slate-650 border-slate-200 hover:bg-slate-50'
+                  : 'bg-white text-slate-600 border-slate-200 hover:bg-slate-50'
               }`}
             >
               <Compass className="h-4 w-4" />
@@ -331,7 +331,7 @@ export default function HomePage() {
                   className={`flex items-center gap-2 px-5 py-3 text-xs font-bold transition-all duration-300 shrink-0 border rounded-full ${
                     isSelected
                       ? 'bg-teal-700 text-white border-teal-800 shadow-md'
-                      : 'bg-white text-slate-650 border-slate-200 hover:bg-slate-50'
+                      : 'bg-white text-slate-600 border-slate-200 hover:bg-slate-50'
                   }`}
                 >
                   {getTagIcon(tag.name)}
@@ -434,9 +434,9 @@ export default function HomePage() {
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
           {[
             { name: 'Ella', label: 'Misty Mountain Retreats', img: 'https://images.unsplash.com/photo-1546708973-b339540b5162?auto=format&fit=crop&w=600&q=80' },
-            { name: 'Galle', label: 'Coast & Fort Heritage', img: 'https://images.unsplash.com/photo-1588598126483-24765d778d91?auto=format&fit=crop&w=600&q=80' },
-            { name: 'Kandy', label: 'Sacred Hill Country', img: 'https://images.unsplash.com/photo-1565008447742-97f6f38c985c?auto=format&fit=crop&w=600&q=80' },
-            { name: 'Sigiriya', label: 'Ancient Rock Kingdom', img: 'https://images.unsplash.com/photo-1586861635167-e5223aadc9fe?auto=format&fit=crop&w=600&q=80' },
+            { name: 'Galle', label: 'Coast & Fort Heritage', img: 'https://images.unsplash.com/photo-1586861635167-e5223aadc9fe?auto=format&fit=crop&w=600&q=80' },
+            { name: 'Kandy', label: 'Sacred Hill Country', img: 'https://images.unsplash.com/photo-1542856391-010fb87dcfed?auto=format&fit=crop&w=600&q=80' },
+            { name: 'Sigiriya', label: 'Ancient Rock Kingdom', img: 'https://images.unsplash.com/photo-1578301978018-3005759f48f7?auto=format&fit=crop&w=600&q=80' },
           ].map((dest) => (
             <button
               key={dest.name}
@@ -646,7 +646,7 @@ export default function HomePage() {
                 tag: "Kandy Mountain View Villa"
               }
             ].map((t, i) => (
-              <div key={i} className="bg-slate-800 p-8 border border-slate-700/60 flex flex-col justify-between hover:border-slate-650 transition-all duration-300 rounded-2xl">
+              <div key={i} className="group bg-slate-800 p-8 border border-slate-700/60 flex flex-col justify-between hover:border-slate-600 transition-all duration-300 rounded-2xl">
                 <div className="space-y-6">
                   <div className="flex gap-1">
                     {Array.from({ length: t.stars }).map((_, idx) => (
@@ -702,7 +702,7 @@ export default function HomePage() {
                 <h4 className="text-base sm:text-lg font-bold text-slate-900 flex items-center gap-2">
                   <span className="text-teal-600 font-serif">Q.</span> {faq.q}
                 </h4>
-                <p className="text-sm text-slate-505 leading-relaxed font-medium pl-6">
+                <p className="text-sm text-slate-500 leading-relaxed font-medium pl-6">
                   {faq.a}
                 </p>
               </div>
@@ -725,7 +725,7 @@ export default function HomePage() {
               <span className="text-teal-400 font-serif italic">Grow Your Income</span>
             </h2>
 
-            <p className="text-base sm:text-lg text-slate-355 leading-relaxed max-w-xl font-medium">
+            <p className="text-base sm:text-lg text-slate-300 leading-relaxed max-w-xl font-medium">
               Turn your extra space into a thriving opportunity. Join thousands of verified Sri Lankan hosts offering genuine experiences to global travelers.
             </p>
 
