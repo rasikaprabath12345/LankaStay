@@ -10,8 +10,31 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-plus-jakarta);
   --font-mono: var(--font-geist-mono);
+  
+  /* Skeleton loader animation එක මෙතන තමා define කරන්නේ */
+  --animate-shimmer: shimmer 1.5s infinite;
+  
+  @keyframes shimmer {
+    100% {
+      transform: translateX(100%);
+    }
+  }
 }
 
+/* Scrollbar එක hide කරන custom utility එක (Tailwind v4 syntax) */
+@utility no-scrollbar {
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+/* Tags වල දකුණු පැත්තෙන් ලස්සනට fade වෙන effect එක */
+@utility mask-linear-fade {
+  mask-image: linear-gradient(to right, black 80%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to right, black 80%, transparent 100%);
+}
 
 body {
   background: var(--background);
