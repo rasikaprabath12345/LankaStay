@@ -226,6 +226,56 @@ export default function HostDashboard() {
     );
   };
 
+  const renderImageSlot = (index: number, label: string, value: string, setValue: (val: string) => void) => {
+    return (
+      <div className="flex flex-col space-y-2 border border-slate-200/60 p-4 rounded-2xl bg-slate-50 relative group/slot text-left">
+        <span className="block text-[10px] font-black text-slate-400 uppercase tracking-widest">{label}</span>
+        
+        {value ? (
+          <div className="relative aspect-[4/3] w-full bg-slate-100 rounded-xl overflow-hidden shadow-sm border border-slate-200">
+            <img src={value} alt={label} className="w-full h-full object-cover" />
+            <button
+              type="button"
+              onClick={() => setValue('')}
+              className="absolute top-2 right-2 p-1.5 rounded-full bg-slate-900/65 text-white hover:bg-rose-600 transition-colors"
+            >
+              <X className="h-3.5 w-3.5" />
+            </button>
+          </div>
+        ) : (
+          <div
+            onDragOver={(e) => e.preventDefault()}
+            onDrop={(e) => {
+              e.preventDefault();
+              const file = e.dataTransfer.files?.[0];
+              if (file) handleImageConvert(file, index);
+            }}
+            className="border-2 border-dashed border-slate-250 hover:border-teal-500 rounded-xl p-5 text-center flex flex-col items-center justify-center cursor-pointer transition-all bg-white relative min-h-[140px]"
+          >
+            <Home className="h-6 w-6 text-slate-350 mb-2 group-hover/slot:text-teal-650 transition-colors" />
+            <span className="text-[11px] font-bold text-slate-700">Drag & Drop Image Here</span>
+            <span className="text-[9px] text-slate-400 font-semibold mt-1">or click to browse file</span>
+            
+            <input
+              type="file"
+              accept="image/*"
+              onChange={(e) => handleFileChange(e, index)}
+              className="absolute inset-0 opacity-0 cursor-pointer w-full h-full"
+            />
+          </div>
+        )}
+
+        <input
+          type="url"
+          value={value.startsWith('data:image/') ? '' : value}
+          onChange={(e) => setValue(e.target.value)}
+          placeholder="Or paste image URL here..."
+          className="block w-full rounded-xl border border-slate-200 bg-white px-3 py-1.5 text-[11px] font-semibold text-slate-800 focus:border-teal-500 focus:outline-none"
+        />
+      </div>
+    );
+  };
+
   // Calculations
   const completedBookings = bookings.filter((b) => b.status === 4); // Completed
   const totalEarnings = completedBookings.reduce((sum, b) => sum + (b.payment?.hostEarnings || 0), 0);
@@ -497,48 +547,12 @@ export default function HostDashboard() {
                   </div>
 
                   <div>
-                    <label className="block text-xs font-semibold text-slate-600 mb-2">Homestay Gallery Images (Up to 4 URLs)</label>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                      <div>
-                        <span className="block text-[10px] font-black text-slate-400 uppercase tracking-wider mb-1">Image 1 (Main Cover)</span>
-                        <input
-                          type="url"
-                          value={imageUrl}
-                          onChange={(e) => setImageUrl(e.target.value)}
-                          placeholder="https://images.unsplash.com/... (Cover)"
-                          className="block w-full rounded-lg border border-slate-200 bg-white p-2.5 text-sm text-slate-900 focus:border-teal-500 focus:outline-none"
-                        />
-                      </div>
-                      <div>
-                        <span className="block text-[10px] font-black text-slate-400 uppercase tracking-wider mb-1">Image 2</span>
-                        <input
-                          type="url"
-                          value={imageUrl2}
-                          onChange={(e) => setImageUrl2(e.target.value)}
-                          placeholder="https://images.unsplash.com/... (Optional)"
-                          className="block w-full rounded-lg border border-slate-200 bg-white p-2.5 text-sm text-slate-900 focus:border-teal-500 focus:outline-none"
-                        />
-                      </div>
-                      <div>
-                        <span className="block text-[10px] font-black text-slate-400 uppercase tracking-wider mb-1">Image 3</span>
-                        <input
-                          type="url"
-                          value={imageUrl3}
-                          onChange={(e) => setImageUrl3(e.target.value)}
-                          placeholder="https://images.unsplash.com/... (Optional)"
-                          className="block w-full rounded-lg border border-slate-200 bg-white p-2.5 text-sm text-slate-900 focus:border-teal-500 focus:outline-none"
-                        />
-                      </div>
-                      <div>
-                        <span className="block text-[10px] font-black text-slate-400 uppercase tracking-wider mb-1">Image 4</span>
-                        <input
-                          type="url"
-                          value={imageUrl4}
-                          onChange={(e) => setImageUrl4(e.target.value)}
-                          placeholder="https://images.unsplash.com/... (Optional)"
-                          className="block w-full rounded-lg border border-slate-200 bg-white p-2.5 text-sm text-slate-900 focus:border-teal-500 focus:outline-none"
-                        />
-                      </div>
+                    <label className="block text-xs font-semibold text-slate-600 mb-3">Homestay Gallery Images (Up to 4)</label>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                      {renderImageSlot(1, "Image 1 (Main Cover)", imageUrl, setImageUrl)}
+                      {renderImageSlot(2, "Image 2 (Gallery)", imageUrl2, setImageUrl2)}
+                      {renderImageSlot(3, "Image 3 (Gallery)", imageUrl3, setImageUrl3)}
+                      {renderImageSlot(4, "Image 4 (Gallery)", imageUrl4, setImageUrl4)}
                     </div>
                   </div>
 
