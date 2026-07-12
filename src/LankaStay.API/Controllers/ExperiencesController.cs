@@ -80,6 +80,20 @@ namespace LankaStay.API.Controllers
             return Ok(new { success = result, message = "Peak season configuration added successfully." });
         }
 
+        [Authorize(Roles = "Host")]
+        [HttpPut("{id}")]
+        public async Task<IActionResult> UpdateExperience(Guid id, [FromBody] CreateExperienceDto updateDto)
+        {
+            var hostIdStr = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (string.IsNullOrEmpty(hostIdStr) || !Guid.TryParse(hostIdStr, out var hostId))
+            {
+                return Unauthorized("Invalid host identification.");
+            }
+
+            var result = await _experienceService.UpdateExperienceAsync(id, updateDto, hostId);
+            return Ok(new { success = result, message = "Experience updated successfully." });
+        }
+
         [HttpGet("tags")]
         public async Task<IActionResult> GetAllTags()
         {

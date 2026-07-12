@@ -71,6 +71,7 @@ export default function HostDashboard() {
   const [createLoading, setCreateLoading] = useState(false);
   const [createError, setCreateError] = useState<string | null>(null);
   const [showAddForm, setShowAddForm] = useState(false);
+  const [editingExpId, setEditingExpId] = useState<string | null>(null);
 
   // Seasonal Pricing Form State
   const [selectedExpIdForSeason, setSelectedExpIdForSeason] = useState<string | null>(null);
@@ -155,14 +156,20 @@ export default function HostDashboard() {
         .filter(url => url !== '')
         .join('|');
 
-      await apiClient.post('/experiences', {
+      const payload = {
         title,
         description,
         basePrice: Number(basePrice),
         location,
         tagIds: selectedTagIds,
         imageUrl: combinedImages,
-      });
+      };
+
+      if (editingExpId) {
+        await apiClient.put(`/experiences/${editingExpId}`, payload);
+      } else {
+        await apiClient.post('/experiences', payload);
+      }
 
       // Reset
       setTitle('');
@@ -175,6 +182,7 @@ export default function HostDashboard() {
       setImageUrl4('');
       setSelectedTagIds([]);
       setShowAddForm(false);
+      setEditingExpId(null);
       
       await loadHostData();
     } catch (err: any) {

@@ -98,6 +98,50 @@ namespace LankaStay.Application.Services
             return true;
         }
 
+        public async Task<bool> UpdateExperienceAsync(Guid experienceId, CreateExperienceDto updateDto, Guid hostId)
+        {
+            var experience = await _unitOfWork.Experiences.GetExperienceWithDetailsAsync(experienceId);
+            if (experience == null)
+            {
+                throw new Exception("Experience not found.");
+            }
+
+            if (experience.HostId != hostId)
+            {
+                throw new Exception("Unauthorized to modify this experience.");
+            }
+
+            // Update baseline fields
+            experience.Title = updateDto.Title;
+            experience.Description = updateDto.Description;
+            experience.BasePrice = updateDto.BasePrice;
+            experience.Location = updateDto.Location;
+            experience.ImageUrl = updateDto.ImageUrl;
+            experience.UpdatedAt = DateTime.UtcNow;
+
+            // Update tags (clear and re-attach)
+            experience.ExperienceTags.Clear();
+            if (updateDto.TagIds != null && updateDto.TagIds.Any())
+            {
+                foreach (var tagId in updateDto.TagIds)
+                {
+                    var tag = await _unitOfWork.Tags.GetByIdAsync(tagId);
+                    if (tag != null)
+                    {
+                        experience.ExperienceTags.Add(new ExperienceTag
+                        {
+                            Experience = experience,
+                            TagId = tagId
+                        });
+                    }
+                }
+            }
+
+            _unitOfWork.Experiences.Update(experience);
+            await _unitOfWork.CompleteAsync();
+            return true;
+        }
+
         public async Task<IEnumerable<TagDto>> GetAllTagsAsync()
         {
             var tags = await _unitOfWork.Tags.GetAllAsync();
