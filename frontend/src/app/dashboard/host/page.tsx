@@ -79,8 +79,12 @@ export default function HostDashboard() {
   const [seasonError, setSeasonError] = useState<string | null>(null);
 
   useEffect(() => {
-    if (!authLoading && (!user || user.role !== 'Host')) {
-      router.push('/auth/login');
+    if (!authLoading) {
+      if (!user) {
+        router.push('/auth/login?redirect=/dashboard/host');
+      } else if (user.role !== 'Host') {
+        router.push(user.role === 'Admin' ? '/dashboard/admin' : '/dashboard/tourist');
+      }
     }
   }, [user, authLoading, router]);
 

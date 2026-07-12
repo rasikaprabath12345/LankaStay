@@ -3,6 +3,7 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react';
 import Link from 'next/link';
 import { apiClient } from '../lib/apiClient'; 
+import { useAuth } from '../context/AuthContext';
 import { 
   Search, 
   MapPin, 
@@ -73,6 +74,7 @@ const SkeletonCard = () => (
 );
 
 export default function HomePage() {
+  const { user } = useAuth();
   const [experiences, setExperiences] = useState<Experience[]>([]);
   const [tags, setTags] = useState<Tag[]>([]);
   const [locationQuery, setLocationQuery] = useState('');
@@ -83,6 +85,19 @@ export default function HomePage() {
   const [favorites, setFavorites] = useState<string[]>([]);
   const [activeCategory, setActiveCategory] = useState<string>('all');
   const resultsRef = useRef<HTMLDivElement>(null);
+
+  const getDashboardLink = () => {
+    if (!user) return '/auth/login';
+    switch (user.role) {
+      case 'Admin':
+        return '/dashboard/admin';
+      case 'Host':
+        return '/dashboard/host';
+      case 'Tourist':
+      default:
+        return '/dashboard/tourist';
+    }
+  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -675,17 +690,17 @@ export default function HomePage() {
 
             <div className="pt-6 flex flex-col sm:flex-row gap-5">
               <Link
-                href="/auth/register"
+                href={user ? (user.role === 'Host' ? '/dashboard/host' : '/dashboard/tourist') : '/auth/register'}
                 className="inline-flex items-center justify-center gap-3 bg-teal-500 hover:bg-teal-400 px-8 py-4 sm:py-5 text-sm font-bold text-slate-950 shadow-md active:scale-95 transition-all duration-300 rounded-xl"
               >
-                <span>Become a Host Today</span>
+                <span>{user?.role === 'Host' ? 'Go to Host Dashboard' : 'Become a Host Today'}</span>
                 <ArrowRight className="h-4 w-4" />
               </Link>
               <Link
-                href="/auth/login"
-                className="inline-flex items-center justify-center gap-2 bg-transparent border border-slate-850 hover:border-slate-700 hover:bg-slate-900 px-8 py-4 sm:py-5 text-sm font-bold text-white transition-all duration-300 rounded-xl"
+                href={user ? getDashboardLink() : '/auth/login'}
+                className="inline-flex items-center justify-center gap-2 bg-transparent border border-slate-800 hover:border-slate-700 hover:bg-slate-900 px-8 py-4 sm:py-5 text-sm font-bold text-white transition-all duration-300 rounded-xl"
               >
-                <span>Sign In to Dashboard</span>
+                <span>{user ? 'Go to Dashboard' : 'Sign In to Dashboard'}</span>
                 <ChevronRight className="h-4 w-4 text-slate-400" />
               </Link>
             </div>

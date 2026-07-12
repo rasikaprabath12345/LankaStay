@@ -54,8 +54,12 @@ export default function TouristDashboard() {
   const [reviewError, setReviewError] = useState<string | null>(null);
 
   useEffect(() => {
-    if (!authLoading && (!user || user.role !== 'Tourist')) {
-      router.push('/auth/login');
+    if (!authLoading) {
+      if (!user) {
+        router.push('/auth/login?redirect=/dashboard/tourist');
+      } else if (user.role !== 'Tourist') {
+        router.push(user.role === 'Admin' ? '/dashboard/admin' : '/dashboard/host');
+      }
     }
   }, [user, authLoading, router]);
 

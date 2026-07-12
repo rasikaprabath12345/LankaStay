@@ -48,8 +48,12 @@ export default function AdminDashboard() {
   const [verifyLoadingId, setVerifyLoadingId] = useState<string | null>(null);
 
   useEffect(() => {
-    if (!authLoading && (!user || user.role !== 'Admin')) {
-      router.push('/auth/login');
+    if (!authLoading) {
+      if (!user) {
+        router.push('/auth/login?redirect=/dashboard/admin');
+      } else if (user.role !== 'Admin') {
+        router.push(user.role === 'Host' ? '/dashboard/host' : '/dashboard/tourist');
+      }
     }
   }, [user, authLoading, router]);
 

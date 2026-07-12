@@ -6,6 +6,19 @@ import { useRouter, useSearchParams } from 'next/navigation';
 import { useAuth } from '../../../context/AuthContext';
 import { Compass, Mail, Lock, Loader2, AlertCircle } from 'lucide-react';
 
+const getDashboardLink = (role?: string) => {
+  if (!role) return '/';
+  switch (role) {
+    case 'Admin':
+      return '/dashboard/admin';
+    case 'Host':
+      return '/dashboard/host';
+    case 'Tourist':
+    default:
+      return '/dashboard/tourist';
+  }
+};
+
 export default function LoginPage() {
   const { login, user } = useAuth();
   const router = useRouter();
@@ -20,7 +33,8 @@ export default function LoginPage() {
   // Redirect if already logged in
   React.useEffect(() => {
     if (user) {
-      router.push(redirect);
+      const target = redirect === '/' ? getDashboardLink(user.role) : redirect;
+      router.push(target);
     }
   }, [user, router, redirect]);
 
@@ -31,7 +45,14 @@ export default function LoginPage() {
 
     try {
       await login({ email, password });
-      router.push(redirect);
+      const savedUser = localStorage.getItem('lankastay_user');
+      if (savedUser) {
+        const u = JSON.parse(savedUser);
+        const target = redirect === '/' ? getDashboardLink(u.role) : redirect;
+        router.push(target);
+      } else {
+        router.push(redirect);
+      }
     } catch (err: any) {
       setError(err.message || 'Login failed. Please check your credentials.');
     } finally {
