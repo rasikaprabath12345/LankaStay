@@ -3,7 +3,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import Link from 'next/link';
 import { apiClient } from '../lib/apiClient';
-import { Search, MapPin, Star, Sparkles, Filter, Loader2, RefreshCw } from 'lucide-react';
+import { Search, MapPin, Star, Sparkles, Filter, Loader2, RefreshCw, ShieldCheck, Heart, Calendar, DollarSign } from 'lucide-react';
 
 interface Tag {
   id: string;
@@ -100,26 +100,27 @@ export default function HomePage() {
   };
 
   return (
-    <div className="flex flex-col min-h-screen bg-slate-50/50">
+    <div className="flex flex-col min-h-screen bg-slate-50/40">
       {/* Search Hero Section */}
-      <section className="relative overflow-hidden bg-gradient-to-b from-teal-50 via-teal-50/30 to-slate-50/50 py-24 border-b border-teal-100/20">
-        {/* Glow effect */}
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[500px] h-[500px] bg-teal-200/20 rounded-full blur-[120px] pointer-events-none"></div>
+      <section className="relative overflow-hidden bg-gradient-to-b from-teal-50/60 via-white to-slate-50/30 py-28 border-b border-slate-100">
+        {/* Glow effect decoration */}
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-teal-200/15 rounded-full blur-[140px] pointer-events-none"></div>
 
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center relative z-10">
-          <div className="inline-flex items-center gap-1.5 rounded-full bg-teal-600/10 px-3 py-1.5 text-xs font-semibold text-teal-800 border border-teal-200/50 mb-6">
-            <Sparkles className="h-3.5 w-3.5 text-teal-600" />
+          <div className="inline-flex items-center gap-1.5 rounded-full bg-teal-50 px-3.5 py-1.5 text-xs font-bold text-teal-800 border border-teal-100/50 mb-6 animate-fade-in">
+            <Sparkles className="h-3.5 w-3.5 text-teal-650" />
             <span>Discover local lifestyles & cultural registries</span>
           </div>
-          <h1 className="text-4xl font-extrabold tracking-tight text-slate-900 sm:text-6xl">
-            Authentic Sri Lankan <span className="text-teal-600">Homestays</span>
+          <h1 className="text-4xl font-black tracking-tight text-slate-900 sm:text-6xl leading-[1.15]">
+            Authentic Sri Lankan <br className="hidden sm:block" />
+            <span className="text-teal-600">Homestays &amp; Stays</span>
           </h1>
-          <p className="mx-auto mt-4 max-w-2xl text-base md:text-lg text-slate-600">
+          <p className="mx-auto mt-6 max-w-2xl text-base md:text-lg text-slate-500 leading-relaxed">
             Connect with verified local hosts, share home-cooked traditional meals, and explore the island's heritage through matchmaking travel constraints.
           </p>
 
           {/* Combined Search Bar */}
-          <form onSubmit={handleSearchSubmit} className="mx-auto mt-10 max-w-3xl rounded-2xl bg-white p-2 shadow-xl border border-slate-100 flex flex-col md:flex-row gap-2">
+          <form onSubmit={handleSearchSubmit} className="mx-auto mt-10 max-w-3xl rounded-2xl bg-white p-2 shadow-xl border border-slate-100/80 flex flex-col md:flex-row gap-2">
             <div className="flex flex-1 items-center gap-2 px-3 border-b md:border-b-0 md:border-r border-slate-100 py-2.5">
               <MapPin className="h-5 w-5 text-teal-550 shrink-0" />
               <input
@@ -127,12 +128,12 @@ export default function HomePage() {
                 value={locationQuery}
                 onChange={(e) => setLocationQuery(e.target.value)}
                 placeholder="Where in Sri Lanka? (e.g. Kandy, Ella, Galle)"
-                className="w-full text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none bg-transparent"
+                className="w-full text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none bg-transparent font-medium"
               />
             </div>
             <button
               type="submit"
-              className="flex items-center justify-center gap-2 rounded-xl bg-teal-600 px-6 py-3 text-sm font-semibold text-white shadow-md shadow-teal-500/10 hover:bg-teal-500 active:scale-95 transition-all"
+              className="flex items-center justify-center gap-2 rounded-xl bg-teal-600 px-6 py-3.5 text-sm font-semibold text-white shadow-md shadow-teal-500/10 hover:bg-teal-500 active:scale-95 transition-all duration-200"
             >
               <Search className="h-4 w-4" />
               <span>Search Registry</span>
@@ -142,9 +143,9 @@ export default function HomePage() {
           {/* Dietary & Cultural Tag Filters */}
           {tags.length > 0 && (
             <div className="mx-auto mt-8 max-w-4xl">
-              <div className="flex items-center justify-center gap-2 text-xs font-semibold text-slate-450 mb-3">
-                <Filter className="h-3.5 w-3.5" />
-                <span>DIETARY &amp; CULTURAL FILTER CONSTRAINTS</span>
+              <div className="flex items-center justify-center gap-2 text-[10px] font-bold tracking-wider uppercase text-slate-400 mb-3.5">
+                <Filter className="h-3 w-3" />
+                <span>Filter Stays by Cultural Constraints</span>
               </div>
               <div className="flex flex-wrap justify-center gap-2">
                 {tags.map((tag) => {
@@ -153,10 +154,10 @@ export default function HomePage() {
                     <button
                       key={tag.id}
                       onClick={() => handleTagToggle(tag.id)}
-                      className={`rounded-full px-4 py-1.5 text-xs font-medium border transition-all ${
+                      className={`rounded-full px-4 py-2 text-xs font-semibold border transition-all duration-200 ${
                         isSelected
-                          ? 'border-teal-600 bg-teal-600 text-white'
-                          : 'border-slate-200 bg-white text-slate-600 hover:border-teal-500 hover:text-teal-600'
+                          ? 'border-teal-650 bg-teal-650 text-white shadow-sm shadow-teal-650/10'
+                          : 'border-slate-200 bg-white text-slate-600 hover:border-teal-500 hover:text-teal-650'
                       }`}
                     >
                       {tag.name}
@@ -170,10 +171,10 @@ export default function HomePage() {
       </section>
 
       {/* Grid of Experiences */}
-      <section className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16 flex-grow w-full">
-        <div className="flex justify-between items-end mb-8 border-b border-slate-100 pb-4">
+      <section className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-20 w-full">
+        <div className="flex justify-between items-end mb-8 border-b border-slate-100 pb-5">
           <div>
-            <h2 className="text-2xl font-bold tracking-tight text-slate-900">
+            <h2 className="text-2xl font-black tracking-tight text-slate-900">
               Explore Available Stays
             </h2>
             <p className="text-sm text-slate-500 mt-1">
@@ -182,9 +183,9 @@ export default function HomePage() {
           </div>
           <button
             onClick={fetchExperiences}
-            className="flex items-center gap-1.5 rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-xs font-medium text-slate-700 hover:bg-slate-50"
+            className="flex items-center gap-1.5 rounded-xl border border-slate-200 bg-white px-3.5 py-2 text-xs font-semibold text-slate-700 hover:bg-slate-50 shadow-sm active:scale-95 transition-all"
           >
-            <RefreshCw className="h-3 w-3" />
+            <RefreshCw className="h-3.5 w-3.5 text-slate-400" />
             <span>Sync Listings</span>
           </button>
         </div>
@@ -192,28 +193,28 @@ export default function HomePage() {
         {loading ? (
           <div className="flex flex-col items-center justify-center py-20">
             <Loader2 className="h-10 w-10 animate-spin text-teal-600" />
-            <span className="text-sm text-slate-500 mt-3 font-medium">
+            <span className="text-xs text-slate-400 mt-3 font-semibold tracking-wide uppercase">
               Loading Sri Lankan registries...
             </span>
           </div>
         ) : error ? (
-          <div className="rounded-2xl border border-rose-100 bg-rose-50/50 p-6 text-center">
-            <p className="text-sm text-rose-800 font-semibold">Error Loading Listings</p>
+          <div className="rounded-2xl border border-rose-100 bg-rose-50/30 p-6 text-center max-w-md mx-auto">
+            <p className="text-sm text-rose-800 font-bold">Error Loading Listings</p>
             <p className="text-xs text-rose-600 mt-1">{error}</p>
             <button
               onClick={fetchExperiences}
-              className="mt-4 rounded-lg bg-rose-600 px-4 py-2 text-xs font-semibold text-white hover:bg-rose-500 transition-colors"
+              className="mt-4 rounded-xl bg-rose-600 px-4 py-2 text-xs font-semibold text-white hover:bg-rose-500 transition-colors"
             >
               Try Again
             </button>
           </div>
         ) : experiences.length === 0 ? (
-          <div className="rounded-2xl border border-dashed border-slate-200 py-16 text-center bg-white">
-            <p className="text-slate-500 text-sm font-medium">
+          <div className="rounded-2xl border border-dashed border-slate-200 py-20 text-center bg-white">
+            <p className="text-slate-500 text-sm font-semibold">
               No experiences found matching these search criteria.
             </p>
             <p className="text-xs text-slate-400 mt-1">
-              Try removing filter filters or search for another location in Sri Lanka.
+              Try removing tags or search for another location in Sri Lanka.
             </p>
           </div>
         ) : (
@@ -225,7 +226,7 @@ export default function HomePage() {
                   key={exp.id}
                   className="group relative flex flex-col overflow-hidden rounded-2xl border border-slate-100 bg-white shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
                 >
-                  {/* Image Grid */}
+                  {/* Real Image Grid */}
                   <div className="aspect-[4/3] w-full bg-slate-100 relative flex items-center justify-center overflow-hidden">
                     <img 
                       src={displayImage} 
@@ -242,7 +243,7 @@ export default function HomePage() {
                   </div>
 
                   <div className="flex flex-1 flex-col p-5 text-left">
-                    <div className="flex items-center gap-1 text-xs font-semibold text-slate-400">
+                    <div className="flex items-center gap-1 text-[11px] font-bold text-slate-450 uppercase tracking-wider">
                       <MapPin className="h-3.5 w-3.5 text-teal-650 shrink-0" />
                       <span>{exp.location}</span>
                     </div>
@@ -267,7 +268,7 @@ export default function HomePage() {
                         {exp.tags.map((t) => (
                           <span
                             key={t.id}
-                            className="rounded-md bg-teal-50 px-2 py-0.5 text-[10px] font-bold text-teal-700 border border-teal-100/50"
+                            className="rounded-md bg-teal-50/50 px-2.5 py-1 text-[10px] font-bold text-teal-700 border border-teal-100/20"
                           >
                             {t.name}
                           </span>
@@ -277,8 +278,8 @@ export default function HomePage() {
 
                     <div className="flex items-center justify-between">
                       <div className="flex flex-col text-left">
-                        <span className="text-[9px] font-semibold text-slate-400">HOSTED BY</span>
-                        <span className="text-xs font-bold text-slate-600 truncate max-w-[120px]">
+                        <span className="text-[9px] font-bold tracking-wider text-slate-405">HOSTED BY</span>
+                        <span className="text-xs font-bold text-slate-700 truncate max-w-[120px]">
                           {exp.hostName}
                         </span>
                       </div>
@@ -296,6 +297,89 @@ export default function HomePage() {
             })}
           </div>
         )}
+      </section>
+
+      {/* Why LankaStay Section (Business Rules Details) */}
+      <section className="bg-white border-y border-slate-150/60 py-20 text-left">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="text-center max-w-3xl mx-auto mb-14">
+            <h2 className="text-3xl font-black text-slate-900">Why Book with LankaStay?</h2>
+            <p className="text-sm text-slate-500 mt-2">
+              Designed with strict verification, matching, and escrow policies to guarantee a premium local registry experience.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+            <div className="border border-slate-100 p-6 rounded-2xl bg-slate-50/30">
+              <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-teal-50 text-teal-650 mb-4">
+                <Heart className="h-5 w-5" />
+              </span>
+              <h3 className="text-sm font-bold text-slate-900">Dietary &amp; Cultural Matches</h3>
+              <p className="text-xs text-slate-500 mt-2 leading-relaxed">
+                Filter hosts by lifestyle and dietary preferences (Vegan, Halal, Pet-friendly) to ensure a perfectly compatible stay.
+              </p>
+            </div>
+
+            <div className="border border-slate-100 p-6 rounded-2xl bg-slate-50/30">
+              <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-emerald-50 text-emerald-650 mb-4">
+                <ShieldCheck className="h-5 w-5" />
+              </span>
+              <h3 className="text-sm font-bold text-slate-900">Strict Host Clearance Verification</h3>
+              <p className="text-xs text-slate-500 mt-2 leading-relaxed">
+                Hosts must upload valid Grama Niladhari and Police certificates. Stays remain disabled until verified by system admins.
+              </p>
+            </div>
+
+            <div className="border border-slate-100 p-6 rounded-2xl bg-slate-50/30">
+              <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-indigo-50 text-indigo-650 mb-4">
+                <Calendar className="h-5 w-5" />
+              </span>
+              <h3 className="text-sm font-bold text-slate-900">Dynamic Seasonal Rates</h3>
+              <p className="text-xs text-slate-500 mt-2 leading-relaxed">
+                Prices adjust automatically during peak local festival and holiday date ranges configured by hosts.
+              </p>
+            </div>
+
+            <div className="border border-slate-100 p-6 rounded-2xl bg-slate-50/30">
+              <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-amber-50 text-amber-650 mb-4">
+                <DollarSign className="h-5 w-5" />
+              </span>
+              <h3 className="text-sm font-bold text-slate-900">Escrow Splits &amp; Commissions</h3>
+              <p className="text-xs text-slate-500 mt-2 leading-relaxed">
+                Funds are held in secure escrow. Complete stays release 90% payout earnings directly to hosts and 10% platform commission.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Invite Banner */}
+      <section className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-20">
+        <div className="rounded-3xl bg-gradient-to-r from-teal-600 to-teal-550 p-8 sm:p-12 text-white relative overflow-hidden shadow-lg text-left">
+          {/* Decorative shapes */}
+          <div className="absolute right-0 bottom-0 w-80 h-80 bg-teal-500/20 rounded-full blur-3xl pointer-events-none"></div>
+
+          <div className="relative z-10 max-w-xl">
+            <h2 className="text-2xl sm:text-3xl font-black">Share Your Home, Earn Commission</h2>
+            <p className="text-xs sm:text-sm text-teal-50 mt-3 leading-relaxed">
+              Are you a local Sri Lankan host? LankaStay gives you control over peak pricing calendar ranges and pays a verified 90% payout share directly to your wallet.
+            </p>
+            <div className="mt-8 flex flex-wrap gap-3">
+              <Link 
+                href="/auth/register" 
+                className="rounded-xl bg-white px-5 py-3 text-xs font-bold text-teal-700 hover:bg-teal-50 active:scale-95 transition-all shadow-sm"
+              >
+                Become a Host
+              </Link>
+              <Link 
+                href="/auth/login" 
+                className="rounded-xl bg-teal-750/30 border border-teal-400 px-5 py-3 text-xs font-bold hover:bg-teal-750/50 transition-colors"
+              >
+                Explore Stays
+              </Link>
+            </div>
+          </div>
+        </div>
       </section>
     </div>
   );
