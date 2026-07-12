@@ -461,10 +461,10 @@ export default function HomePage() {
 
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
           {[
-            { name: 'Ella', label: 'Misty Mountain Retreats', img: 'https://images.unsplash.com/photo-1546708973-b339540b5162?auto=format&fit=crop&w=600&q=80' },
-            { name: 'Galle', label: 'Coast & Fort Heritage', img: 'https://images.unsplash.com/photo-1586861635167-e5223aadc9fe?auto=format&fit=crop&w=600&q=80' },
-            { name: 'Kandy', label: 'Sacred Hill Country', img: 'https://images.unsplash.com/photo-1542856391-010fb87dcfed?auto=format&fit=crop&w=600&q=80' },
-            { name: 'Sigiriya', label: 'Ancient Rock Kingdom', img: 'https://images.unsplash.com/photo-1578301978018-3005759f48f7?auto=format&fit=crop&w=600&q=80' },
+            { name: 'Ella', label: 'Misty Mountain Retreats', img: '/images/destination5.jpg' },
+            { name: 'Galle', label: 'Coast & Fort Heritage', img: '/images/destination3.jpg' },
+            { name: 'Kandy', label: 'Sacred Hill Country', img: '/images/destination1.jpg' },
+            { name: 'Sigiriya', label: 'Ancient Rock Kingdom', img: '/images/destination4.jpg' },
           ].map((dest) => (
             <button
               key={dest.name}
