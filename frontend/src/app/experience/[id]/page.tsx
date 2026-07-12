@@ -162,16 +162,32 @@ export default function ExperienceDetailsPage() {
 
     setBookingLoading(true);
     try {
+      // Create the booking entry in database
       await apiClient.post('/bookings', {
         experienceId: id,
         guestCount,
         startDate,
         endDate,
       });
+
+      // Prepare custom booking message for host
+      const message = `Hi ${experience?.hostName || 'Host'}, I have just submitted a reservation request for your homestay "${experience?.title || 'Stay'}" on LankaStay!
+
+Reservation Details:
+- Check-in: ${startDate}
+- Check-out: ${endDate}
+- Guests: ${guestCount}
+${calculatedPrice ? `- Total Price: $${calculatedPrice}\n` : ''}
+Please check your LankaStay Dashboard and confirm my request on WhatsApp!`;
+
+      // Open WhatsApp chat
+      const whatsappUrl = `https://wa.me/94771234567?text=${encodeURIComponent(message)}`;
+      window.open(whatsappUrl, '_blank');
+
       setBookingSuccess(true);
       setTimeout(() => {
         router.push('/dashboard/tourist');
-      }, 2000);
+      }, 3000);
     } catch (err: any) {
       setBookingError(err.message || 'Booking submission failed. Please try again.');
     } finally {
@@ -554,15 +570,20 @@ export default function ExperienceDetailsPage() {
                     <button
                       type="submit"
                       disabled={bookingLoading || calculating}
-                      className="w-full rounded-2xl bg-[#00aa6c] hover:bg-[#00915c] text-white py-3.5 text-sm font-black uppercase tracking-wider shadow-md hover:shadow-[#00aa6c]/10 active:scale-95 transition-all disabled:opacity-60 mt-2 flex items-center justify-center gap-2"
+                      className="w-full rounded-2xl bg-[#25D366] hover:bg-[#20ba5a] text-white py-3.5 text-sm font-black uppercase tracking-wider shadow-md hover:shadow-[#25D366]/10 active:scale-95 transition-all disabled:opacity-60 mt-2 flex items-center justify-center gap-2"
                     >
                       {bookingLoading ? (
                         <>
                           <Loader2 className="h-4 w-4 animate-spin" />
-                          <span>Reserving Spot...</span>
+                          <span>Connecting to Host...</span>
                         </>
                       ) : (
-                        <span>{user ? 'Reserve Stay' : 'Sign In to Book'}</span>
+                        <>
+                          <svg className="h-4 w-4 fill-current" viewBox="0 0 24 24">
+                            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L0 24l6.335-1.662c1.746.953 3.71 1.458 5.704 1.459h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+                          </svg>
+                          <span>{user ? 'Book via WhatsApp' : 'Sign In to Book'}</span>
+                        </>
                       )}
                     </button>
 

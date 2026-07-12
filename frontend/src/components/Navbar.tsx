@@ -201,11 +201,10 @@ export const Navbar: React.FC = () => {
                 <Link
                   key={tab.name}
                   href={tab.href}
-                  className={`text-[15px] font-bold whitespace-nowrap pb-2 border-b-2 transition-all ${
-                    activeTab === tab.name
+                  className={`text-[15px] font-bold whitespace-nowrap pb-2 border-b-2 transition-all ${activeTab === tab.name
                       ? 'text-[#00aa6c] border-[#00aa6c]'
                       : 'text-slate-500 border-transparent hover:text-[#00aa6c]'
-                  }`}
+                    }`}
                   onClick={() => setActiveTab(tab.name)}
                 >
                   {tab.name}
