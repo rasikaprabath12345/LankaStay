@@ -23,6 +23,12 @@ namespace LankaStay.Application.Services
 
         public async Task<BookingDto> CreateBookingAsync(CreateBookingDto createDto, Guid touristId)
         {
+            var tourist = await _unitOfWork.Users.GetByIdAsync(touristId);
+            if (tourist == null)
+            {
+                throw new Exception("Unauthorized: Your user session is invalid. Please log out and sign in again.");
+            }
+
             var experience = await _unitOfWork.Experiences.GetExperienceWithDetailsAsync(createDto.ExperienceId);
             if (experience == null)
             {

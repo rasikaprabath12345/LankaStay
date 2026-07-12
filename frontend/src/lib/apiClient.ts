@@ -1,4 +1,4 @@
-const BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000/api'; // Or your .NET API port (e.g., https://localhost:7195 or http://localhost:5000)
+const BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5220/api'; // Or your .NET API port (e.g., https://localhost:7087 or http://localhost:5220)
 
 interface RequestOptions extends RequestInit {
   params?: Record<string, string | number | boolean | undefined>;

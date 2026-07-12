@@ -11,10 +11,10 @@
   --font-sans: var(--font-plus-jakarta);
   --font-serif: var(--font-serif);
   --font-mono: var(--font-geist-mono);
-  
+
   /* Skeleton loader animation එක මෙතන තමා define කරන්නේ */
   --animate-shimmer: shimmer 1.5s infinite;
-  
+
   @keyframes shimmer {
     100% {
       transform: translateX(100%);
@@ -27,8 +27,11 @@
   &::-webkit-scrollbar {
     display: none;
   }
-  -ms-overflow-style: none; /* IE and Edge */
-  scrollbar-width: none; /* Firefox */
+
+  -ms-overflow-style: none;
+  /* IE and Edge */
+  scrollbar-width: none;
+  /* Firefox */
 }
 
 /* Tags වල දකුණු පැත්තෙන් ලස්සනට fade වෙන effect එක */

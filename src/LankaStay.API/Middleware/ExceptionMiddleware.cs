@@ -50,10 +50,20 @@ namespace LankaStay.API.Middleware
 
             context.Response.StatusCode = statusCode;
 
+            var message = exception.Message;
+            if (exception.InnerException != null)
+            {
+                message += $" | Inner: {exception.InnerException.Message}";
+                if (exception.InnerException.InnerException != null)
+                {
+                    message += $" | Inner2: {exception.InnerException.InnerException.Message}";
+                }
+            }
+
             var response = new ExceptionResponse
             {
                 StatusCode = statusCode,
-                Message = exception.Message,
+                Message = message,
                 Details = _env.IsDevelopment() ? exception.StackTrace?.ToString() : null
             };
 

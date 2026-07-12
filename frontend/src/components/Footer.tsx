@@ -9,7 +9,7 @@ export const Footer: React.FC = () => {
     <footer className="bg-slate-950 border-t border-slate-900 text-slate-400">
       <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12 text-left">
-          
+
           {/* Brand section */}
           <div className="space-y-4">
             <Link href="/" className="flex items-center gap-2.5 group">
@@ -103,7 +103,7 @@ export const Footer: React.FC = () => {
                 </li>
               </ul>
             </div>
-            
+
             {/* Social Links */}
             <div className="space-y-2">
               <span className="block text-[10px] font-black uppercase tracking-wider text-slate-500">Connect Socially</span>

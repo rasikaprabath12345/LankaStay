@@ -59,21 +59,27 @@ namespace LankaStay.API.Controllers
         // Endpoint to fetch current user's profile metadata based on token context
         [Authorize]
         [HttpGet("me")]
-        public IActionResult GetCurrentUserProfile()
+        public async Task<IActionResult> GetCurrentUserProfile([FromServices] IUnitOfWork unitOfWork)
         {
-            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            var email = User.FindFirstValue(ClaimTypes.Email);
-            var name = User.FindFirstValue(ClaimTypes.Name);
-            var role = User.FindFirstValue(ClaimTypes.Role);
-            var isVerified = User.FindFirstValue("IsVerified");
+            var userIdStr = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (string.IsNullOrEmpty(userIdStr) || !Guid.TryParse(userIdStr, out var userId))
+            {
+                return Unauthorized();
+            }
+
+            var user = await unitOfWork.Users.GetByIdAsync(userId);
+            if (user == null)
+            {
+                return Unauthorized("User no longer exists in database.");
+            }
 
             return Ok(new
             {
-                Id = userId,
-                Email = email,
-                FullName = name,
-                Role = role,
-                IsVerified = isVerified != null && bool.Parse(isVerified)
+                Id = user.Id.ToString(),
+                Email = user.Email,
+                FullName = user.FullName,
+                Role = user.Role.ToString(),
+                IsVerified = user.IsVerified
             });
         }
     }
