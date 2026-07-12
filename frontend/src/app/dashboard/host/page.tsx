@@ -125,6 +125,25 @@ export default function HostDashboard() {
     }
   }, [user?.id]);
 
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>, index: number) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      handleImageConvert(file, index);
+    }
+  };
+
+  const handleImageConvert = (file: File, index: number) => {
+    const reader = new FileReader();
+    reader.onloadend = () => {
+      const base64String = reader.result as string;
+      if (index === 1) setImageUrl(base64String);
+      if (index === 2) setImageUrl2(base64String);
+      if (index === 3) setImageUrl3(base64String);
+      if (index === 4) setImageUrl4(base64String);
+    };
+    reader.readAsDataURL(file);
+  };
+
   const handleCreateExperience = async (e: React.FormEvent) => {
     e.preventDefault();
     setCreateError(null);
@@ -478,14 +497,49 @@ export default function HostDashboard() {
                   </div>
 
                   <div>
-                    <label className="block text-xs font-semibold text-slate-600">Homestay Image URL</label>
-                    <input
-                      type="url"
-                      value={imageUrl}
-                      onChange={(e) => setImageUrl(e.target.value)}
-                      placeholder="https://images.unsplash.com/... (Leave blank for a beautiful fallback)"
-                      className="block w-full rounded-lg border border-slate-200 bg-white p-2.5 text-sm text-slate-900 focus:border-teal-500 focus:outline-none"
-                    />
+                    <label className="block text-xs font-semibold text-slate-600 mb-2">Homestay Gallery Images (Up to 4 URLs)</label>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      <div>
+                        <span className="block text-[10px] font-black text-slate-400 uppercase tracking-wider mb-1">Image 1 (Main Cover)</span>
+                        <input
+                          type="url"
+                          value={imageUrl}
+                          onChange={(e) => setImageUrl(e.target.value)}
+                          placeholder="https://images.unsplash.com/... (Cover)"
+                          className="block w-full rounded-lg border border-slate-200 bg-white p-2.5 text-sm text-slate-900 focus:border-teal-500 focus:outline-none"
+                        />
+                      </div>
+                      <div>
+                        <span className="block text-[10px] font-black text-slate-400 uppercase tracking-wider mb-1">Image 2</span>
+                        <input
+                          type="url"
+                          value={imageUrl2}
+                          onChange={(e) => setImageUrl2(e.target.value)}
+                          placeholder="https://images.unsplash.com/... (Optional)"
+                          className="block w-full rounded-lg border border-slate-200 bg-white p-2.5 text-sm text-slate-900 focus:border-teal-500 focus:outline-none"
+                        />
+                      </div>
+                      <div>
+                        <span className="block text-[10px] font-black text-slate-400 uppercase tracking-wider mb-1">Image 3</span>
+                        <input
+                          type="url"
+                          value={imageUrl3}
+                          onChange={(e) => setImageUrl3(e.target.value)}
+                          placeholder="https://images.unsplash.com/... (Optional)"
+                          className="block w-full rounded-lg border border-slate-200 bg-white p-2.5 text-sm text-slate-900 focus:border-teal-500 focus:outline-none"
+                        />
+                      </div>
+                      <div>
+                        <span className="block text-[10px] font-black text-slate-400 uppercase tracking-wider mb-1">Image 4</span>
+                        <input
+                          type="url"
+                          value={imageUrl4}
+                          onChange={(e) => setImageUrl4(e.target.value)}
+                          placeholder="https://images.unsplash.com/... (Optional)"
+                          className="block w-full rounded-lg border border-slate-200 bg-white p-2.5 text-sm text-slate-900 focus:border-teal-500 focus:outline-none"
+                        />
+                      </div>
+                    </div>
                   </div>
 
                   <div>

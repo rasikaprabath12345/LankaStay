@@ -323,36 +323,45 @@ Please check your LankaStay Dashboard and confirm my request on WhatsApp!`;
         </div>
 
         {/* 4-Image Collage Grid */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-3.5 rounded-3xl overflow-hidden w-full shadow-md mb-10">
-          <div className="aspect-[4/3] w-full bg-slate-100 overflow-hidden relative group">
-            <img 
-              src={experience.imageUrl || 'https://images.unsplash.com/photo-1546708973-b339540b5162?auto=format&fit=crop&w=800&q=80'} 
-              alt={experience.title} 
-              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" 
-            />
-          </div>
-          <div className="aspect-[4/3] w-full bg-slate-100 overflow-hidden relative group">
-            <img 
-              src="https://images.unsplash.com/photo-1616091216791-a5360b5f625c?auto=format&fit=crop&w=800&q=80" 
-              alt="Traditional Ceylon Curry" 
-              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" 
-            />
-          </div>
-          <div className="aspect-[4/3] w-full bg-slate-100 overflow-hidden relative group">
-            <img 
-              src="https://images.unsplash.com/photo-1544735716-392fe2489ffa?auto=format&fit=crop&w=800&q=80" 
-              alt="Rural Sri Lankan Walk" 
-              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" 
-            />
-          </div>
-          <div className="aspect-[4/3] w-full bg-slate-100 overflow-hidden relative group">
-            <img 
-              src="https://images.unsplash.com/photo-1588598126483-24765d778d91?auto=format&fit=crop&w=800&q=80" 
-              alt="Coastal Heritage Stays" 
-              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" 
-            />
-          </div>
-        </div>
+        {(() => {
+          const images = experience.imageUrl ? experience.imageUrl.split('|') : [];
+          const image1 = images[0] || 'https://images.unsplash.com/photo-1546708973-b339540b5162?auto=format&fit=crop&w=800&q=80';
+          const image2 = images[1] || 'https://images.unsplash.com/photo-1616091216791-a5360b5f625c?auto=format&fit=crop&w=800&q=80';
+          const image3 = images[2] || 'https://images.unsplash.com/photo-1544735716-392fe2489ffa?auto=format&fit=crop&w=800&q=80';
+          const image4 = images[3] || 'https://images.unsplash.com/photo-1588598126483-24765d778d91?auto=format&fit=crop&w=800&q=80';
+          return (
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-3.5 rounded-3xl overflow-hidden w-full shadow-md mb-10">
+              <div className="aspect-[4/3] w-full bg-slate-100 overflow-hidden relative group">
+                <img 
+                  src={image1} 
+                  alt={experience.title} 
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" 
+                />
+              </div>
+              <div className="aspect-[4/3] w-full bg-slate-100 overflow-hidden relative group">
+                <img 
+                  src={image2} 
+                  alt="Homestay Gallery 2" 
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" 
+                />
+              </div>
+              <div className="aspect-[4/3] w-full bg-slate-100 overflow-hidden relative group">
+                <img 
+                  src={image3} 
+                  alt="Homestay Gallery 3" 
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" 
+                />
+              </div>
+              <div className="aspect-[4/3] w-full bg-slate-100 overflow-hidden relative group">
+                <img 
+                  src={image4} 
+                  alt="Homestay Gallery 4" 
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" 
+                />
+              </div>
+            </div>
+          );
+        })()}
 
         {/* Details and Sidebar Grid */}
         <div className="grid grid-cols-1 gap-x-10 gap-y-10 lg:grid-cols-3 items-start">
