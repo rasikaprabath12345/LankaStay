@@ -22,6 +22,9 @@ export const Footer: React.FC = () => {
             <p className="text-xs leading-relaxed text-slate-500 max-w-xs">
               A premium Local Homestay & Cultural Experience Registry connecting verified hosts with tourists seeking authentic Sri Lankan hospitality.
             </p>
+            <p className="text-[10px] text-slate-400 border border-slate-100 rounded-xl p-3 bg-slate-50/50 mt-4 leading-relaxed font-semibold max-w-xs">
+              🛡️ Fully compliant with the SLTDA community registry guidelines. All hosts are vetted via local Grama Niladhari and Police clearance certificates.
+            </p>
           </div>
 
           {/* Quick Links */}

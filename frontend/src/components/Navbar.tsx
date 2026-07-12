@@ -22,22 +22,22 @@ export const Navbar: React.FC = () => {
   };
 
   return (
-    <nav className="sticky top-0 z-50 w-full border-b border-slate-200/80 bg-white/80 backdrop-blur-md">
+    <nav className="sticky top-0 z-50 w-full border-b border-slate-100 bg-white/90 backdrop-blur-md shadow-sm shadow-slate-100/30">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 justify-between items-center">
           <div className="flex items-center gap-8">
-            <Link href="/" className="flex items-center gap-2 group">
-              <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-teal-600 text-white shadow-md shadow-teal-500/20 group-hover:scale-105 transition-transform duration-200">
-                <Compass className="h-5 w-5" />
+            <Link href="/" className="flex items-center gap-2.5 group">
+              <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-teal-750 text-white shadow-md shadow-teal-750/15 group-hover:scale-105 transition-transform duration-250">
+                <Compass className="h-4.5 w-4.5" />
               </span>
-              <span className="text-xl font-bold tracking-tight text-slate-900">
-                Lanka<span className="text-teal-600">Stay</span>
+              <span className="text-xl font-bold tracking-tight text-slate-900 font-serif">
+                Lanka<span className="text-teal-700 font-sans font-extrabold">Stay</span>
               </span>
             </Link>
 
             <div className="hidden md:flex items-center gap-6">
-              <Link href="/" className="text-sm font-medium text-slate-600 hover:text-teal-600 transition-colors">
-                Explore Experiences
+              <Link href="/" className="text-xs font-bold uppercase tracking-wider text-slate-500 hover:text-teal-700 transition-colors">
+                Explore Stays
               </Link>
             </div>
           </div>
@@ -45,33 +45,36 @@ export const Navbar: React.FC = () => {
           <div className="flex items-center gap-4">
             {user ? (
               <div className="flex items-center gap-4">
-                {/* Host Verification status indicator (brief) */}
+                {/* Host Verification status indicator with pulse animation */}
                 {user.role === 'Host' && (
-                  <span className={`hidden sm:inline-flex items-center gap-1.5 rounded-full px-2.5 py-0.5 text-xs font-semibold ${user.isVerified ? 'bg-emerald-50 text-emerald-700' : 'bg-amber-50 text-amber-700'}`}>
-                    <span className={`h-1.5 w-1.5 rounded-full ${user.isVerified ? 'bg-emerald-500' : 'bg-amber-500'}`}></span>
+                  <span className={`hidden sm:inline-flex items-center gap-2 rounded-full px-3 py-1 text-xs font-bold ${user.isVerified ? 'bg-emerald-50 text-emerald-700 border border-emerald-200/40' : 'bg-amber-50 text-amber-700 border border-amber-200/40'}`}>
+                    <span className="relative flex h-2 w-2">
+                      <span className={`animate-ping absolute inline-flex h-full w-full rounded-full opacity-75 ${user.isVerified ? 'bg-emerald-400' : 'bg-amber-450'}`}></span>
+                      <span className={`relative inline-flex rounded-full h-2 w-2 ${user.isVerified ? 'bg-emerald-500' : 'bg-amber-500'}`}></span>
+                    </span>
                     {user.isVerified ? 'Verified Host' : 'Pending Verification'}
                   </span>
                 )}
                 
                 <Link
                   href={getDashboardLink()}
-                  className="flex items-center gap-1.5 rounded-lg px-3 py-2 text-sm font-medium text-slate-700 hover:bg-slate-50 hover:text-teal-600 transition-all"
+                  className="flex items-center gap-1.5 rounded-xl border border-slate-200 bg-white px-3.5 py-2 text-xs font-bold text-slate-700 hover:bg-slate-50 hover:text-teal-750 transition-all shadow-sm"
                 >
-                  <LayoutDashboard className="h-4 w-4" />
+                  <LayoutDashboard className="h-4 w-4 text-slate-400" />
                   <span>Dashboard</span>
                 </Link>
 
                 <div className="h-4 w-[1px] bg-slate-200"></div>
 
                 <div className="flex items-center gap-2">
-                  <div className="flex h-8 w-8 items-center justify-center rounded-full bg-teal-50 text-teal-700 border border-teal-200">
+                  <div className="flex h-8 w-8 items-center justify-center rounded-xl bg-teal-50 text-teal-750 border border-teal-150">
                     <User className="h-4 w-4" />
                   </div>
                   <div className="hidden lg:flex flex-col text-left">
-                    <span className="text-xs font-semibold text-slate-900 leading-none">
+                    <span className="text-xs font-bold text-slate-900 leading-none">
                       {user.fullName}
                     </span>
-                    <span className="text-[10px] text-slate-500">
+                    <span className="text-[9px] font-bold text-slate-450 tracking-wider uppercase mt-0.5">
                       {user.role}
                     </span>
                   </div>
@@ -79,7 +82,7 @@ export const Navbar: React.FC = () => {
 
                 <button
                   onClick={logout}
-                  className="flex items-center justify-center rounded-lg p-2 text-slate-500 hover:bg-slate-50 hover:text-rose-600 transition-colors"
+                  className="flex items-center justify-center rounded-xl border border-slate-100 p-2 text-slate-450 hover:bg-slate-50 hover:text-rose-650 transition-colors"
                   title="Logout"
                 >
                   <LogOut className="h-4 w-4" />
@@ -89,13 +92,13 @@ export const Navbar: React.FC = () => {
               <div className="flex items-center gap-3">
                 <Link
                   href="/auth/login"
-                  className="text-sm font-medium text-slate-700 hover:text-teal-600 transition-colors"
+                  className="text-xs font-bold uppercase tracking-wider text-slate-650 hover:text-teal-700 transition-colors"
                 >
                   Sign In
                 </Link>
                 <Link
                   href="/auth/register"
-                  className="rounded-lg bg-teal-600 px-4 py-2 text-sm font-semibold text-white shadow-sm shadow-teal-500/10 hover:bg-teal-500 hover:shadow-lg hover:shadow-teal-500/20 active:scale-95 transition-all"
+                  className="rounded-xl bg-teal-750 px-4.5 py-2.5 text-xs font-bold text-white shadow-md shadow-teal-750/10 hover:bg-teal-700 active:scale-95 transition-all"
                 >
                   Get Started
                 </Link>
