@@ -218,10 +218,10 @@ export default function HomePage() {
       
       {/* 1. Centered Editorial Hero Section with Integrated Search Bar (No bottom overlaps) */}
       <section className="relative w-full min-h-[600px] sm:min-h-[700px] flex flex-col items-center justify-center text-center px-4 py-20 z-20">
-        {/* Full-width Background Image (Authentic Sri Lankan landscape: Sigiriya Rock Fortress) */}
+        {/* Full-width Background Image (Authentic Sri Lankan landscape: Ella Nine Arch Bridge) */}
         <div 
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-          style={{ backgroundImage: `url('https://images.unsplash.com/photo-1608958416710-1845a707fc9c?auto=format&fit=crop&w=2200&q=90')` }}
+          style={{ backgroundImage: `url('https://images.unsplash.com/photo-1546708973-b339540b5162?auto=format&fit=crop&w=2200&q=90')` }}
         />
         {/* Semi-transparent dark overlay to match "Visit SL Travels" moody green/dark tone */}
         <div className="absolute inset-0 bg-slate-950/50" />
@@ -711,52 +711,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 8. Gorgeous CTA Host invite section (Solid, clean edge) */}
-      <section id="contact" className="w-full bg-slate-950 text-white py-24 px-6 sm:px-16 md:px-24 border-t border-slate-900 text-left relative z-10 scroll-mt-20">
-        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          <div className="space-y-8">
-            <div className="inline-flex items-center gap-2 bg-slate-900 px-4 py-2 text-xs font-bold text-teal-300 border border-slate-800 uppercase tracking-widest rounded-lg">
-              <Award className="h-4 w-4" />
-              <span>Partner With Us</span>
-            </div>
 
-            <h2 className="text-balance text-4xl sm:text-6xl font-bold font-serif leading-[1.1] tracking-tight">
-              Share Your World, <br/>
-              <span className="text-teal-400 font-serif italic">Grow Your Income</span>
-            </h2>
-
-            <p className="text-base sm:text-lg text-slate-300 leading-relaxed max-w-xl font-medium">
-              Turn your extra space into a thriving opportunity. Join thousands of verified Sri Lankan hosts offering genuine experiences to global travelers.
-            </p>
-
-            <div className="pt-6 flex flex-col sm:flex-row gap-5">
-              <Link
-                href={user ? (user.role === 'Host' ? '/dashboard/host' : '/dashboard/tourist') : '/auth/register'}
-                className="inline-flex items-center justify-center gap-3 bg-teal-500 hover:bg-teal-400 px-8 py-4 sm:py-5 text-sm font-bold text-slate-950 shadow-md active:scale-95 transition-all duration-300 rounded-xl"
-              >
-                <span>{user?.role === 'Host' ? 'Go to Host Dashboard' : 'Become a Host Today'}</span>
-                <ArrowRight className="h-4 w-4" />
-              </Link>
-              <Link
-                href={user ? getDashboardLink() : '/auth/login'}
-                className="inline-flex items-center justify-center gap-2 bg-transparent border border-slate-800 hover:border-slate-700 hover:bg-slate-900 px-8 py-4 sm:py-5 text-sm font-bold text-white transition-all duration-300 rounded-xl"
-              >
-                <span>{user ? 'Go to Dashboard' : 'Sign In to Dashboard'}</span>
-                <ChevronRight className="h-4 w-4 text-slate-400" />
-              </Link>
-            </div>
-          </div>
-          <div className="hidden lg:block border border-slate-800 p-10 bg-slate-900/50 shadow-2xl rounded-2xl">
-            <h4 className="text-lg font-bold text-white font-serif mb-4">Host Guarantee Highlights</h4>
-            <ul className="space-y-4 text-sm text-slate-400 font-medium">
-              <li className="flex items-center gap-3">✓ 90% direct payout share released immediately.</li>
-              <li className="flex items-center gap-3">✓ Full freedom to set daily pricing and seasonal surges.</li>
-              <li className="flex items-center gap-3">✓ Pre-arrival traveler checks via identity registries.</li>
-              <li className="flex items-center gap-3">✓ Zero registration cost for local families.</li>
-            </ul>
-          </div>
-        </div>
-      </section>
 
       {/* Floating Action Button to Scroll Top */}
       <button
