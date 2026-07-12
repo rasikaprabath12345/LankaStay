@@ -24,8 +24,7 @@ import {
   Users,
   Bed,
   Home,
-  Lock,
-  CloudSun
+  Lock
 } from 'lucide-react';
 
 interface Tag {
@@ -142,8 +141,8 @@ export default function HomePage() {
       return;
     }
     // Find matching tag in the loaded tags
-    const matchedTag = tags.find(t => 
-      t.name.toLowerCase().includes(category) || 
+    const matchedTag = tags.find(t =>
+      t.name.toLowerCase().includes(category) ||
       t.description.toLowerCase().includes(category)
     );
     if (matchedTag) {
@@ -185,9 +184,8 @@ export default function HomePage() {
           return (
             <span
               key={idx}
-              className={`h-3 w-3 rounded-full border border-[#00aa6c] ${
-                isFilled ? 'bg-[#00aa6c]' : 'bg-white'
-              }`}
+              className={`h-3 w-3 rounded-full border border-[#00aa6c] ${isFilled ? 'bg-[#00aa6c]' : 'bg-white'
+                }`}
             />
           );
         })}
@@ -220,11 +218,11 @@ export default function HomePage() {
     <div className="flex flex-col min-h-screen bg-[#FCFBF9] text-slate-900 font-sans antialiased overflow-x-hidden selection:bg-teal-100 selection:text-teal-900">
 
       {/* 1. TripAdvisor Style Hero Section with Search Card */}
-      <section className="relative w-full min-h-[450px] sm:min-h-[520px] flex flex-col items-center justify-center text-center px-4 py-16 z-20 bg-[#FCFBF9]">
+      <section className="relative w-full min-h-[450px] sm:min-h-[520px] flex flex-col items-center justify-center text-center px-4 pt-24 pb-16 z-20 bg-[#FCFBF9]">
         {/* Full-width Background Image */}
         <div
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-          style={{ backgroundImage: `url('https://images.unsplash.com/photo-1546708973-b339540b5162?auto=format&fit=crop&w=2200&q=90')` }}
+          style={{ backgroundImage: `url('/images/hero.jpg')` }}
         />
         {/* Soft elegant TripAdvisor dark-green gradient overlay for readability */}
         <div className="absolute inset-0 bg-gradient-to-b from-slate-950/45 via-slate-950/20 to-transparent" />
@@ -232,19 +230,25 @@ export default function HomePage() {
         {/* Content Centered on top of background */}
         <div className="relative z-10 w-full max-w-3xl mx-auto flex flex-col items-center space-y-6">
 
+          {/* Premium Tagline Badge */}
+          <div className="inline-flex items-center gap-1.5 bg-slate-900/60 backdrop-blur-md border border-white/20 px-4 py-2 rounded-full text-[10px] sm:text-xs font-bold text-white uppercase tracking-wider shadow-sm animate-pulse">
+            <Sparkles className="h-3.5 w-3.5 text-amber-400" />
+            Sri Lanka's Certified Heritage Homestay Registry
+          </div>
+
           <div className="space-y-3 flex flex-col items-center">
-            <h1 className="text-white font-serif text-4xl sm:text-6xl font-black tracking-tight drop-shadow-sm leading-tight">
-              Where to?
+            <h1 className="text-white font-serif text-4xl sm:text-6.5xl font-black tracking-tight drop-shadow-sm leading-none max-w-2xl">
+              Live with a Local Family in Sri Lanka
             </h1>
             <p className="text-white/95 text-xs sm:text-sm font-semibold max-w-xl leading-relaxed drop-shadow-sm">
-              Discover verified homestays, traditional meals, and raw Sri Lankan experiences.
+              Discover verified heritage homestays, traditional culinary workshops, and raw Ceylon experiences.
             </p>
           </div>
 
           {/* Integrated Search Card */}
-          <div className="w-full bg-white rounded-3xl p-5 shadow-2xl border border-slate-200/60 text-left">
+          <div className="w-full bg-slate-950/65 backdrop-blur-md rounded-3xl p-5 shadow-2xl border border-white/10 text-left">
             {/* Search Category Tabs */}
-            <div className="flex gap-4 border-b border-slate-100 pb-3 mb-4 text-xs font-bold text-slate-500">
+            <div className="flex gap-4 border-b border-white/10 pb-3 mb-4 text-xs font-bold text-white/60">
               {[
                 { id: 'all', name: 'Search All', icon: <Compass className="h-4 w-4" /> },
                 { id: 'stays', name: 'Homestays', icon: <Home className="h-4 w-4" /> },
@@ -258,7 +262,7 @@ export default function HomePage() {
                   className={`flex items-center gap-1.5 pb-2.5 border-b-2 transition-all ${
                     searchCategory === tab.id
                       ? 'text-[#00aa6c] border-[#00aa6c]'
-                      : 'border-transparent hover:text-[#00aa6c]'
+                      : 'border-transparent text-white/80 hover:text-[#00aa6c]'
                   }`}
                 >
                   {tab.icon}
@@ -268,20 +272,20 @@ export default function HomePage() {
             </div>
 
             <form onSubmit={handleSearchSubmit} className="flex flex-col md:flex-row items-center gap-3">
-              <div className="flex items-center gap-3 px-4 py-2 border border-slate-200 bg-slate-50 rounded-2xl w-full md:flex-grow">
+              <div className="flex items-center gap-3 px-4 py-2 border border-white/10 bg-slate-900/60 rounded-2xl w-full md:flex-grow focus-within:ring-2 focus-within:ring-[#00aa6c]/50 focus-within:border-[#00aa6c] transition-all">
                 <MapPin className="h-5 w-5 text-[#00aa6c] shrink-0" />
                 <div className="flex-grow text-left">
-                  <span className="block text-[8px] font-black text-slate-400 uppercase tracking-widest mb-0.5">Location</span>
+                  <span className="block text-[8px] font-black text-slate-300 uppercase tracking-widest mb-0.5">Location</span>
                   <input
                     type="text"
                     value={locationQuery}
                     onChange={(e) => setLocationQuery(e.target.value)}
                     placeholder="Where are you going? (e.g. Ella, Galle)"
-                    className="w-full bg-transparent text-xs font-bold text-slate-800 focus:outline-none placeholder:text-slate-400"
+                    className="w-full bg-transparent text-xs font-bold text-white focus:outline-none placeholder:text-white/40"
                   />
                 </div>
                 {locationQuery && (
-                  <button type="button" onClick={() => setLocationQuery('')} className="text-slate-400 hover:text-slate-655">
+                  <button type="button" onClick={() => setLocationQuery('')} className="text-white/60 hover:text-white">
                     <X className="h-4 w-4" />
                   </button>
                 )}
@@ -297,19 +301,37 @@ export default function HomePage() {
             </form>
           </div>
 
-          {/* Quick links below the card */}
-          <div className="flex items-center gap-2 flex-wrap justify-center text-xs font-bold text-white/95">
-            <span>Trending spots:</span>
-            {['Ella', 'Galle', 'Kandy', 'Sigiriya'].map((loc) => (
-              <button
-                key={loc}
-                type="button"
-                onClick={() => handleQuickLocation(loc)}
-                className="text-[11px] font-bold text-slate-800 bg-white/95 hover:bg-white px-3 py-1 rounded-full shadow-sm transition-colors border border-white/20"
-              >
-                {loc}
-              </button>
-            ))}
+          {/* Quick links & Trust row below the card */}
+          <div className="w-full flex flex-col items-center gap-4 pt-2">
+            <div className="flex items-center gap-2 flex-wrap justify-center text-xs font-bold text-white/95">
+              <span>Trending spots:</span>
+              {['Ella', 'Galle', 'Kandy', 'Sigiriya'].map((loc) => (
+                <button
+                  key={loc}
+                  type="button"
+                  onClick={() => handleQuickLocation(loc)}
+                  className="text-[11px] font-bold text-slate-800 bg-white/95 hover:bg-white px-3 py-1 rounded-full shadow-sm transition-colors border border-white/20"
+                >
+                  {loc}
+                </button>
+              ))}
+            </div>
+
+            {/* Quick trust metrics row */}
+            <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-6 text-white text-[10px] font-bold mt-2">
+              <span className="flex items-center gap-1 bg-slate-900/50 backdrop-blur-md px-3 py-1.5 rounded-xl border border-white/10 shadow-sm">
+                <ShieldCheck className="h-3.5 w-3.5 text-emerald-400" />
+                SLTDA Approved Hosts
+              </span>
+              <span className="flex items-center gap-1 bg-slate-900/50 backdrop-blur-md px-3 py-1.5 rounded-xl border border-white/10 shadow-sm">
+                <Lock className="h-3.5 w-3.5 text-emerald-400" />
+                100% Escrow Protection
+              </span>
+              <span className="flex items-center gap-1 bg-slate-900/50 backdrop-blur-md px-3 py-1.5 rounded-xl border border-white/10 shadow-sm">
+                <CheckCircle2 className="h-3.5 w-3.5 text-emerald-400" />
+                Grama Niladhari Cleared
+              </span>
+            </div>
           </div>
 
         </div>
@@ -333,16 +355,14 @@ export default function HomePage() {
                 onClick={() => handleCategoryClick(cat.tag)}
                 className="flex flex-col items-center gap-2 group shrink-0"
               >
-                <div className={`h-14 w-14 rounded-full border flex items-center justify-center shadow-sm transition-all duration-300 ${
-                  isActive 
-                    ? 'bg-[#00aa6c] text-white border-[#00aa6c] scale-105' 
+                <div className={`h-14 w-14 rounded-full border flex items-center justify-center shadow-sm transition-all duration-300 ${isActive
+                    ? 'bg-[#00aa6c] text-white border-[#00aa6c] scale-105'
                     : 'bg-white text-slate-700 border-slate-200 hover:border-[#00aa6c] hover:text-[#00aa6c] hover:scale-105'
-                }`}>
+                  }`}>
                   {cat.icon}
                 </div>
-                <span className={`text-[11px] font-bold transition-colors ${
-                  isActive ? 'text-[#00aa6c]' : 'text-slate-500 group-hover:text-[#00aa6c]'
-                }`}>
+                <span className={`text-[11px] font-bold transition-colors ${isActive ? 'text-[#00aa6c]' : 'text-slate-500 group-hover:text-[#00aa6c]'
+                  }`}>
                   {cat.name}
                 </span>
               </button>
@@ -549,7 +569,7 @@ export default function HomePage() {
 
                     {/* Stay Card Details */}
                     <div className="flex flex-1 flex-col p-5 space-y-2.5">
-                      
+
                       {/* Host & tag meta row */}
                       <div className="flex items-center justify-between text-[10px] font-bold text-slate-400 uppercase tracking-wider">
                         <span>{exp.tags.length > 0 ? exp.tags[0].name : 'Homestay'}</span>
@@ -615,7 +635,7 @@ export default function HomePage() {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="bg-gradient-to-r from-slate-900 to-slate-950 rounded-3xl p-8 sm:p-12 shadow-xl border border-slate-800 text-white relative overflow-hidden flex flex-col md:flex-row items-center gap-8 justify-between">
             <div className="absolute top-0 right-0 -translate-y-12 translate-x-12 h-64 w-64 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none" />
-            
+
             <div className="space-y-4 max-w-xl relative z-10">
               <div className="inline-flex items-center gap-1.5 bg-emerald-500/15 border border-emerald-500/30 text-emerald-400 px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider">
                 <Lock className="h-3 w-3" />
@@ -730,7 +750,7 @@ export default function HomePage() {
       <section className="bg-white border-t border-slate-200 py-16 text-left">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-center">
-            
+
             <div className="space-y-4">
               <span className="text-xs font-bold text-[#00aa6c] uppercase tracking-widest">Travel Smart</span>
               <h2 className="text-2xl sm:text-3xl font-bold font-serif text-slate-900 tracking-tight leading-tight">
@@ -750,11 +770,10 @@ export default function HomePage() {
                   <button
                     key={region.id}
                     onClick={() => setTipsRegion(region.id)}
-                    className={`px-4 py-2.5 text-xs font-bold text-left rounded-xl border transition-all ${
-                      tipsRegion === region.id
+                    className={`px-4 py-2.5 text-xs font-bold text-left rounded-xl border transition-all ${tipsRegion === region.id
                         ? 'bg-slate-900 text-white border-slate-900'
                         : 'bg-slate-50 text-slate-700 border-slate-200 hover:bg-slate-100'
-                    }`}
+                      }`}
                   >
                     {region.name}
                   </button>
@@ -771,7 +790,7 @@ export default function HomePage() {
                       <p className="text-[10px] text-slate-400 font-bold uppercase tracking-wider">High Mountain Region</p>
                     </div>
                     <div className="flex items-center gap-2 bg-sky-50 border border-sky-100 text-sky-700 px-3 py-1.5 rounded-2xl">
-                      <CloudSun className="h-5 w-5 text-sky-500" />
+                      <Compass className="h-5 w-5 text-sky-500" />
                       <div className="text-right">
                         <span className="text-xs font-extrabold block">24°C</span>
                         <span className="text-[8px] font-bold block uppercase tracking-wide">Misty & Fresh</span>
@@ -799,7 +818,7 @@ export default function HomePage() {
                       <p className="text-[10px] text-slate-400 font-bold uppercase tracking-wider">Southern Beach Coast</p>
                     </div>
                     <div className="flex items-center gap-2 bg-amber-50 border border-amber-100 text-amber-700 px-3 py-1.5 rounded-2xl">
-                      <CloudSun className="h-5 w-5 text-amber-500" />
+                      <Compass className="h-5 w-5 text-amber-500" />
                       <div className="text-right">
                         <span className="text-xs font-extrabold block">30°C</span>
                         <span className="text-[8px] font-bold block uppercase tracking-wide">Sunny Coastal Breeze</span>
@@ -827,7 +846,7 @@ export default function HomePage() {
                       <p className="text-[10px] text-slate-400 font-bold uppercase tracking-wider">Central Cultural Capital</p>
                     </div>
                     <div className="flex items-center gap-2 bg-emerald-50 border border-emerald-100 text-emerald-700 px-3 py-1.5 rounded-2xl">
-                      <CloudSun className="h-5 w-5 text-emerald-500" />
+                      <Compass className="h-5 w-5 text-emerald-500" />
                       <div className="text-right">
                         <span className="text-xs font-extrabold block">26°C</span>
                         <span className="text-[8px] font-bold block uppercase tracking-wide">Mild & Tropical</span>
@@ -855,7 +874,7 @@ export default function HomePage() {
                       <p className="text-[10px] text-slate-400 font-bold uppercase tracking-wider">Cultural Triangle Plain</p>
                     </div>
                     <div className="flex items-center gap-2 bg-amber-55 border border-amber-100 text-amber-800 px-3 py-1.5 rounded-2xl">
-                      <CloudSun className="h-5 w-5 text-amber-500" />
+                      <Compass className="h-5 w-5 text-amber-500" />
                       <div className="text-right">
                         <span className="text-xs font-extrabold block">32°C</span>
                         <span className="text-[8px] font-bold block uppercase tracking-wide">Dry & Warm</span>

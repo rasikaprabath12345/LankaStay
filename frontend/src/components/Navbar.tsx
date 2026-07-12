@@ -56,7 +56,7 @@ export const Navbar: React.FC = () => {
     <nav className="z-55 w-full sticky top-0 border-b border-slate-200 bg-white text-slate-900 shadow-sm transition-all duration-300">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 justify-between items-center gap-4">
-          
+
           {/* Left Side: Brand Logo */}
           <div className="flex items-center gap-6 shrink-0">
             <Link href="/" className="flex items-center gap-2.5 group">
@@ -101,7 +101,7 @@ export const Navbar: React.FC = () => {
                 <Link
                   key={tab.name}
                   href={tab.href}
-                  className="flex items-center gap-1 text-xs font-bold text-slate-700 hover:text-[#00aa6c] transition-colors"
+                  className="flex items-center gap-1 text-[15px] font-bold text-slate-700 hover:text-[#00aa6c] transition-colors"
                 >
                   {tab.icon && tab.icon}
                   <span>{tab.name}</span>
@@ -114,7 +114,7 @@ export const Navbar: React.FC = () => {
             {/* Currency selector (USD decorative) */}
             <div className="flex items-center gap-1.5 cursor-pointer hover:text-[#00aa6c] transition-colors">
               <Globe className="h-3.5 w-3.5 text-slate-400" />
-              <span className="text-xs font-bold text-slate-700">USD</span>
+              <span className="text-[15px] font-bold text-slate-700">USD</span>
             </div>
 
             {/* User Profile / Auth buttons */}
@@ -132,7 +132,7 @@ export const Navbar: React.FC = () => {
 
                 <Link
                   href={getDashboardLink()}
-                  className="flex items-center gap-1.5 rounded-full border border-slate-200 bg-white px-4 py-2 text-xs font-bold text-slate-700 hover:bg-slate-50 hover:text-[#00aa6c] transition-all shadow-sm"
+                  className="flex items-center gap-1.5 rounded-full border border-slate-200 bg-white px-4 py-2 text-[15px] font-bold text-slate-700 hover:bg-slate-50 hover:text-[#00aa6c] transition-all shadow-sm"
                 >
                   <LayoutDashboard className="h-4 w-4 text-slate-400" />
                   <span>Dashboard</span>
@@ -143,7 +143,7 @@ export const Navbar: React.FC = () => {
                     <User className="h-4 w-4" />
                   </div>
                   <div className="flex flex-col text-left">
-                    <span className="text-xs font-bold leading-none text-slate-900">
+                    <span className="text-[15px] font-bold leading-none text-slate-900">
                       {user.fullName}
                     </span>
                     <span className="text-[8px] font-black tracking-wider uppercase mt-0.5 text-slate-400">
@@ -154,7 +154,7 @@ export const Navbar: React.FC = () => {
 
                 <button
                   onClick={logout}
-                  className="flex items-center justify-center rounded-full border border-slate-100 p-2 text-slate-400 hover:bg-slate-55 hover:text-rose-600 transition-colors"
+                  className="flex items-center justify-center rounded-full border border-slate-100 p-2 text-slate-400 hover:bg-slate-50 hover:text-rose-600 transition-colors"
                   title="Logout"
                 >
                   <LogOut className="h-4 w-4" />
@@ -164,13 +164,13 @@ export const Navbar: React.FC = () => {
               <div className="flex items-center gap-3">
                 <Link
                   href="/auth/login"
-                  className="text-xs font-bold uppercase tracking-wider text-slate-700 hover:text-[#00aa6c] transition-colors"
+                  className="text-[15px] font-bold uppercase tracking-wider text-slate-700 hover:text-[#00aa6c] transition-colors"
                 >
                   Sign In
                 </Link>
                 <Link
                   href="/auth/register"
-                  className="rounded-full bg-[#171717] hover:bg-slate-800 text-white px-5 py-2.5 text-xs font-bold shadow-md transition-all active:scale-95"
+                  className="rounded-full bg-[#171717] hover:bg-slate-800 text-white px-5 py-2.5 text-[15px] font-bold shadow-md transition-all active:scale-95"
                 >
                   Get Started
                 </Link>
@@ -182,7 +182,7 @@ export const Navbar: React.FC = () => {
           <div className="flex lg:hidden items-center shrink-0">
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="p-2 rounded-xl border border-slate-200 text-slate-600 hover:bg-slate-50 hover:text-[#00aa6c] transition-colors"
+              className="p-2 rounded-xl border border-slate-200 text-slate-655 hover:bg-slate-50 hover:text-[#00aa6c] transition-colors"
               aria-label="Toggle menu"
             >
               {mobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
@@ -201,7 +201,7 @@ export const Navbar: React.FC = () => {
                 <Link
                   key={tab.name}
                   href={tab.href}
-                  className={`text-xs font-bold whitespace-nowrap pb-2 border-b-2 transition-all ${
+                  className={`text-[15px] font-bold whitespace-nowrap pb-2 border-b-2 transition-all ${
                     activeTab === tab.name
                       ? 'text-[#00aa6c] border-[#00aa6c]'
                       : 'text-slate-500 border-transparent hover:text-[#00aa6c]'
@@ -249,14 +249,14 @@ export const Navbar: React.FC = () => {
                 <Link
                   href={getDashboardLink()}
                   onClick={() => setMobileMenuOpen(false)}
-                  className="flex items-center justify-center gap-2 rounded-full py-3 text-xs font-bold border border-slate-200 bg-white text-slate-750 hover:bg-slate-50 transition-all shadow-sm"
+                  className="flex items-center justify-center gap-2 rounded-full py-3 text-sm font-bold border border-slate-200 bg-white text-slate-750 hover:bg-slate-50 transition-all shadow-sm"
                 >
                   <LayoutDashboard className="h-4 w-4" />
                   <span>Go to Dashboard ({user.role})</span>
                 </Link>
                 <button
                   onClick={() => { logout(); setMobileMenuOpen(false); }}
-                  className="w-full flex items-center justify-center gap-2 rounded-full py-3 text-xs font-bold text-white bg-rose-600 hover:bg-rose-700 transition-colors shadow-md"
+                  className="w-full flex items-center justify-center gap-2 rounded-full py-3 text-sm font-bold text-white bg-rose-600 hover:bg-rose-700 transition-colors shadow-md"
                 >
                   <LogOut className="h-4 w-4" />
                   <span>Sign Out</span>
@@ -267,14 +267,14 @@ export const Navbar: React.FC = () => {
                 <Link
                   href="/auth/login"
                   onClick={() => setMobileMenuOpen(false)}
-                  className="w-full text-center py-3 text-xs font-bold uppercase tracking-wider transition-colors border border-slate-200 text-slate-650 hover:bg-slate-50 rounded-full"
+                  className="w-full text-center py-3 text-sm font-bold uppercase tracking-wider transition-colors border border-slate-200 text-slate-655 hover:bg-slate-50 rounded-full"
                 >
                   Sign In
                 </Link>
                 <Link
-                  href="/auth/register"
                   onClick={() => setMobileMenuOpen(false)}
-                  className="w-full text-center py-3 text-xs font-bold shadow-md rounded-full bg-[#171717] hover:bg-slate-800 text-white"
+                  href="/auth/register"
+                  className="w-full text-center py-3 text-sm font-bold shadow-md rounded-full bg-[#171717] hover:bg-slate-800 text-white"
                 >
                   Get Started
                 </Link>
