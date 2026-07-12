@@ -47,14 +47,14 @@ interface Experience {
 }
 
 const SkeletonCard = () => (
-  <div className="flex flex-col overflow-hidden rounded-none bg-white border border-slate-200 shadow-sm">
+  <div className="flex flex-col overflow-hidden rounded-2xl bg-white border border-slate-200 shadow-sm">
     <div className="aspect-[4/3] w-full bg-slate-100 animate-pulse relative overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full animate-[shimmer_1.5s_infinite]" />
     </div>
     <div className="flex flex-col p-8 gap-5">
       <div className="flex items-start justify-between gap-3">
-        <div className="h-6 w-3/4 rounded-none bg-slate-200/60 animate-pulse" />
-        <div className="h-10 w-16 shrink-0 rounded-none bg-teal-50 animate-pulse" />
+        <div className="h-6 w-3/4 rounded-lg bg-slate-200/60 animate-pulse" />
+        <div className="h-10 w-16 shrink-0 rounded-xl bg-teal-50 animate-pulse" />
       </div>
       <div className="space-y-2.5">
         <div className="h-3 w-full rounded-none bg-slate-100 animate-pulse" />
@@ -62,7 +62,7 @@ const SkeletonCard = () => (
       </div>
       <div className="h-[1px] bg-slate-50 w-full" />
       <div className="flex items-center gap-4">
-        <div className="h-10 w-10 rounded-none bg-slate-200 animate-pulse" />
+        <div className="h-10 w-10 rounded-full bg-slate-200 animate-pulse" />
         <div className="flex flex-col gap-2">
           <div className="h-2.5 w-12 rounded-none bg-slate-150 animate-pulse" />
           <div className="h-3 w-24 rounded-none bg-slate-200/60 animate-pulse" />
@@ -80,6 +80,7 @@ export default function HomePage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [scrolled, setScrolled] = useState(false);
+  const [favorites, setFavorites] = useState<string[]>([]);
   const [activeCategory, setActiveCategory] = useState<string>('all');
   const resultsRef = useRef<HTMLDivElement>(null);
 
@@ -147,6 +148,14 @@ export default function HomePage() {
     resultsRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
   };
 
+  const toggleFavorite = (e: React.MouseEvent, id: string) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setFavorites(prev => 
+      prev.includes(id) ? prev.filter(favId => favId !== id) : [...prev, id]
+    );
+  };
+
   const handleScrollTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
@@ -190,85 +199,93 @@ export default function HomePage() {
   };
 
   return (
-    <div className="flex flex-col min-h-screen bg-[#FAF9F6] text-slate-900 font-sans antialiased overflow-x-hidden selection:bg-teal-100 selection:text-teal-900">
+    <div className="flex flex-col min-h-screen bg-[#FCFBF9] text-slate-900 font-sans antialiased overflow-x-hidden selection:bg-teal-100 selection:text-teal-900">
       
-      {/* 1. Full-Screen Edge-to-Edge Hero Section (Solid design, zero curves) */}
-      <section className="relative w-full min-h-[580px] sm:min-h-[660px] flex items-center justify-start px-6 sm:px-16 md:px-24 py-16 shadow-sm border-b border-slate-200/80 z-20">
-        {/* Background image covering entire browser width */}
+      {/* 1. Full-Width Bleed Hero Section with Centered Grid Content & Solid Overlay Card (Editorial style, zero glassmorphism) */}
+      <section className="relative w-full min-h-[600px] sm:min-h-[680px] flex items-center justify-start border-b border-slate-200 z-20">
+        {/* Full-width Background Image (Authentic Sri Lankan landscape: Ella Bridge) */}
         <div 
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-          style={{ backgroundImage: `url('https://images.unsplash.com/photo-1544735716-392fe2489ffa?auto=format&fit=crop&w=2200&q=90')` }}
+          style={{ backgroundImage: `url('https://images.unsplash.com/photo-1546708973-b339540b5162?auto=format&fit=crop&w=2200&q=90')` }}
         />
         <div className="absolute inset-0 bg-slate-900/10" />
 
-        {/* Solid White Content Card Overlaid (Legible, opaque, 100% sharp corners) */}
-        <div className="relative z-10 bg-white rounded-none p-8 sm:p-12 shadow-2xl border border-slate-200 max-w-xl text-left space-y-6 sm:space-y-7">
-          <div className="inline-flex items-center gap-2 bg-teal-50 px-4 py-2 text-xs font-bold text-teal-800 border border-teal-200/30 uppercase tracking-wider rounded-none">
-            <Sparkles className="h-4 w-4 text-teal-700 animate-pulse" />
-            <span>Verified Sri Lankan Heritage Registry</span>
-          </div>
+        {/* Content Wrapper to align card with standard site grid margins */}
+        <div className="relative w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 flex items-center justify-start">
+          
+          {/* Solid White Content Card Overlaid (Opaque, clean borders, standard curves, zero glassmorphism) */}
+          <div className="bg-white rounded-2xl p-8 sm:p-12 shadow-2xl border border-slate-200/80 w-full max-w-xl text-left space-y-6 sm:space-y-7 relative z-10">
+            <div className="inline-flex items-center gap-1.5 bg-teal-50 px-3.5 py-1.5 text-[11px] font-bold text-teal-800 border border-teal-100/50 uppercase tracking-wider rounded-full">
+              <Sparkles className="h-3.5 w-3.5 text-teal-700 animate-pulse" />
+              <span>Verified Local Homestay Registry</span>
+            </div>
 
-          <h1 className="text-balance text-4xl sm:text-5xl font-extrabold tracking-tight font-serif text-slate-900 leading-[1.1] rounded-none">
-            Live Like a Local in <br />
-            <span className="text-teal-700">Beautiful Sri Lanka</span>
-          </h1>
+            <div className="space-y-3">
+              <h1 className="text-balance text-4xl sm:text-5xl font-extrabold tracking-tight font-serif text-slate-900 leading-[1.12]">
+                Live Like a Local in <br />
+                <span className="text-teal-700 font-serif italic">Beautiful Sri Lanka</span>
+              </h1>
+              <div className="h-1 w-12 bg-teal-600 rounded-full" />
+            </div>
 
-          <p className="text-sm sm:text-base text-slate-600 leading-relaxed font-medium">
-            Skip standard hotels. Connect directly with certified Sri Lankan families. Rent cozy homestays, enjoy home-cooked culinary heritage, and explore Ceylon with absolute peace of mind.
-          </p>
+            <p className="text-sm sm:text-base text-slate-500 leading-relaxed font-medium">
+              Skip standard hotels. Connect directly with certified Sri Lankan families. Rent cozy homestays, enjoy home-cooked culinary heritage, and explore Ceylon with absolute peace of mind.
+            </p>
 
-          {/* Solid Search Console inside the card */}
-          <div className="space-y-4 pt-2">
-            <form onSubmit={handleSearchSubmit} className="space-y-4">
-              <div className="bg-slate-50 px-5 py-4 border border-slate-200 focus-within:border-teal-700 focus-within:ring-4 focus-within:ring-teal-500/10 transition-all duration-300 group flex items-center gap-3 rounded-none">
-                <MapPin className="h-5 w-5 text-slate-400 group-focus-within:text-teal-600 shrink-0" />
-                <div className="flex-grow">
-                  <label htmlFor="search-input" className="block text-[9px] font-black text-slate-400 uppercase tracking-widest mb-0.5">Where to?</label>
-                  <input
-                    id="search-input"
-                    type="text"
-                    value={locationQuery}
-                    onChange={(e) => setLocationQuery(e.target.value)}
-                    placeholder="e.g. Ella, Galle, Kandy..."
-                    className="w-full bg-transparent text-sm font-bold text-slate-800 focus:outline-none placeholder:text-slate-350 rounded-none"
-                  />
+            {/* Solid Search Console inside the card */}
+            <div className="space-y-4 pt-2">
+              <form onSubmit={handleSearchSubmit} className="space-y-4">
+                <div className="bg-slate-50 px-5 py-4 border border-slate-200 focus-within:border-teal-700 focus-within:ring-4 focus-within:ring-teal-500/10 transition-all duration-300 group flex items-center gap-3 rounded-xl">
+                  <MapPin className="h-5 w-5 text-slate-400 group-focus-within:text-teal-650 shrink-0" />
+                  <div className="flex-grow">
+                    <label htmlFor="search-input" className="block text-[9px] font-black text-slate-400 uppercase tracking-widest mb-0.5">Where to?</label>
+                    <input
+                      id="search-input"
+                      type="text"
+                      value={locationQuery}
+                      onChange={(e) => setLocationQuery(e.target.value)}
+                      placeholder="e.g. Ella, Galle, Kandy..."
+                      className="w-full bg-transparent text-sm font-bold text-slate-800 focus:outline-none placeholder:text-slate-350"
+                    />
+                  </div>
+                  {locationQuery && (
+                    <button type="button" onClick={() => setLocationQuery('')} className="text-slate-450 hover:text-slate-600">
+                      <X className="h-4 w-4" />
+                    </button>
+                  )}
                 </div>
-                {locationQuery && (
-                  <button type="button" onClick={() => setLocationQuery('')} className="text-slate-400 hover:text-slate-600">
-                    <X className="h-4 w-4" />
-                  </button>
-                )}
-              </div>
 
-              <div className="flex flex-wrap gap-2 items-center text-xs">
-                <span className="text-slate-400 font-bold uppercase tracking-wider text-[10px]">Popular:</span>
-                {['Ella', 'Galle', 'Kandy', 'Sigiriya'].map((loc) => (
-                  <button
-                    key={loc}
-                    type="button"
-                    onClick={() => handleQuickLocation(loc)}
-                    className="font-bold text-slate-700 bg-slate-100 hover:bg-slate-200/80 px-3 py-1.5 transition-colors border border-slate-200/35 rounded-none"
-                  >
-                    {loc}
-                  </button>
-                ))}
-              </div>
+                <div className="flex flex-wrap gap-2 items-center text-xs">
+                  <span className="text-slate-400 font-bold uppercase tracking-wider text-[10px]">Popular:</span>
+                  {['Ella', 'Galle', 'Kandy', 'Sigiriya'].map((loc) => (
+                    <button
+                      key={loc}
+                      type="button"
+                      onClick={() => handleQuickLocation(loc)}
+                      className="font-bold text-slate-700 bg-slate-100 hover:bg-slate-200/80 px-3.5 py-1.5 transition-colors border border-slate-200/30 rounded-lg text-xs"
+                    >
+                      {loc}
+                    </button>
+                  ))}
+                </div>
 
-              <button
-                type="submit"
-                className="w-full flex items-center justify-center gap-2 bg-teal-700 hover:bg-teal-800 py-4 sm:py-4.5 text-sm font-bold text-white shadow-lg shadow-teal-750/20 active:scale-[0.98] transition-all duration-300 rounded-none"
-              >
-                <Search className="h-4.5 w-4.5" />
-                <span className="tracking-wide">Explore Stays</span>
-              </button>
-            </form>
+                <button
+                  type="submit"
+                  className="w-full flex items-center justify-center gap-2 bg-teal-750 hover:bg-teal-800 py-4 sm:py-4.5 text-sm font-bold text-white shadow-lg shadow-teal-750/20 active:scale-[0.98] transition-all duration-300 rounded-xl"
+                >
+                  <Search className="h-4.5 w-4.5" />
+                  <span className="tracking-wide">Explore Stays</span>
+                </button>
+              </form>
+            </div>
           </div>
+
         </div>
       </section>
 
-      {/* 2. Category Filter Bar (Solid cards, zero curves) */}
+      {/* 2. Category Filter Bar (Solid cards, clean borders) */}
       <section className="mx-auto max-w-7xl w-full px-4 sm:px-6 lg:px-8 py-10 select-none">
-        <div className="bg-white shadow-[0_4px_25px_rgba(0,0,0,0.01)] border border-slate-200 p-6 rounded-none">
+        <div className="bg-white shadow-[0_4px_25px_rgba(0,0,0,0.01)] border border-slate-200 p-6 rounded-2xl">
           <div className="flex items-center justify-between border-b border-slate-200 pb-4 mb-4">
             <span className="text-xs font-black tracking-widest text-slate-400 uppercase">
               Filter by Culinary &amp; Environment Tags
@@ -286,10 +303,10 @@ export default function HomePage() {
           <div className="flex items-center gap-3 overflow-x-auto no-scrollbar py-1">
             <button
               onClick={() => { setSelectedTagIds([]); setActiveCategory('all'); }}
-              className={`flex items-center gap-2 px-5 py-3 text-xs font-bold transition-all duration-300 shrink-0 border rounded-none ${
+              className={`flex items-center gap-2 px-5 py-3 text-xs font-bold transition-all duration-300 shrink-0 border rounded-full ${
                 selectedTagIds.length === 0 && activeCategory === 'all'
                   ? 'bg-slate-900 text-white border-slate-950 shadow-md'
-                  : 'bg-white text-slate-600 border-slate-200 hover:bg-slate-50'
+                  : 'bg-white text-slate-650 border-slate-200 hover:bg-slate-50'
               }`}
             >
               <Compass className="h-4 w-4" />
@@ -302,10 +319,10 @@ export default function HomePage() {
                 <button
                   key={tag.id}
                   onClick={() => { handleTagToggle(tag.id); setActiveCategory(tag.id); }}
-                  className={`flex items-center gap-2 px-5 py-3 text-xs font-bold transition-all duration-300 shrink-0 border rounded-none ${
+                  className={`flex items-center gap-2 px-5 py-3 text-xs font-bold transition-all duration-300 shrink-0 border rounded-full ${
                     isSelected
                       ? 'bg-teal-700 text-white border-teal-800 shadow-md'
-                      : 'bg-white text-slate-600 border-slate-200 hover:bg-slate-50'
+                      : 'bg-white text-slate-650 border-slate-200 hover:bg-slate-50'
                   }`}
                 >
                   {getTagIcon(tag.name)}
@@ -317,7 +334,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 3. Core Values Grid (Solid, premium square border designs) */}
+      {/* 3. Core Values Grid (Solid, premium border designs with clean borders) */}
       <section className="mx-auto max-w-7xl w-full px-4 sm:px-6 lg:px-8 py-16 select-none">
         <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
           <h2 className="text-3xl sm:text-4xl font-bold tracking-tight font-serif text-slate-900">Credibility &amp; Trust First</h2>
@@ -345,8 +362,8 @@ export default function HomePage() {
               color: "text-amber-700 bg-amber-50 border border-amber-200/50" 
             }
           ].map((item, i) => (
-            <div key={i} className="group flex flex-col items-start p-8 bg-white border border-slate-200 hover:border-slate-350 shadow-sm hover:shadow-md transition-all duration-500 text-left rounded-none">
-              <span className={`flex h-14 w-14 items-center justify-center rounded-none ${item.color} mb-8 group-hover:scale-105 transition-transform duration-500`}>
+            <div key={i} className="group flex flex-col items-start p-8 bg-white border border-slate-200 hover:border-slate-350 shadow-sm hover:shadow-md transition-all duration-500 text-left rounded-2xl">
+              <span className={`flex h-14 w-14 items-center justify-center rounded-xl ${item.color} mb-8 group-hover:scale-105 transition-transform duration-500`}>
                 <item.icon className="h-6.5 w-6.5" />
               </span>
               <h4 className="text-lg font-bold text-slate-900 mb-3">{item.title}</h4>
@@ -356,7 +373,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 4. solid, premium How It Works Section (no rounded corners) */}
+      {/* 4. solid, premium How It Works Section */}
       <section className="bg-slate-100 border-y border-slate-200/60 py-20 text-left">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
@@ -384,7 +401,7 @@ export default function HomePage() {
                 { step: "02", title: "Reserve Safely", desc: "Confirm booking request. Your money is secured via locked escrow protection." },
                 { step: "03", title: "Immerse Locally", desc: "Stay with local families, enjoy home-cooked meals, and experience Ceylon safely." }
               ].map((item, index) => (
-                <div key={index} className="bg-white p-8 border border-slate-200 shadow-sm hover:shadow-md transition-all duration-300 rounded-none">
+                <div key={index} className="bg-white p-8 border border-slate-200 shadow-sm hover:shadow-md transition-all duration-300 rounded-2xl">
                   <span className="block text-3xl font-black text-teal-700/25 font-serif mb-6">{item.step}</span>
                   <h4 className="text-base font-bold text-slate-900 mb-2">{item.title}</h4>
                   <p className="text-xs text-slate-500 leading-relaxed font-medium">{item.desc}</p>
@@ -396,7 +413,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 5. Destination Quick Filters (Sharp layout) */}
+      {/* 5. Destination Quick Filters */}
       <section className="mx-auto max-w-7xl w-full px-4 sm:px-6 lg:px-8 py-20 text-left select-none">
         <div className="flex flex-col sm:flex-row justify-between items-end mb-10 gap-4">
           <div>
@@ -415,7 +432,7 @@ export default function HomePage() {
             <button
               key={dest.name}
               onClick={() => handleQuickLocation(dest.name)}
-              className="group relative h-48 sm:h-56 overflow-hidden shadow-sm hover:shadow-xl focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-teal-500/50 transition-all duration-500 text-left w-full border border-slate-200 rounded-none"
+              className="group relative h-48 sm:h-56 overflow-hidden shadow-sm hover:shadow-xl focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-teal-500/50 transition-all duration-500 text-left w-full border border-slate-200 rounded-2xl"
             >
               <img src={dest.img} alt={dest.name} loading="lazy" className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000 ease-out" />
               <div className="absolute inset-0 bg-slate-900/60 group-hover:bg-slate-900/70 transition-colors duration-500" />
@@ -440,7 +457,7 @@ export default function HomePage() {
             <button
               onClick={fetchExperiences}
               disabled={loading}
-              className="flex items-center gap-2 bg-white border border-slate-200 px-6 py-3 text-xs font-bold text-slate-700 hover:bg-slate-50 hover:border-slate-350 shadow-sm transition-all active:scale-95 disabled:opacity-50 rounded-none"
+              className="flex items-center gap-2 bg-white border border-slate-200 px-6 py-3 text-xs font-bold text-slate-700 hover:bg-slate-50 hover:border-slate-350 shadow-sm transition-all active:scale-95 disabled:opacity-50 rounded-xl"
             >
               <RefreshCw className={`h-4 w-4 text-teal-700 ${loading ? 'animate-spin' : ''}`} />
               <span>{loading ? 'Refreshing...' : 'Sync Registry'}</span>
@@ -452,16 +469,16 @@ export default function HomePage() {
               {Array.from({ length: 6 }).map((_, i) => <SkeletonCard key={i} />)}
             </div>
           ) : error ? (
-            <div className="border border-rose-205 bg-rose-50 p-12 text-center max-w-2xl mx-auto shadow-sm rounded-none">
+            <div className="border border-rose-200 bg-rose-50 p-12 text-center max-w-2xl mx-auto shadow-sm rounded-2xl">
               <p className="text-xl text-rose-900 font-bold mb-3 font-serif">Connection Error</p>
               <p className="text-sm text-rose-700/80 mb-8 font-medium">{error}</p>
-              <button onClick={fetchExperiences} className="bg-rose-600 px-8 py-3.5 text-sm font-bold text-white hover:bg-rose-700 transition-colors shadow-lg active:scale-95 rounded-none">
+              <button onClick={fetchExperiences} className="bg-rose-600 px-8 py-3.5 text-sm font-bold text-white hover:bg-rose-700 transition-colors shadow-lg active:scale-95 rounded-xl">
                 Try Again
               </button>
             </div>
           ) : experiences.length === 0 ? (
-            <div className="border-2 border-dashed border-slate-200 bg-white py-32 text-center max-w-4xl mx-auto shadow-sm rounded-none">
-              <div className="inline-flex h-20 w-20 items-center justify-center bg-slate-50 text-slate-400 mb-6 rounded-none">
+            <div className="border border-dashed border-slate-200 bg-white py-32 text-center max-w-4xl mx-auto shadow-sm rounded-2xl">
+              <div className="inline-flex h-20 w-20 items-center justify-center bg-slate-50 text-slate-400 mb-6 rounded-xl">
                 <Search className="h-10 w-10" />
               </div>
               <h3 className="text-slate-900 text-2xl font-bold font-serif">No homestays match the filter</h3>
@@ -469,7 +486,7 @@ export default function HomePage() {
               {(locationQuery || selectedTagIds.length > 0) && (
                 <button
                   onClick={() => { setLocationQuery(''); setSelectedTagIds([]); }}
-                  className="mt-8 bg-slate-900 px-8 py-3.5 text-sm font-bold text-white hover:bg-teal-700 transition-all shadow-lg active:scale-95 rounded-none"
+                  className="mt-8 bg-slate-900 px-8 py-3.5 text-sm font-bold text-white hover:bg-teal-700 transition-all shadow-lg active:scale-95 rounded-xl"
                 >
                   Clear all filters
                 </button>
@@ -480,11 +497,12 @@ export default function HomePage() {
               {experiences.map((exp) => {
                 const displayImage = exp.imageUrl || getFallbackImage(exp.location, exp.title);
                 const isHighlyRated = exp.averageRating >= 4.8;
+                const isFavorite = favorites.includes(exp.id);
                 return (
                   <Link
                     key={exp.id}
                     href={`/experience/${exp.id}`}
-                    className="group flex flex-col overflow-hidden bg-white border border-slate-200 shadow-sm hover:shadow-lg transition-all duration-500 rounded-none"
+                    className="group flex flex-col overflow-hidden bg-white border border-slate-200 shadow-[0_4px_25px_rgba(0,0,0,0.015)] hover:shadow-[0_20px_45px_rgba(0,0,0,0.05)] hover:-translate-y-1.5 transition-all duration-500 rounded-2xl relative"
                   >
                     {/* Visual Card Media */}
                     <div className="aspect-[4/3] w-full bg-slate-100 relative overflow-hidden">
@@ -495,34 +513,47 @@ export default function HomePage() {
                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000 ease-out"
                       />
                       
-                      {/* Top Badges (Solid opaque backgrounds, zero curves) */}
-                      <div className={`absolute left-5 top-5 flex items-center gap-1.5 bg-white px-3.5 py-2 text-xs font-black text-slate-900 shadow-md rounded-none ${isHighlyRated ? 'ring-2 ring-amber-400' : ''}`}>
+                      {/* Favorite Button (Floating clean opaque circle) */}
+                      <button
+                        onClick={(e) => toggleFavorite(e, exp.id)}
+                        className="absolute right-4 top-4 z-10 flex h-10 w-10 items-center justify-center bg-white shadow-md border border-slate-100 hover:scale-110 active:scale-95 transition-all duration-200 rounded-full"
+                        aria-label="Add to favorites"
+                      >
+                        <Heart 
+                          className={`h-5 w-5 transition-colors ${
+                            isFavorite ? 'fill-rose-500 text-rose-500' : 'text-slate-400 hover:text-rose-500'
+                          }`} 
+                        />
+                      </button>
+
+                      {/* Top Badges (Solid opaque backgrounds, standard curves) */}
+                      <div className={`absolute left-5 top-5 flex items-center gap-1.5 bg-white px-3.5 py-2 text-xs font-black text-slate-900 shadow-md rounded-lg ${isHighlyRated ? 'ring-2 ring-amber-400' : ''}`}>
                         <Star className="h-4 w-4 fill-amber-500 text-amber-500" />
                         <span>{exp.averageRating > 0 ? exp.averageRating.toFixed(1) : 'New'}</span>
                       </div>
 
                       {exp.hostIsVerified && (
-                        <div className="absolute right-5 top-5 flex items-center gap-1 bg-emerald-650 px-3.5 py-2 text-[10px] font-bold uppercase tracking-wider text-white shadow-md rounded-none">
-                          <ShieldCheck className="h-3.5 w-3.5" />
+                        <div className="absolute left-5 bottom-16 flex items-center gap-1 bg-emerald-600 px-3 py-1.5 text-[9px] font-extrabold uppercase tracking-wider text-white shadow-md rounded-lg">
+                          <ShieldCheck className="h-3 w-3" />
                           <span>Verified Host</span>
                         </div>
                       )}
 
                       {/* Location Badge */}
-                      <div className="absolute bottom-5 left-5 flex items-center gap-2 bg-slate-950 text-white px-4 py-2 border border-slate-800 rounded-none">
-                        <MapPin className="h-4 w-4 text-teal-400" />
-                        <span className="text-[11px] font-bold tracking-widest uppercase">{exp.location}</span>
+                      <div className="absolute bottom-5 left-5 flex items-center gap-1.5 bg-slate-950 text-white px-3.5 py-2 border border-slate-800 rounded-lg">
+                        <MapPin className="h-3.5 w-3.5 text-teal-400" />
+                        <span className="text-[10px] font-bold tracking-widest uppercase">{exp.location}</span>
                       </div>
                     </div>
 
                     {/* Stay Card Details */}
                     <div className="flex flex-1 flex-col p-8">
                       <div className="flex items-start justify-between gap-4">
-                        <h3 className="text-xl font-bold text-slate-900 group-hover:text-teal-750 transition-colors line-clamp-2 font-serif pr-2 leading-snug">
+                        <h3 className="text-xl font-bold text-slate-900 group-hover:text-teal-700 transition-colors line-clamp-2 font-serif pr-2 leading-snug">
                           {exp.title}
                         </h3>
-                        <div className="shrink-0 text-right bg-teal-50 text-teal-950 px-4 py-2.5 border border-teal-200/50 rounded-none">
-                          <span className="block text-2xl font-black leading-none text-teal-850">${exp.basePrice.toLocaleString()}</span>
+                        <div className="shrink-0 text-right bg-teal-50 text-teal-950 px-4 py-2.5 border border-teal-200/50 rounded-xl">
+                          <span className="block text-2xl font-black leading-none text-teal-800">${exp.basePrice.toLocaleString()}</span>
                           <span className="block text-[9px] font-bold uppercase tracking-widest text-teal-600 mt-1.5">per guest</span>
                         </div>
                       </div>
@@ -535,7 +566,7 @@ export default function HomePage() {
 
                       <div className="flex items-center justify-between mt-auto">
                         <div className="flex items-center gap-3.5">
-                          <div className="h-11 w-11 bg-gradient-to-tr from-teal-700 to-teal-500 border-2 border-white shadow-md overflow-hidden flex items-center justify-center shrink-0 rounded-none">
+                          <div className="h-11 w-11 rounded-full bg-gradient-to-tr from-teal-700 to-teal-500 border-2 border-white shadow-md overflow-hidden flex items-center justify-center shrink-0">
                             <span className="text-white font-bold text-base uppercase drop-shadow-sm">
                               {exp.hostName.charAt(0)}
                             </span>
@@ -551,12 +582,12 @@ export default function HomePage() {
                         {exp.tags.length > 0 && (
                           <div className="flex gap-1.5">
                             {exp.tags.slice(0, 1).map((t) => (
-                              <span key={t.id} className="bg-slate-50 border border-slate-200 px-3 py-1.5 text-[10px] font-bold text-slate-600 rounded-none">
+                              <span key={t.id} className="bg-slate-50 border border-slate-200 px-3 py-1.5 text-[10px] font-bold text-slate-600 rounded-lg">
                                 {t.name}
                               </span>
                             ))}
                             {exp.tags.length > 1 && (
-                              <span className="bg-slate-50 border border-slate-200 px-2 py-1.5 text-[10px] font-bold text-slate-600 rounded-none">
+                              <span className="bg-slate-50 border border-slate-200 px-2 py-1.5 text-[10px] font-bold text-slate-600 rounded-lg">
                                 +{exp.tags.length - 1}
                               </span>
                             )}
@@ -606,7 +637,7 @@ export default function HomePage() {
                 tag: "Kandy Mountain View Villa"
               }
             ].map((t, i) => (
-              <div key={i} className="bg-slate-800 p-8 border border-slate-700/60 flex flex-col justify-between hover:border-slate-650 transition-all duration-300 rounded-none">
+              <div key={i} className="bg-slate-800 p-8 border border-slate-700/60 flex flex-col justify-between hover:border-slate-650 transition-all duration-300 rounded-2xl">
                 <div className="space-y-6">
                   <div className="flex gap-1">
                     {Array.from({ length: t.stars }).map((_, idx) => (
@@ -620,7 +651,7 @@ export default function HomePage() {
                     <h5 className="font-bold text-white text-sm">{t.author}</h5>
                     <span className="text-[10px] text-slate-400 font-bold uppercase">{t.location}</span>
                   </div>
-                  <span className="text-[10px] bg-slate-900 text-teal-400 border border-slate-700 px-3 py-1.5 font-bold rounded-none">
+                  <span className="text-[10px] bg-slate-900 text-teal-400 border border-slate-700 px-3 py-1.5 font-bold rounded-lg">
                     {t.tag}
                   </span>
                 </div>
@@ -634,38 +665,38 @@ export default function HomePage() {
       <section className="w-full bg-slate-950 text-white py-24 px-6 sm:px-16 md:px-24 border-t border-slate-900 text-left relative z-10">
         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <div className="space-y-8">
-            <div className="inline-flex items-center gap-2 bg-slate-900 px-4 py-2 text-xs font-bold text-teal-300 border border-slate-800 uppercase tracking-widest rounded-none">
+            <div className="inline-flex items-center gap-2 bg-slate-900 px-4 py-2 text-xs font-bold text-teal-300 border border-slate-800 uppercase tracking-widest rounded-lg">
               <Award className="h-4 w-4" />
               <span>Partner With Us</span>
             </div>
 
             <h2 className="text-balance text-4xl sm:text-6xl font-bold font-serif leading-[1.1] tracking-tight">
               Share Your World, <br/>
-              <span className="text-teal-400">Grow Your Income</span>
+              <span className="text-teal-400 font-serif italic">Grow Your Income</span>
             </h2>
 
-            <p className="text-base sm:text-lg text-slate-350 leading-relaxed max-w-xl font-medium">
+            <p className="text-base sm:text-lg text-slate-355 leading-relaxed max-w-xl font-medium">
               Turn your extra space into a thriving opportunity. Join thousands of verified Sri Lankan hosts offering genuine experiences to global travelers.
             </p>
 
             <div className="pt-6 flex flex-col sm:flex-row gap-5">
               <Link
                 href="/auth/register"
-                className="inline-flex items-center justify-center gap-3 bg-teal-500 hover:bg-teal-400 px-8 py-4 sm:py-5 text-sm font-bold text-slate-950 shadow-md active:scale-95 transition-all duration-300 rounded-none"
+                className="inline-flex items-center justify-center gap-3 bg-teal-500 hover:bg-teal-400 px-8 py-4 sm:py-5 text-sm font-bold text-slate-950 shadow-md active:scale-95 transition-all duration-300 rounded-xl"
               >
                 <span>Become a Host Today</span>
                 <ArrowRight className="h-4 w-4" />
               </Link>
               <Link
                 href="/auth/login"
-                className="inline-flex items-center justify-center gap-2 bg-transparent border border-slate-850 hover:border-slate-700 hover:bg-slate-900 px-8 py-4 sm:py-5 text-sm font-bold text-white transition-all duration-300 rounded-none"
+                className="inline-flex items-center justify-center gap-2 bg-transparent border border-slate-850 hover:border-slate-700 hover:bg-slate-900 px-8 py-4 sm:py-5 text-sm font-bold text-white transition-all duration-300 rounded-xl"
               >
                 <span>Sign In to Dashboard</span>
                 <ChevronRight className="h-4 w-4 text-slate-400" />
               </Link>
             </div>
           </div>
-          <div className="hidden lg:block border border-slate-800 p-10 bg-slate-900/50 shadow-2xl rounded-none">
+          <div className="hidden lg:block border border-slate-800 p-10 bg-slate-900/50 shadow-2xl rounded-2xl">
             <h4 className="text-lg font-bold text-white font-serif mb-4">Host Guarantee Highlights</h4>
             <ul className="space-y-4 text-sm text-slate-400 font-medium">
               <li className="flex items-center gap-3">✓ 90% direct payout share released immediately.</li>
@@ -677,10 +708,10 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Floating Action Button to Scroll Top (Clean square edges) */}
+      {/* Floating Action Button to Scroll Top */}
       <button
         onClick={handleScrollTop}
-        className={`fixed bottom-8 right-6 z-40 flex items-center justify-center h-14 w-14 bg-slate-900 text-white shadow-lg hover:bg-teal-700 hover:scale-105 active:scale-95 transition-all duration-500 rounded-none ${
+        className={`fixed bottom-8 right-6 z-40 flex items-center justify-center h-14 w-14 bg-slate-900 text-white shadow-lg hover:bg-teal-700 hover:scale-105 active:scale-95 transition-all duration-500 rounded-xl ${
           scrolled ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10 pointer-events-none'
         }`}
         aria-label="Scroll to top"

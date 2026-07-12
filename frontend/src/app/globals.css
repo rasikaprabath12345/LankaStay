@@ -9,6 +9,7 @@
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-plus-jakarta);
+  --font-serif: var(--font-serif);
   --font-mono: var(--font-geist-mono);
   
   /* Skeleton loader animation එක මෙතන තමා define කරන්නේ */
