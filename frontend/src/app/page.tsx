@@ -241,7 +241,7 @@ export default function HomePage() {
           <div
             key={imgUrl}
             className={`absolute inset-0 bg-cover bg-center bg-no-repeat transition-opacity duration-1000 ease-in-out ${
-              idx === heroIndex ? 'opacity-100 z-0' : 'opacity-0 -z-10'
+              idx === heroIndex ? 'opacity-100' : 'opacity-0'
             }`}
             style={{ backgroundImage: `url('${imgUrl}')` }}
           />
