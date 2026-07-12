@@ -81,6 +81,23 @@ export default function HomePage() {
   const [tipsRegion, setTipsRegion] = useState<string>('ella');
   const resultsRef = useRef<HTMLDivElement>(null);
 
+  const heroImages = [
+    '/images/hero.jpg',          // Sandy landscape path
+    '/images/destination1.jpg',  // Kandy Stupa
+    '/images/destination2.jpg',  // Buddha between rocks
+    '/images/destination3.jpg',  // Galle Fort Clock Tower
+    '/images/destination4.jpg',  // Sigiriya Lion Rock
+    '/images/destination5.jpg',  // Lake landscape
+  ];
+  const [heroIndex, setHeroIndex] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setHeroIndex((prev) => (prev + 1) % heroImages.length);
+    }, 5000);
+    return () => clearInterval(interval);
+  }, []);
+
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 200);
@@ -219,13 +236,18 @@ export default function HomePage() {
 
       {/* 1. TripAdvisor Style Hero Section with Search Card */}
       <section className="relative w-full min-h-[450px] sm:min-h-[520px] flex flex-col items-center justify-center text-center px-4 pt-24 pb-16 z-20 bg-[#FCFBF9]">
-        {/* Full-width Background Image */}
-        <div
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-          style={{ backgroundImage: `url('/images/hero.jpg')` }}
-        />
+        {/* Full-width Background Image Slideshow with smooth cross-fade */}
+        {heroImages.map((imgUrl, idx) => (
+          <div
+            key={imgUrl}
+            className={`absolute inset-0 bg-cover bg-center bg-no-repeat transition-opacity duration-1000 ease-in-out ${
+              idx === heroIndex ? 'opacity-100 z-0' : 'opacity-0 -z-10'
+            }`}
+            style={{ backgroundImage: `url('${imgUrl}')` }}
+          />
+        ))}
         {/* Soft elegant TripAdvisor dark-green gradient overlay for readability */}
-        <div className="absolute inset-0 bg-gradient-to-b from-slate-950/45 via-slate-950/20 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-b from-slate-950/45 via-slate-950/20 to-transparent z-10" />
 
         {/* Content Centered on top of background */}
         <div className="relative z-10 w-full max-w-3xl mx-auto flex flex-col items-center space-y-6">
