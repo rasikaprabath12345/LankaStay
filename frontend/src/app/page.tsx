@@ -259,6 +259,9 @@ export default function HomePage() {
         {/* Soft elegant TripAdvisor dark-green gradient overlay for readability */}
         <div className="absolute inset-0 bg-gradient-to-b from-slate-950/45 via-slate-950/20 to-transparent z-10" />
 
+        {/* Premium smooth bottom fade to page background */}
+        <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-[#FCFBF9] via-[#e8f7ee]/50 to-transparent z-10 pointer-events-none" />
+
         {/* Manual Slideshow Controls (Left & Right Arrows) */}
         <button
           type="button"
