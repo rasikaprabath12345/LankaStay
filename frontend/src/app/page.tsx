@@ -51,19 +51,19 @@ interface Experience {
 }
 
 const SkeletonCard = () => (
-  <div className="flex flex-col overflow-hidden rounded-2xl bg-white border border-slate-200 shadow-sm">
-    <div className="aspect-[4/3] w-full bg-slate-100 animate-pulse relative overflow-hidden">
+  <div className="flex flex-col overflow-hidden rounded-2xl bg-white border border-green-100 shadow-sm">
+    <div className="aspect-[4/3] w-full bg-green-50 animate-pulse relative overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full animate-[shimmer_1.5s_infinite]" />
     </div>
     <div className="flex flex-col p-6 gap-3">
-      <div className="h-3 w-1/4 rounded bg-slate-200 animate-pulse" />
-      <div className="h-5 w-3/4 rounded bg-slate-200/80 animate-pulse" />
+      <div className="h-3 w-1/4 rounded bg-green-100 animate-pulse" />
+      <div className="h-5 w-3/4 rounded bg-green-100/80 animate-pulse" />
       <div className="flex items-center gap-1">
         {Array.from({ length: 5 }).map((_, i) => (
-          <div key={i} className="h-3.5 w-3.5 rounded-full bg-slate-100 animate-pulse" />
+          <div key={i} className="h-3.5 w-3.5 rounded-full bg-green-50 animate-pulse" />
         ))}
       </div>
-      <div className="h-4 w-1/3 rounded bg-slate-200/60 animate-pulse mt-2" />
+      <div className="h-4 w-1/3 rounded bg-green-100/60 animate-pulse mt-2" />
     </div>
   </div>
 );
@@ -211,7 +211,7 @@ export default function HomePage() {
           return (
             <span
               key={idx}
-              className={`h-3 w-3 rounded-full border border-[#0077b6] ${isFilled ? 'bg-[#0077b6]' : 'bg-white'
+              className={`h-3 w-3 rounded-full border border-emerald-600 ${isFilled ? 'bg-emerald-600' : 'bg-white'
                 }`}
             />
           );
@@ -242,7 +242,7 @@ export default function HomePage() {
   };
 
   return (
-    <div className="flex flex-col min-h-screen bg-[#FCFBF9] text-slate-900 font-sans antialiased overflow-x-hidden selection:bg-teal-100 selection:text-teal-900">
+    <div className="flex flex-col min-h-screen bg-[#F0FBF4] text-green-950 font-sans antialiased overflow-x-hidden selection:bg-emerald-100 selection:text-emerald-900">
 
       {/* 1. TripAdvisor Style Hero Section with Search Card */}
       <section className="relative w-full min-h-[450px] sm:min-h-[520px] flex flex-col items-center justify-center text-center px-4 pt-24 pb-16 z-20 bg-[#FCFBF9]">
@@ -250,9 +250,8 @@ export default function HomePage() {
         {heroImages.map((imgUrl, idx) => (
           <div
             key={imgUrl}
-            className={`absolute inset-0 bg-cover bg-center bg-no-repeat transition-opacity duration-1000 ease-in-out brightness-[0.90] contrast-[1.05] saturate-[1.10] ${
-              idx === heroIndex ? 'opacity-100' : 'opacity-0'
-            }`}
+            className={`absolute inset-0 bg-cover bg-center bg-no-repeat transition-opacity duration-1000 ease-in-out brightness-[0.90] contrast-[1.05] saturate-[1.10] ${idx === heroIndex ? 'opacity-100' : 'opacity-0'
+              }`}
             style={{ backgroundImage: `url('${imgUrl}')` }}
           />
         ))}
@@ -260,13 +259,13 @@ export default function HomePage() {
         <div className="absolute inset-0 bg-gradient-to-b from-slate-950/45 via-slate-950/20 to-transparent z-10" />
 
         {/* Premium smooth bottom fade to page background */}
-        <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-[#FCFBF9] via-[#e6f4fc]/50 to-transparent z-10 pointer-events-none" />
+        <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-[#F0FBF4] via-[#DCFCE7]/50 to-transparent z-10 pointer-events-none" />
 
         {/* Manual Slideshow Controls (Left & Right Arrows) */}
         <button
           type="button"
           onClick={handlePrevHero}
-          className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 z-30 p-2 sm:p-2.5 rounded-full bg-slate-900/35 hover:bg-[#0077b6]/80 text-white border border-white/10 backdrop-blur-sm transition-all active:scale-90"
+          className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 z-30 p-2 sm:p-2.5 rounded-full bg-green-950/35 hover:bg-emerald-700/80 text-white border border-white/10 backdrop-blur-sm transition-all active:scale-90"
           aria-label="Previous Slide"
         >
           <ChevronLeft className="h-5 w-5 sm:h-6 sm:w-6" />
@@ -274,7 +273,7 @@ export default function HomePage() {
         <button
           type="button"
           onClick={handleNextHero}
-          className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 z-30 p-2 sm:p-2.5 rounded-full bg-slate-900/35 hover:bg-[#0077b6]/80 text-white border border-white/10 backdrop-blur-sm transition-all active:scale-90"
+          className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 z-30 p-2 sm:p-2.5 rounded-full bg-green-950/35 hover:bg-emerald-700/80 text-white border border-white/10 backdrop-blur-sm transition-all active:scale-90"
           aria-label="Next Slide"
         >
           <ChevronRight className="h-5 w-5 sm:h-6 sm:w-6" />
@@ -312,11 +311,10 @@ export default function HomePage() {
                   key={tab.id}
                   type="button"
                   onClick={() => setSearchCategory(tab.id)}
-                  className={`flex items-center gap-1.5 pb-2.5 border-b-2 transition-all ${
-                    searchCategory === tab.id
-                      ? 'text-[#0077b6] border-[#0077b6]'
-                      : 'border-transparent text-white/80 hover:text-[#0077b6]'
-                  }`}
+                  className={`flex items-center gap-1.5 pb-2.5 border-b-2 transition-all ${searchCategory === tab.id
+                      ? 'text-emerald-400 border-emerald-400'
+                      : 'border-transparent text-white/80 hover:text-emerald-400'
+                    }`}
                 >
                   {tab.icon}
                   <span>{tab.name}</span>
@@ -325,8 +323,8 @@ export default function HomePage() {
             </div>
 
             <form onSubmit={handleSearchSubmit} className="flex flex-col md:flex-row items-center gap-3">
-              <div className="flex items-center gap-3 px-4 py-2 border border-white/10 bg-slate-900/60 rounded-2xl w-full md:flex-grow focus-within:ring-2 focus-within:ring-[#0077b6]/50 focus-within:border-[#0077b6] transition-all">
-                <MapPin className="h-5 w-5 text-[#0077b6] shrink-0" />
+              <div className="flex items-center gap-3 px-4 py-2 border border-white/10 bg-green-950/60 rounded-2xl w-full md:flex-grow focus-within:ring-2 focus-within:ring-emerald-500/50 focus-within:border-emerald-400 transition-all">
+                <MapPin className="h-5 w-5 text-emerald-400 shrink-0" />
                 <div className="flex-grow text-left">
                   <span className="block text-[8px] font-black text-slate-300 uppercase tracking-widest mb-0.5">Location</span>
                   <input
@@ -346,7 +344,7 @@ export default function HomePage() {
 
               <button
                 type="submit"
-                className="w-full md:w-auto bg-[#0077b6] hover:bg-[#005b8c] text-white font-black text-xs uppercase tracking-wider rounded-2xl px-8 py-4 flex items-center justify-center gap-2 transition-all shadow-md active:scale-95 shrink-0"
+                className="w-full md:w-auto bg-emerald-600 hover:bg-emerald-700 text-white font-black text-xs uppercase tracking-wider rounded-2xl px-8 py-4 flex items-center justify-center gap-2 transition-all shadow-md active:scale-95 shrink-0"
               >
                 <Search className="h-4 w-4" />
                 <span>Search</span>
@@ -392,7 +390,7 @@ export default function HomePage() {
 
       {/* 2. TripAdvisor Categories Icons (Circular Row) */}
       <section className="mx-auto max-w-7xl w-full px-4 sm:px-6 lg:px-8 py-12">
-        <div className="flex items-center justify-center gap-6 md:gap-12 overflow-x-auto no-scrollbar py-2 border-b border-slate-200/50 pb-8">
+        <div className="flex items-center justify-center gap-6 md:gap-12 overflow-x-auto no-scrollbar py-2 border-b border-green-200/50 pb-8">
           {[
             { name: 'All Stays', icon: <Compass className="h-5.5 w-5.5" />, tag: 'all' },
             { name: 'Homestays', icon: <Home className="h-5.5 w-5.5" />, tag: 'stay' },
@@ -409,12 +407,12 @@ export default function HomePage() {
                 className="flex flex-col items-center gap-2 group shrink-0"
               >
                 <div className={`h-14 w-14 rounded-full border flex items-center justify-center shadow-sm transition-all duration-300 ${isActive
-                    ? 'bg-[#0077b6] text-white border-[#0077b6] scale-105'
-                    : 'bg-white text-slate-700 border-slate-200 hover:border-[#0077b6] hover:text-[#0077b6] hover:scale-105'
+                  ? 'bg-emerald-600 text-white border-emerald-600 scale-105'
+                  : 'bg-white text-green-700 border-green-200 hover:border-emerald-500 hover:text-emerald-600 hover:scale-105'
                   }`}>
                   {cat.icon}
                 </div>
-                <span className={`text-[11px] font-bold transition-colors ${isActive ? 'text-[#0077b6]' : 'text-slate-500 group-hover:text-[#0077b6]'
+                <span className={`text-[11px] font-bold transition-colors ${isActive ? 'text-emerald-600' : 'text-green-600 group-hover:text-emerald-600'
                   }`}>
                   {cat.name}
                 </span>
@@ -427,8 +425,8 @@ export default function HomePage() {
       {/* 3. Core Values Grid */}
       <section id="about" className="mx-auto max-w-7xl w-full px-4 sm:px-6 lg:px-8 py-10 select-none scroll-mt-20">
         <div className="text-center max-w-3xl mx-auto mb-12 space-y-2">
-          <h2 className="text-2xl sm:text-3xl font-bold tracking-tight font-serif text-slate-900">Credibility &amp; Trust First</h2>
-          <p className="text-sm text-slate-500 font-medium">LankaStay connects global visitors to authentic Sri Lankan stays with security and fairness.</p>
+          <h2 className="text-2xl sm:text-3xl font-bold tracking-tight font-serif text-green-950">Credibility &amp; Trust First</h2>
+          <p className="text-sm text-green-700 font-medium">LankaStay connects global visitors to authentic Sri Lankan stays with security and fairness.</p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -437,48 +435,48 @@ export default function HomePage() {
               icon: Award,
               title: "SLTDA Standards Compliant",
               desc: "Every listing matches standard tourism metrics, ensuring comfortable accommodation, clean sanitation, and reliable hosts.",
-              color: "text-[#0077b6] bg-[#e6f4fc] border border-[#bce2f7]"
+              color: "text-emerald-700 bg-emerald-50 border border-emerald-200"
             },
             {
               icon: ShieldCheck,
               title: "GN Clearance Certified",
               desc: "All hosts undergo residential check clearances verified via local Grama Niladhari and official police records.",
-              color: "text-emerald-700 bg-emerald-50 border border-emerald-250/30"
+              color: "text-green-700 bg-green-50 border border-green-200"
             },
             {
               icon: CheckCircle2,
               title: "Protected Escrow Payment",
               desc: "Funds stay locked in escrow until check-out, ensuring 90% booking fees release directly to hosts on complete verification.",
-              color: "text-amber-700 bg-amber-50 border border-amber-200/50"
+              color: "text-lime-700 bg-lime-50 border border-lime-200/50"
             }
           ].map((item, i) => (
-            <div key={i} className="group flex flex-col items-start p-6 bg-white border border-slate-200 hover:border-slate-300 shadow-sm transition-all duration-300 text-left rounded-2xl">
+            <div key={i} className="group flex flex-col items-start p-6 bg-white border border-green-100 hover:border-green-300 shadow-sm transition-all duration-300 text-left rounded-2xl">
               <span className={`flex h-12 w-12 items-center justify-center rounded-xl ${item.color} mb-6 group-hover:scale-105 transition-transform duration-300`}>
                 <item.icon className="h-6 w-6" />
               </span>
-              <h4 className="text-base font-bold text-slate-900 mb-2">{item.title}</h4>
-              <p className="text-xs text-slate-500 leading-relaxed font-medium">{item.desc}</p>
+              <h4 className="text-base font-bold text-green-950 mb-2">{item.title}</h4>
+              <p className="text-xs text-green-700 leading-relaxed font-medium">{item.desc}</p>
             </div>
           ))}
         </div>
       </section>
 
       {/* 4. How It Works Section */}
-      <section className="bg-slate-50 border-y border-slate-200/60 py-16 text-left">
+      <section className="bg-green-50 border-y border-green-200/60 py-16 text-left">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
 
             <div className="lg:col-span-4 space-y-4">
-              <span className="text-xs font-black tracking-widest text-[#0077b6] uppercase">Simple Workflow</span>
-              <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-slate-900 font-serif leading-tight">
+              <span className="text-xs font-black tracking-widest text-emerald-600 uppercase">Simple Workflow</span>
+              <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-green-950 font-serif leading-tight">
                 How It Works <br />
                 for Travelers
               </h2>
-              <p className="text-xs text-slate-500 leading-relaxed font-medium">
+              <p className="text-xs text-green-700 leading-relaxed font-medium">
                 Our secure platform allows you to book and experience authentic Sri Lankan hospitality with zero complications.
               </p>
               <div className="pt-2">
-                <Link href="/auth/register" className="inline-flex items-center gap-2 text-xs font-bold text-[#0077b6] hover:text-[#005b8c] group">
+                <Link href="/auth/register" className="inline-flex items-center gap-2 text-xs font-bold text-emerald-600 hover:text-emerald-700 group">
                   <span>Register traveler profile</span>
                   <ArrowRight className="h-3.5 w-3.5 group-hover:translate-x-1 transition-transform" />
                 </Link>
@@ -491,10 +489,10 @@ export default function HomePage() {
                 { step: "02", title: "Reserve Safely", desc: "Confirm booking request. Your money is secured via locked escrow protection." },
                 { step: "03", title: "Immerse Locally", desc: "Stay with local families, enjoy home-cooked meals, and experience Ceylon safely." }
               ].map((item, index) => (
-                <div key={index} className="bg-white p-6 border border-slate-200 shadow-sm rounded-2xl">
-                  <span className="block text-2xl font-black text-[#0077b6]/25 font-serif mb-4">{item.step}</span>
-                  <h4 className="text-sm font-bold text-slate-900 mb-1">{item.title}</h4>
-                  <p className="text-[11px] text-slate-500 leading-relaxed font-medium">{item.desc}</p>
+                <div key={index} className="bg-white p-6 border border-green-100 shadow-sm rounded-2xl">
+                  <span className="block text-2xl font-black text-emerald-500/30 font-serif mb-4">{item.step}</span>
+                  <h4 className="text-sm font-bold text-green-950 mb-1">{item.title}</h4>
+                  <p className="text-[11px] text-green-700 leading-relaxed font-medium">{item.desc}</p>
                 </div>
               ))}
             </div>
@@ -507,8 +505,8 @@ export default function HomePage() {
       <section id="tailor-made" className="mx-auto max-w-7xl w-full px-4 sm:px-6 lg:px-8 py-16 text-left select-none scroll-mt-20">
         <div className="flex flex-col sm:flex-row justify-between items-end mb-8 gap-2">
           <div>
-            <h2 className="text-2xl font-bold tracking-tight text-slate-900 font-serif">Curated Regional Filters</h2>
-            <p className="text-xs text-slate-500 mt-1 font-medium">Instantly discover homestays across popular travel spots.</p>
+            <h2 className="text-2xl font-bold tracking-tight text-green-950 font-serif">Curated Regional Filters</h2>
+            <p className="text-xs text-green-700 mt-1 font-medium">Instantly discover homestays across popular travel spots.</p>
           </div>
         </div>
 
@@ -522,13 +520,13 @@ export default function HomePage() {
             <button
               key={dest.name}
               onClick={() => handleQuickLocation(dest.name)}
-              className="group relative h-40 sm:h-48 overflow-hidden shadow-sm hover:shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0077b6] transition-all duration-500 text-left w-full border border-slate-200 rounded-2xl"
+              className="group relative h-40 sm:h-48 overflow-hidden shadow-sm hover:shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 transition-all duration-500 text-left w-full border border-green-200 rounded-2xl"
             >
               <img src={dest.img} alt={dest.name} loading="lazy" className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out" />
               <div className="absolute inset-0 bg-slate-900/40 group-hover:bg-slate-900/50 transition-colors duration-500" />
               <div className="absolute bottom-4 left-4 text-white">
                 <span className="block font-black text-xl tracking-wide">{dest.name}</span>
-                <span className="block text-[9px] font-bold tracking-widest text-[#0077b6] uppercase mt-1 opacity-90">{dest.label}</span>
+                <span className="block text-[9px] font-bold tracking-widest text-emerald-400 uppercase mt-1 opacity-90">{dest.label}</span>
               </div>
             </button>
           ))}
@@ -541,15 +539,15 @@ export default function HomePage() {
 
           <div className="flex flex-col sm:flex-row justify-between items-end mb-8 gap-4 border-b border-slate-200 pb-4">
             <div>
-              <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-slate-900 font-serif">Featured Homestays</h2>
-              <p className="text-xs text-slate-500 mt-1 font-medium">Connect directly and support local families in rural regions.</p>
+              <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-green-950 font-serif">Featured Homestays</h2>
+              <p className="text-xs text-green-700 mt-1 font-medium">Connect directly and support local families in rural regions.</p>
             </div>
             <button
               onClick={fetchExperiences}
               disabled={loading}
-              className="flex items-center gap-2 bg-white border border-slate-200 px-4 py-2 text-xs font-bold text-slate-700 hover:bg-slate-50 shadow-sm transition-all active:scale-95 disabled:opacity-50 rounded-xl"
+              className="flex items-center gap-2 bg-white border border-green-200 px-4 py-2 text-xs font-bold text-green-800 hover:bg-green-50 shadow-sm transition-all active:scale-95 disabled:opacity-50 rounded-xl"
             >
-              <RefreshCw className={`h-3.5 w-3.5 text-[#0077b6] ${loading ? 'animate-spin' : ''}`} />
+              <RefreshCw className={`h-3.5 w-3.5 text-emerald-600 ${loading ? 'animate-spin' : ''}`} />
               <span>{loading ? 'Refreshing...' : 'Sync Registry'}</span>
             </button>
           </div>
@@ -567,16 +565,16 @@ export default function HomePage() {
               </button>
             </div>
           ) : experiences.length === 0 ? (
-            <div className="border border-dashed border-slate-250 bg-white py-24 text-center max-w-3xl mx-auto shadow-sm rounded-2xl">
-              <div className="inline-flex h-16 w-16 items-center justify-center bg-slate-50 text-slate-400 mb-4 rounded-xl">
+            <div className="border border-dashed border-green-200 bg-white py-24 text-center max-w-3xl mx-auto shadow-sm rounded-2xl">
+              <div className="inline-flex h-16 w-16 items-center justify-center bg-green-50 text-green-400 mb-4 rounded-xl">
                 <Search className="h-8 w-8" />
               </div>
-              <h3 className="text-slate-900 text-lg font-bold font-serif">No homestays match the filter</h3>
-              <p className="text-xs text-slate-500 mt-2 font-medium max-w-sm mx-auto">We couldn't find any listings matching your parameters. Clear options or try another region.</p>
+              <h3 className="text-green-950 text-lg font-bold font-serif">No homestays match the filter</h3>
+              <p className="text-xs text-green-700 mt-2 font-medium max-w-sm mx-auto">We couldn't find any listings matching your parameters. Clear options or try another region.</p>
               {(locationQuery || selectedTagIds.length > 0) && (
                 <button
                   onClick={() => { setLocationQuery(''); setSelectedTagIds([]); setActiveCategory('all'); }}
-                  className="mt-6 bg-slate-900 px-6 py-2.5 text-xs font-bold text-white hover:bg-[#0077b6] transition-all shadow-md active:scale-95 rounded-xl"
+                  className="mt-6 bg-green-950 px-6 py-2.5 text-xs font-bold text-white hover:bg-emerald-600 transition-all shadow-md active:scale-95 rounded-xl"
                 >
                   Clear all filters
                 </button>
@@ -615,7 +613,7 @@ export default function HomePage() {
 
                       {/* Top Rank Badge */}
                       <div className="absolute left-3.5 bottom-3.5 flex items-center gap-1 bg-slate-950/80 backdrop-blur-sm text-white px-2.5 py-1 text-[9px] font-extrabold uppercase tracking-wide rounded-lg">
-                        <MapPin className="h-3 w-3 text-[#0077b6]" />
+                        <MapPin className="h-3 w-3 text-[#7C3AED]" />
                         <span>{exp.location}</span>
                       </div>
                     </div>
@@ -635,7 +633,7 @@ export default function HomePage() {
                       </div>
 
                       {/* Title */}
-                      <h3 className="text-base font-bold text-slate-900 group-hover:text-[#0077b6] transition-colors line-clamp-1 font-serif pr-2 leading-tight">
+                      <h3 className="text-base font-bold text-slate-900 group-hover:text-[#7C3AED] transition-colors line-clamp-1 font-serif pr-2 leading-tight">
                         {exp.title}
                       </h3>
 
@@ -670,7 +668,7 @@ export default function HomePage() {
 
                         <div className="text-right">
                           <span className="text-xs text-slate-400 font-semibold mr-1">from</span>
-                          <span className="text-base font-black text-[#0077b6]">${exp.basePrice}</span>
+                          <span className="text-base font-black text-[#7C3AED]">${exp.basePrice}</span>
                         </div>
                       </div>
 
@@ -683,7 +681,7 @@ export default function HomePage() {
                           onClick={(e) => {
                             e.stopPropagation();
                           }}
-                          className="flex-1 flex items-center justify-center gap-1.5 bg-[#25D366] hover:bg-[#20ba5a] text-white text-[10px] font-black uppercase tracking-wider py-2.5 rounded-xl transition-all shadow-sm active:scale-95"
+                          className="flex-1 flex items-center justify-center gap-1.5 bg-[#25D366] hover:bg-[#5B21B6] text-white text-[10px] font-black uppercase tracking-wider py-2.5 rounded-xl transition-all shadow-sm active:scale-95"
                         >
                           <svg className="h-3.5 w-3.5 fill-current" viewBox="0 0 24 24">
                             <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L0 24l6.335-1.662c1.746.953 3.71 1.458 5.704 1.459h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
@@ -750,7 +748,7 @@ export default function HomePage() {
                 }
               ].map((item, idx) => (
                 <div key={idx} className="bg-white/5 border border-white/10 p-5 rounded-2xl space-y-2 text-left hover:bg-white/10 transition-colors">
-                  <span className="text-xl font-serif font-black text-[#0077b6]">{item.step}</span>
+                  <span className="text-xl font-serif font-black text-[#7C3AED]">{item.step}</span>
                   <h4 className="text-xs font-bold text-slate-100">{item.title}</h4>
                   <p className="text-[10px] text-slate-400 leading-relaxed font-medium">{item.desc}</p>
                 </div>
@@ -764,7 +762,7 @@ export default function HomePage() {
       <section className="bg-[#FCFBF9] border-t border-slate-200 py-16 text-left">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto mb-10 space-y-2">
-            <span className="text-xs font-bold text-[#0077b6] uppercase tracking-widest">Culinary Experiences</span>
+            <span className="text-xs font-bold text-[#7C3AED] uppercase tracking-widest">Culinary Experiences</span>
             <h2 className="text-2xl sm:text-3xl font-bold font-serif text-slate-900 tracking-tight">Sri Lankan Culinary Matchmaker</h2>
             <p className="text-xs text-slate-500 font-medium">Choose a traditional specialty to filter homestays that host authentic food workshops.</p>
           </div>
@@ -807,18 +805,18 @@ export default function HomePage() {
                   }
                   resultsRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
                 }}
-                className="group flex flex-col bg-white border border-slate-200 rounded-2xl overflow-hidden shadow-sm hover:border-[#0077b6] hover:shadow-md transition-all text-left"
+                className="group flex flex-col bg-white border border-slate-200 rounded-2xl overflow-hidden shadow-sm hover:border-[#7C3AED] hover:shadow-md transition-all text-left"
               >
                 <div className="aspect-[4/3] w-full bg-slate-100 overflow-hidden relative">
                   <img src={dish.img} alt={dish.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
-                  <span className="absolute bottom-3 left-3 text-[10px] bg-[#0077b6] text-white px-2 py-0.5 rounded font-extrabold uppercase tracking-wide">
+                  <span className="absolute bottom-3 left-3 text-[10px] bg-[#7C3AED] text-white px-2 py-0.5 rounded font-extrabold uppercase tracking-wide">
                     {dish.name}
                   </span>
                 </div>
                 <div className="p-4 flex-1 flex flex-col justify-between">
                   <p className="text-[10px] text-slate-500 font-medium leading-relaxed">{dish.desc}</p>
-                  <span className="text-[9px] font-bold text-[#0077b6] mt-2 flex items-center gap-1 group-hover:translate-x-1 transition-transform">
+                  <span className="text-[9px] font-bold text-[#7C3AED] mt-2 flex items-center gap-1 group-hover:translate-x-1 transition-transform">
                     Find homestays <ArrowRight className="h-3 w-3" />
                   </span>
                 </div>
@@ -834,7 +832,7 @@ export default function HomePage() {
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-center">
 
             <div className="space-y-4">
-              <span className="text-xs font-bold text-[#0077b6] uppercase tracking-widest">Travel Smart</span>
+              <span className="text-xs font-bold text-[#7C3AED] uppercase tracking-widest">Travel Smart</span>
               <h2 className="text-2xl sm:text-3xl font-bold font-serif text-slate-900 tracking-tight leading-tight">
                 Sri Lanka Travel Planner & Regional Guides
               </h2>
@@ -853,8 +851,8 @@ export default function HomePage() {
                     key={region.id}
                     onClick={() => setTipsRegion(region.id)}
                     className={`px-4 py-2.5 text-xs font-bold text-left rounded-xl border transition-all ${tipsRegion === region.id
-                        ? 'bg-slate-900 text-white border-slate-900'
-                        : 'bg-slate-50 text-slate-700 border-slate-200 hover:bg-slate-100'
+                      ? 'bg-slate-900 text-white border-slate-900'
+                      : 'bg-slate-50 text-slate-700 border-slate-200 hover:bg-slate-100'
                       }`}
                   >
                     {region.name}
@@ -985,7 +983,7 @@ export default function HomePage() {
       <section className="bg-[#FCFBF9] border-t border-slate-200 py-16 text-left select-none">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto mb-10 space-y-2">
-            <span className="text-xs font-bold text-[#0077b6] uppercase tracking-widest">Our Community</span>
+            <span className="text-xs font-bold text-[#7C3AED] uppercase tracking-widest">Our Community</span>
             <h2 className="text-2xl sm:text-3xl font-bold font-serif text-slate-900 tracking-tight">Meet Our Certified Families</h2>
             <p className="text-xs text-slate-500 font-medium">Hosts on LankaStay are verified through Grama Niladhari clearance and SLTDA hospitality standards.</p>
           </div>
@@ -1045,7 +1043,7 @@ export default function HomePage() {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10">
 
           <div className="text-center max-w-2xl mx-auto mb-12 space-y-2">
-            <span className="text-xs font-bold text-[#0077b6] uppercase tracking-widest">Traveler Stories</span>
+            <span className="text-xs font-bold text-[#7C3AED] uppercase tracking-widest">Traveler Stories</span>
             <h2 className="text-2.5xl font-bold font-serif tracking-tight">Voted Most Authentic Holiday Platform</h2>
             <p className="text-sm text-slate-500">Read verified reviews from adventurers who lived local.</p>
           </div>
@@ -1078,7 +1076,7 @@ export default function HomePage() {
                 <div className="space-y-4">
                   <div className="flex gap-0.5">
                     {Array.from({ length: t.stars }).map((_, idx) => (
-                      <span key={idx} className="h-3 w-3 rounded-full bg-[#0077b6] border border-[#0077b6]" />
+                      <span key={idx} className="h-3 w-3 rounded-full bg-[#7C3AED] border border-[#7C3AED]" />
                     ))}
                   </div>
                   <p className="text-xs leading-relaxed text-slate-600 italic">"{t.quote}"</p>
@@ -1088,7 +1086,7 @@ export default function HomePage() {
                     <h5 className="font-bold text-slate-900 text-xs">{t.author}</h5>
                     <span className="text-[9px] text-slate-400 font-bold uppercase">{t.location}</span>
                   </div>
-                  <span className="text-[9px] bg-slate-50 text-[#0077b6] border border-slate-150 px-2 py-1 font-bold rounded-lg">
+                  <span className="text-[9px] bg-slate-50 text-[#7C3AED] border border-slate-150 px-2 py-1 font-bold rounded-lg">
                     {t.tag}
                   </span>
                 </div>
@@ -1102,7 +1100,7 @@ export default function HomePage() {
       <section id="faq" className="bg-[#FCFBF9] border-t border-slate-200 py-20 text-left select-none scroll-mt-20">
         <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12 space-y-2">
-            <span className="text-xs font-bold text-[#0077b6] uppercase tracking-widest">Frequently Asked Questions</span>
+            <span className="text-xs font-bold text-[#7C3AED] uppercase tracking-widest">Frequently Asked Questions</span>
             <h2 className="text-2xl sm:text-3xl font-bold font-serif text-slate-900 tracking-tight">Got Questions? We Have Answers.</h2>
             <p className="text-xs text-slate-500 font-medium">Learn more about the trust standards and operation of LankaStay.</p>
           </div>
@@ -1128,7 +1126,7 @@ export default function HomePage() {
             ].map((faq, index) => (
               <div key={index} className="bg-white p-5 border border-slate-200 rounded-2xl shadow-sm space-y-2">
                 <h4 className="text-sm font-bold text-slate-900 flex items-center gap-1.5">
-                  <span className="text-[#0077b6] font-serif">Q.</span> {faq.q}
+                  <span className="text-[#7C3AED] font-serif">Q.</span> {faq.q}
                 </h4>
                 <p className="text-xs text-slate-500 leading-relaxed font-medium pl-4">
                   {faq.a}
@@ -1142,7 +1140,7 @@ export default function HomePage() {
       {/* Floating Action Button to Scroll Top */}
       <button
         onClick={handleScrollTop}
-        className={`fixed bottom-8 right-6 z-40 flex items-center justify-center h-12 w-12 bg-slate-900 text-white shadow-lg hover:bg-[#0077b6] hover:scale-105 active:scale-95 transition-all duration-300 rounded-xl ${scrolled ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10 pointer-events-none'
+        className={`fixed bottom-8 right-6 z-40 flex items-center justify-center h-12 w-12 bg-slate-900 text-white shadow-lg hover:bg-[#7C3AED] hover:scale-105 active:scale-95 transition-all duration-300 rounded-xl ${scrolled ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10 pointer-events-none'
           }`}
         aria-label="Scroll to top"
       >

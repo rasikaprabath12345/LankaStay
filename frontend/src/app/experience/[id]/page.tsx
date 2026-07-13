@@ -254,7 +254,7 @@ Please check your LankaStay Dashboard and confirm my request on WhatsApp!`;
   ];
 
   return (
-    <div className="flex flex-col min-h-screen bg-[#FCFBF9] text-slate-900 font-sans antialiased overflow-x-hidden selection:bg-teal-100 selection:text-teal-900 animate-fade-in">
+    <div className="flex flex-col min-h-screen bg-[#F8F7FF] text-slate-900 font-sans antialiased overflow-x-hidden selection:bg-violet-100 selection:text-violet-900 animate-fade-in">
       
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-10 w-full">
         
