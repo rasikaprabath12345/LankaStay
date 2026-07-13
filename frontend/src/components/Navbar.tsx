@@ -28,7 +28,7 @@ export const Navbar: React.FC = () => {
   };
 
   const mainNavLinks = [
-    { name: 'Plan with AI', href: '#', icon: <Sparkles className="h-3.5 w-3.5 text-[#00aa6c]" /> },
+    { name: 'Plan with AI', href: '#', icon: <Sparkles className="h-3.5 w-3.5 text-[#0077b6]" /> },
     { name: 'Discover', href: '/#tours' },
     { name: 'Review', href: '/#blog' }
   ];
@@ -60,8 +60,8 @@ export const Navbar: React.FC = () => {
           {/* Left Side: Brand Logo */}
           <div className="flex items-center gap-6 shrink-0">
             <Link href="/" className="flex items-center gap-2.5 group">
-              <span className="flex h-9 w-9 items-center justify-center rounded-full bg-[#e8fbf3] text-[#00aa6c] transition-transform duration-250 group-hover:scale-105">
-                <svg className="h-5 w-5 text-[#00AA6C] fill-current" viewBox="0 0 24 24">
+              <span className="flex h-9 w-9 items-center justify-center rounded-full bg-[#e6f4fc] text-[#0077b6] transition-transform duration-250 group-hover:scale-105">
+                <svg className="h-5 w-5 text-[#0077b6] fill-current" viewBox="0 0 24 24">
                   {/* TripAdvisor Owl eyes + Compass concept */}
                   <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="2.2" fill="none" />
                   <circle cx="8" cy="12" r="2.2" fill="currentColor" />
@@ -72,7 +72,7 @@ export const Navbar: React.FC = () => {
                 </svg>
               </span>
               <span className="text-xl font-bold tracking-tight font-serif text-slate-950">
-                Lanka<span className="font-sans font-extrabold text-[#00aa6c]">Stay</span>
+                Lanka<span className="font-sans font-extrabold text-[#0077b6]">Stay</span>
               </span>
             </Link>
           </div>
@@ -80,7 +80,7 @@ export const Navbar: React.FC = () => {
           {/* Center Column: Small Pill Search Bar */}
           <div className="hidden md:flex flex-grow max-w-sm">
             <form onSubmit={handleSearchSubmit} className="w-full">
-              <div className="flex items-center gap-2 border border-slate-200 bg-slate-50 px-3.5 py-1.5 rounded-full w-full focus-within:bg-white focus-within:ring-2 focus-within:ring-[#00aa6c]/40 focus-within:border-[#00aa6c] transition-all">
+              <div className="flex items-center gap-2 border border-slate-200 bg-slate-50 px-3.5 py-1.5 rounded-full w-full focus-within:bg-white focus-within:ring-2 focus-within:ring-[#0077b6]/40 focus-within:border-[#0077b6] transition-all">
                 <Search className="h-4 w-4 text-slate-400 shrink-0" />
                 <input
                   type="text"
@@ -101,7 +101,7 @@ export const Navbar: React.FC = () => {
                 <Link
                   key={tab.name}
                   href={tab.href}
-                  className="flex items-center gap-1 text-[15px] font-bold text-slate-700 hover:text-[#00aa6c] transition-colors"
+                  className="flex items-center gap-1 text-[15px] font-bold text-slate-700 hover:text-[#0077b6] transition-colors"
                 >
                   {tab.icon && tab.icon}
                   <span>{tab.name}</span>
@@ -112,7 +112,7 @@ export const Navbar: React.FC = () => {
             <div className="h-4 w-[1px] bg-slate-200"></div>
 
             {/* Currency selector (USD decorative) */}
-            <div className="flex items-center gap-1.5 cursor-pointer hover:text-[#00aa6c] transition-colors">
+            <div className="flex items-center gap-1.5 cursor-pointer hover:text-[#0077b6] transition-colors">
               <Globe className="h-3.5 w-3.5 text-slate-400" />
               <span className="text-[15px] font-bold text-slate-700">USD</span>
             </div>
@@ -132,7 +132,7 @@ export const Navbar: React.FC = () => {
 
                 <Link
                   href={getDashboardLink()}
-                  className="flex items-center gap-1.5 rounded-full border border-slate-200 bg-white px-4 py-2 text-[15px] font-bold text-slate-700 hover:bg-slate-50 hover:text-[#00aa6c] transition-all shadow-sm"
+                  className="flex items-center gap-1.5 rounded-full border border-slate-200 bg-white px-4 py-2 text-[15px] font-bold text-slate-700 hover:bg-slate-50 hover:text-[#0077b6] transition-all shadow-sm"
                 >
                   <LayoutDashboard className="h-4 w-4 text-slate-400" />
                   <span>Dashboard</span>
@@ -164,7 +164,7 @@ export const Navbar: React.FC = () => {
               <div className="flex items-center gap-3">
                 <Link
                   href="/auth/login"
-                  className="text-[15px] font-bold uppercase tracking-wider text-slate-700 hover:text-[#00aa6c] transition-colors"
+                  className="text-[15px] font-bold uppercase tracking-wider text-slate-700 hover:text-[#0077b6] transition-colors"
                 >
                   Sign In
                 </Link>
@@ -182,7 +182,7 @@ export const Navbar: React.FC = () => {
           <div className="flex lg:hidden items-center shrink-0">
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="p-2 rounded-xl border border-slate-200 text-slate-655 hover:bg-slate-50 hover:text-[#00aa6c] transition-colors"
+              className="p-2 rounded-xl border border-slate-200 text-slate-655 hover:bg-slate-50 hover:text-[#0077b6] transition-colors"
               aria-label="Toggle menu"
             >
               {mobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
@@ -202,8 +202,8 @@ export const Navbar: React.FC = () => {
                   key={tab.name}
                   href={tab.href}
                   className={`text-[15px] font-bold whitespace-nowrap pb-2 border-b-2 transition-all ${activeTab === tab.name
-                      ? 'text-[#00aa6c] border-[#00aa6c]'
-                      : 'text-slate-500 border-transparent hover:text-[#00aa6c]'
+                      ? 'text-[#0077b6] border-[#0077b6]'
+                      : 'text-slate-500 border-transparent hover:text-[#0077b6]'
                     }`}
                   onClick={() => setActiveTab(tab.name)}
                 >
@@ -224,7 +224,7 @@ export const Navbar: React.FC = () => {
                 key={tab.name}
                 href={tab.href}
                 onClick={() => setMobileMenuOpen(false)}
-                className="text-sm font-bold uppercase tracking-wider py-2.5 transition-colors border-b border-slate-50 text-slate-700 hover:text-[#00aa6c]"
+                className="text-sm font-bold uppercase tracking-wider py-2.5 transition-colors border-b border-slate-50 text-slate-700 hover:text-[#0077b6]"
               >
                 {tab.name}
               </Link>
@@ -234,7 +234,7 @@ export const Navbar: React.FC = () => {
                 key={tab.name}
                 href={tab.href}
                 onClick={() => setMobileMenuOpen(false)}
-                className="text-sm font-bold uppercase tracking-wider py-2.5 transition-colors border-b border-slate-50 text-slate-500 hover:text-[#00aa6c]"
+                className="text-sm font-bold uppercase tracking-wider py-2.5 transition-colors border-b border-slate-50 text-slate-500 hover:text-[#0077b6]"
               >
                 {tab.name}
               </Link>

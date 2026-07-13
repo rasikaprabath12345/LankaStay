@@ -211,7 +211,7 @@ export default function HomePage() {
           return (
             <span
               key={idx}
-              className={`h-3 w-3 rounded-full border border-[#00aa6c] ${isFilled ? 'bg-[#00aa6c]' : 'bg-white'
+              className={`h-3 w-3 rounded-full border border-[#0077b6] ${isFilled ? 'bg-[#0077b6]' : 'bg-white'
                 }`}
             />
           );
@@ -260,13 +260,13 @@ export default function HomePage() {
         <div className="absolute inset-0 bg-gradient-to-b from-slate-950/45 via-slate-950/20 to-transparent z-10" />
 
         {/* Premium smooth bottom fade to page background */}
-        <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-[#FCFBF9] via-[#e8f7ee]/50 to-transparent z-10 pointer-events-none" />
+        <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-[#FCFBF9] via-[#e6f4fc]/50 to-transparent z-10 pointer-events-none" />
 
         {/* Manual Slideshow Controls (Left & Right Arrows) */}
         <button
           type="button"
           onClick={handlePrevHero}
-          className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 z-30 p-2 sm:p-2.5 rounded-full bg-slate-900/35 hover:bg-[#00aa6c]/80 text-white border border-white/10 backdrop-blur-sm transition-all active:scale-90"
+          className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 z-30 p-2 sm:p-2.5 rounded-full bg-slate-900/35 hover:bg-[#0077b6]/80 text-white border border-white/10 backdrop-blur-sm transition-all active:scale-90"
           aria-label="Previous Slide"
         >
           <ChevronLeft className="h-5 w-5 sm:h-6 sm:w-6" />
@@ -274,7 +274,7 @@ export default function HomePage() {
         <button
           type="button"
           onClick={handleNextHero}
-          className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 z-30 p-2 sm:p-2.5 rounded-full bg-slate-900/35 hover:bg-[#00aa6c]/80 text-white border border-white/10 backdrop-blur-sm transition-all active:scale-90"
+          className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 z-30 p-2 sm:p-2.5 rounded-full bg-slate-900/35 hover:bg-[#0077b6]/80 text-white border border-white/10 backdrop-blur-sm transition-all active:scale-90"
           aria-label="Next Slide"
         >
           <ChevronRight className="h-5 w-5 sm:h-6 sm:w-6" />
@@ -314,8 +314,8 @@ export default function HomePage() {
                   onClick={() => setSearchCategory(tab.id)}
                   className={`flex items-center gap-1.5 pb-2.5 border-b-2 transition-all ${
                     searchCategory === tab.id
-                      ? 'text-[#00aa6c] border-[#00aa6c]'
-                      : 'border-transparent text-white/80 hover:text-[#00aa6c]'
+                      ? 'text-[#0077b6] border-[#0077b6]'
+                      : 'border-transparent text-white/80 hover:text-[#0077b6]'
                   }`}
                 >
                   {tab.icon}
@@ -325,8 +325,8 @@ export default function HomePage() {
             </div>
 
             <form onSubmit={handleSearchSubmit} className="flex flex-col md:flex-row items-center gap-3">
-              <div className="flex items-center gap-3 px-4 py-2 border border-white/10 bg-slate-900/60 rounded-2xl w-full md:flex-grow focus-within:ring-2 focus-within:ring-[#00aa6c]/50 focus-within:border-[#00aa6c] transition-all">
-                <MapPin className="h-5 w-5 text-[#00aa6c] shrink-0" />
+              <div className="flex items-center gap-3 px-4 py-2 border border-white/10 bg-slate-900/60 rounded-2xl w-full md:flex-grow focus-within:ring-2 focus-within:ring-[#0077b6]/50 focus-within:border-[#0077b6] transition-all">
+                <MapPin className="h-5 w-5 text-[#0077b6] shrink-0" />
                 <div className="flex-grow text-left">
                   <span className="block text-[8px] font-black text-slate-300 uppercase tracking-widest mb-0.5">Location</span>
                   <input
@@ -346,7 +346,7 @@ export default function HomePage() {
 
               <button
                 type="submit"
-                className="w-full md:w-auto bg-[#00aa6c] hover:bg-[#00915c] text-white font-black text-xs uppercase tracking-wider rounded-2xl px-8 py-4 flex items-center justify-center gap-2 transition-all shadow-md active:scale-95 shrink-0"
+                className="w-full md:w-auto bg-[#0077b6] hover:bg-[#005b8c] text-white font-black text-xs uppercase tracking-wider rounded-2xl px-8 py-4 flex items-center justify-center gap-2 transition-all shadow-md active:scale-95 shrink-0"
               >
                 <Search className="h-4 w-4" />
                 <span>Search</span>
@@ -409,12 +409,12 @@ export default function HomePage() {
                 className="flex flex-col items-center gap-2 group shrink-0"
               >
                 <div className={`h-14 w-14 rounded-full border flex items-center justify-center shadow-sm transition-all duration-300 ${isActive
-                    ? 'bg-[#00aa6c] text-white border-[#00aa6c] scale-105'
-                    : 'bg-white text-slate-700 border-slate-200 hover:border-[#00aa6c] hover:text-[#00aa6c] hover:scale-105'
+                    ? 'bg-[#0077b6] text-white border-[#0077b6] scale-105'
+                    : 'bg-white text-slate-700 border-slate-200 hover:border-[#0077b6] hover:text-[#0077b6] hover:scale-105'
                   }`}>
                   {cat.icon}
                 </div>
-                <span className={`text-[11px] font-bold transition-colors ${isActive ? 'text-[#00aa6c]' : 'text-slate-500 group-hover:text-[#00aa6c]'
+                <span className={`text-[11px] font-bold transition-colors ${isActive ? 'text-[#0077b6]' : 'text-slate-500 group-hover:text-[#0077b6]'
                   }`}>
                   {cat.name}
                 </span>
@@ -437,7 +437,7 @@ export default function HomePage() {
               icon: Award,
               title: "SLTDA Standards Compliant",
               desc: "Every listing matches standard tourism metrics, ensuring comfortable accommodation, clean sanitation, and reliable hosts.",
-              color: "text-[#00aa6c] bg-[#e8fbf3] border border-[#bbf2dc]"
+              color: "text-[#0077b6] bg-[#e6f4fc] border border-[#bce2f7]"
             },
             {
               icon: ShieldCheck,
@@ -469,7 +469,7 @@ export default function HomePage() {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
 
             <div className="lg:col-span-4 space-y-4">
-              <span className="text-xs font-black tracking-widest text-[#00aa6c] uppercase">Simple Workflow</span>
+              <span className="text-xs font-black tracking-widest text-[#0077b6] uppercase">Simple Workflow</span>
               <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-slate-900 font-serif leading-tight">
                 How It Works <br />
                 for Travelers
@@ -478,7 +478,7 @@ export default function HomePage() {
                 Our secure platform allows you to book and experience authentic Sri Lankan hospitality with zero complications.
               </p>
               <div className="pt-2">
-                <Link href="/auth/register" className="inline-flex items-center gap-2 text-xs font-bold text-[#00aa6c] hover:text-[#00915c] group">
+                <Link href="/auth/register" className="inline-flex items-center gap-2 text-xs font-bold text-[#0077b6] hover:text-[#005b8c] group">
                   <span>Register traveler profile</span>
                   <ArrowRight className="h-3.5 w-3.5 group-hover:translate-x-1 transition-transform" />
                 </Link>
@@ -492,7 +492,7 @@ export default function HomePage() {
                 { step: "03", title: "Immerse Locally", desc: "Stay with local families, enjoy home-cooked meals, and experience Ceylon safely." }
               ].map((item, index) => (
                 <div key={index} className="bg-white p-6 border border-slate-200 shadow-sm rounded-2xl">
-                  <span className="block text-2xl font-black text-[#00aa6c]/25 font-serif mb-4">{item.step}</span>
+                  <span className="block text-2xl font-black text-[#0077b6]/25 font-serif mb-4">{item.step}</span>
                   <h4 className="text-sm font-bold text-slate-900 mb-1">{item.title}</h4>
                   <p className="text-[11px] text-slate-500 leading-relaxed font-medium">{item.desc}</p>
                 </div>
@@ -522,13 +522,13 @@ export default function HomePage() {
             <button
               key={dest.name}
               onClick={() => handleQuickLocation(dest.name)}
-              className="group relative h-40 sm:h-48 overflow-hidden shadow-sm hover:shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#00aa6c] transition-all duration-500 text-left w-full border border-slate-200 rounded-2xl"
+              className="group relative h-40 sm:h-48 overflow-hidden shadow-sm hover:shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0077b6] transition-all duration-500 text-left w-full border border-slate-200 rounded-2xl"
             >
               <img src={dest.img} alt={dest.name} loading="lazy" className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out" />
               <div className="absolute inset-0 bg-slate-900/40 group-hover:bg-slate-900/50 transition-colors duration-500" />
               <div className="absolute bottom-4 left-4 text-white">
                 <span className="block font-black text-xl tracking-wide">{dest.name}</span>
-                <span className="block text-[9px] font-bold tracking-widest text-[#00aa6c] uppercase mt-1 opacity-90">{dest.label}</span>
+                <span className="block text-[9px] font-bold tracking-widest text-[#0077b6] uppercase mt-1 opacity-90">{dest.label}</span>
               </div>
             </button>
           ))}
@@ -549,7 +549,7 @@ export default function HomePage() {
               disabled={loading}
               className="flex items-center gap-2 bg-white border border-slate-200 px-4 py-2 text-xs font-bold text-slate-700 hover:bg-slate-50 shadow-sm transition-all active:scale-95 disabled:opacity-50 rounded-xl"
             >
-              <RefreshCw className={`h-3.5 w-3.5 text-[#00aa6c] ${loading ? 'animate-spin' : ''}`} />
+              <RefreshCw className={`h-3.5 w-3.5 text-[#0077b6] ${loading ? 'animate-spin' : ''}`} />
               <span>{loading ? 'Refreshing...' : 'Sync Registry'}</span>
             </button>
           </div>
@@ -576,7 +576,7 @@ export default function HomePage() {
               {(locationQuery || selectedTagIds.length > 0) && (
                 <button
                   onClick={() => { setLocationQuery(''); setSelectedTagIds([]); setActiveCategory('all'); }}
-                  className="mt-6 bg-slate-900 px-6 py-2.5 text-xs font-bold text-white hover:bg-[#00aa6c] transition-all shadow-md active:scale-95 rounded-xl"
+                  className="mt-6 bg-slate-900 px-6 py-2.5 text-xs font-bold text-white hover:bg-[#0077b6] transition-all shadow-md active:scale-95 rounded-xl"
                 >
                   Clear all filters
                 </button>
@@ -615,7 +615,7 @@ export default function HomePage() {
 
                       {/* Top Rank Badge */}
                       <div className="absolute left-3.5 bottom-3.5 flex items-center gap-1 bg-slate-950/80 backdrop-blur-sm text-white px-2.5 py-1 text-[9px] font-extrabold uppercase tracking-wide rounded-lg">
-                        <MapPin className="h-3 w-3 text-[#00aa6c]" />
+                        <MapPin className="h-3 w-3 text-[#0077b6]" />
                         <span>{exp.location}</span>
                       </div>
                     </div>
@@ -635,7 +635,7 @@ export default function HomePage() {
                       </div>
 
                       {/* Title */}
-                      <h3 className="text-base font-bold text-slate-900 group-hover:text-[#00aa6c] transition-colors line-clamp-1 font-serif pr-2 leading-tight">
+                      <h3 className="text-base font-bold text-slate-900 group-hover:text-[#0077b6] transition-colors line-clamp-1 font-serif pr-2 leading-tight">
                         {exp.title}
                       </h3>
 
@@ -670,7 +670,7 @@ export default function HomePage() {
 
                         <div className="text-right">
                           <span className="text-xs text-slate-400 font-semibold mr-1">from</span>
-                          <span className="text-base font-black text-[#00aa6c]">${exp.basePrice}</span>
+                          <span className="text-base font-black text-[#0077b6]">${exp.basePrice}</span>
                         </div>
                       </div>
 
@@ -750,7 +750,7 @@ export default function HomePage() {
                 }
               ].map((item, idx) => (
                 <div key={idx} className="bg-white/5 border border-white/10 p-5 rounded-2xl space-y-2 text-left hover:bg-white/10 transition-colors">
-                  <span className="text-xl font-serif font-black text-[#00aa6c]">{item.step}</span>
+                  <span className="text-xl font-serif font-black text-[#0077b6]">{item.step}</span>
                   <h4 className="text-xs font-bold text-slate-100">{item.title}</h4>
                   <p className="text-[10px] text-slate-400 leading-relaxed font-medium">{item.desc}</p>
                 </div>
@@ -764,7 +764,7 @@ export default function HomePage() {
       <section className="bg-[#FCFBF9] border-t border-slate-200 py-16 text-left">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto mb-10 space-y-2">
-            <span className="text-xs font-bold text-[#00aa6c] uppercase tracking-widest">Culinary Experiences</span>
+            <span className="text-xs font-bold text-[#0077b6] uppercase tracking-widest">Culinary Experiences</span>
             <h2 className="text-2xl sm:text-3xl font-bold font-serif text-slate-900 tracking-tight">Sri Lankan Culinary Matchmaker</h2>
             <p className="text-xs text-slate-500 font-medium">Choose a traditional specialty to filter homestays that host authentic food workshops.</p>
           </div>
@@ -807,18 +807,18 @@ export default function HomePage() {
                   }
                   resultsRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
                 }}
-                className="group flex flex-col bg-white border border-slate-200 rounded-2xl overflow-hidden shadow-sm hover:border-[#00aa6c] hover:shadow-md transition-all text-left"
+                className="group flex flex-col bg-white border border-slate-200 rounded-2xl overflow-hidden shadow-sm hover:border-[#0077b6] hover:shadow-md transition-all text-left"
               >
                 <div className="aspect-[4/3] w-full bg-slate-100 overflow-hidden relative">
                   <img src={dish.img} alt={dish.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
-                  <span className="absolute bottom-3 left-3 text-[10px] bg-[#00aa6c] text-white px-2 py-0.5 rounded font-extrabold uppercase tracking-wide">
+                  <span className="absolute bottom-3 left-3 text-[10px] bg-[#0077b6] text-white px-2 py-0.5 rounded font-extrabold uppercase tracking-wide">
                     {dish.name}
                   </span>
                 </div>
                 <div className="p-4 flex-1 flex flex-col justify-between">
                   <p className="text-[10px] text-slate-500 font-medium leading-relaxed">{dish.desc}</p>
-                  <span className="text-[9px] font-bold text-[#00aa6c] mt-2 flex items-center gap-1 group-hover:translate-x-1 transition-transform">
+                  <span className="text-[9px] font-bold text-[#0077b6] mt-2 flex items-center gap-1 group-hover:translate-x-1 transition-transform">
                     Find homestays <ArrowRight className="h-3 w-3" />
                   </span>
                 </div>
@@ -834,7 +834,7 @@ export default function HomePage() {
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-center">
 
             <div className="space-y-4">
-              <span className="text-xs font-bold text-[#00aa6c] uppercase tracking-widest">Travel Smart</span>
+              <span className="text-xs font-bold text-[#0077b6] uppercase tracking-widest">Travel Smart</span>
               <h2 className="text-2xl sm:text-3xl font-bold font-serif text-slate-900 tracking-tight leading-tight">
                 Sri Lanka Travel Planner & Regional Guides
               </h2>
@@ -985,7 +985,7 @@ export default function HomePage() {
       <section className="bg-[#FCFBF9] border-t border-slate-200 py-16 text-left select-none">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto mb-10 space-y-2">
-            <span className="text-xs font-bold text-[#00aa6c] uppercase tracking-widest">Our Community</span>
+            <span className="text-xs font-bold text-[#0077b6] uppercase tracking-widest">Our Community</span>
             <h2 className="text-2xl sm:text-3xl font-bold font-serif text-slate-900 tracking-tight">Meet Our Certified Families</h2>
             <p className="text-xs text-slate-500 font-medium">Hosts on LankaStay are verified through Grama Niladhari clearance and SLTDA hospitality standards.</p>
           </div>
@@ -1045,7 +1045,7 @@ export default function HomePage() {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10">
 
           <div className="text-center max-w-2xl mx-auto mb-12 space-y-2">
-            <span className="text-xs font-bold text-[#00aa6c] uppercase tracking-widest">Traveler Stories</span>
+            <span className="text-xs font-bold text-[#0077b6] uppercase tracking-widest">Traveler Stories</span>
             <h2 className="text-2.5xl font-bold font-serif tracking-tight">Voted Most Authentic Holiday Platform</h2>
             <p className="text-sm text-slate-500">Read verified reviews from adventurers who lived local.</p>
           </div>
@@ -1078,7 +1078,7 @@ export default function HomePage() {
                 <div className="space-y-4">
                   <div className="flex gap-0.5">
                     {Array.from({ length: t.stars }).map((_, idx) => (
-                      <span key={idx} className="h-3 w-3 rounded-full bg-[#00aa6c] border border-[#00aa6c]" />
+                      <span key={idx} className="h-3 w-3 rounded-full bg-[#0077b6] border border-[#0077b6]" />
                     ))}
                   </div>
                   <p className="text-xs leading-relaxed text-slate-600 italic">"{t.quote}"</p>
@@ -1088,7 +1088,7 @@ export default function HomePage() {
                     <h5 className="font-bold text-slate-900 text-xs">{t.author}</h5>
                     <span className="text-[9px] text-slate-400 font-bold uppercase">{t.location}</span>
                   </div>
-                  <span className="text-[9px] bg-slate-50 text-[#00aa6c] border border-slate-150 px-2 py-1 font-bold rounded-lg">
+                  <span className="text-[9px] bg-slate-50 text-[#0077b6] border border-slate-150 px-2 py-1 font-bold rounded-lg">
                     {t.tag}
                   </span>
                 </div>
@@ -1102,7 +1102,7 @@ export default function HomePage() {
       <section id="faq" className="bg-[#FCFBF9] border-t border-slate-200 py-20 text-left select-none scroll-mt-20">
         <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12 space-y-2">
-            <span className="text-xs font-bold text-[#00aa6c] uppercase tracking-widest">Frequently Asked Questions</span>
+            <span className="text-xs font-bold text-[#0077b6] uppercase tracking-widest">Frequently Asked Questions</span>
             <h2 className="text-2xl sm:text-3xl font-bold font-serif text-slate-900 tracking-tight">Got Questions? We Have Answers.</h2>
             <p className="text-xs text-slate-500 font-medium">Learn more about the trust standards and operation of LankaStay.</p>
           </div>
@@ -1128,7 +1128,7 @@ export default function HomePage() {
             ].map((faq, index) => (
               <div key={index} className="bg-white p-5 border border-slate-200 rounded-2xl shadow-sm space-y-2">
                 <h4 className="text-sm font-bold text-slate-900 flex items-center gap-1.5">
-                  <span className="text-[#00aa6c] font-serif">Q.</span> {faq.q}
+                  <span className="text-[#0077b6] font-serif">Q.</span> {faq.q}
                 </h4>
                 <p className="text-xs text-slate-500 leading-relaxed font-medium pl-4">
                   {faq.a}
@@ -1142,7 +1142,7 @@ export default function HomePage() {
       {/* Floating Action Button to Scroll Top */}
       <button
         onClick={handleScrollTop}
-        className={`fixed bottom-8 right-6 z-40 flex items-center justify-center h-12 w-12 bg-slate-900 text-white shadow-lg hover:bg-[#00aa6c] hover:scale-105 active:scale-95 transition-all duration-300 rounded-xl ${scrolled ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10 pointer-events-none'
+        className={`fixed bottom-8 right-6 z-40 flex items-center justify-center h-12 w-12 bg-slate-900 text-white shadow-lg hover:bg-[#0077b6] hover:scale-105 active:scale-95 transition-all duration-300 rounded-xl ${scrolled ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10 pointer-events-none'
           }`}
         aria-label="Scroll to top"
       >
